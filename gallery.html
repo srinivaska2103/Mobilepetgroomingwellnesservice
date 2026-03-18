@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" id="root-html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="icon" href="assets/dog_7104247.png">
+    <title>Paws</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Smooth transitions for theme switching */
+        .theme-transition { transition: background-color 0.3s, color 0.3s; }
+        /* Custom 360px breakpoint support */
+        @media (min-width: 360px) { .min-360\:flex { display: flex; } }
+    </style>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    screens: {
+                        'xs': '360px',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="theme-transition bg-white text-slate-900 dark:bg-slate-900 dark:text-white font-sans">
+
+    <nav class="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-gray-200 dark:border-slate-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <a href="index.html">
+ <div class="flex-shrink-0 flex items-center gap-2">
+                    <i data-lucide="dog" class="text-blue-500 w-8 h-8"></i>
+                    <span class="text-2xl font-bold tracking-tight">Paws</span>
+                </div>
+                </a>
+               
+
+               <div class="hidden lg:flex space-x-6 items-center text-sm font-medium" id="desktop-nav">
+    <a href="index.html" class="nav-link hover:text-blue-500 transition-colors">Home</a>
+    <a href="home2.html" class="nav-link hover:text-blue-500 transition-colors">Home2</a>
+    <a href="booknow.html" class="nav-link hover:text-blue-500 transition-colors">Book Now</a>
+    <a href="service.html" class="nav-link hover:text-blue-500 transition-colors">Services</a>
+    <a href="gallery.html" class="nav-link hover:text-blue-500 transition-colors">Gallery</a>
+    <a href="about.html" class="nav-link hover:text-blue-500 transition-colors">About</a>
+    <a href="contact.html" class="nav-link hover:text-blue-500 transition-colors">Contact</a>
+    <a href="user.html" class="nav-link hover:text-blue-500 transition-colors">Dashboard</a>
+    
+    <a href="login.html">
+    <button class="bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition">Login</button>
+
+    </a>
+    
+    <div class="flex items-center gap-3 border-l pl-6 border-gray-300 dark:border-slate-600">
+        <button onclick="toggleTheme()" class="p-2 rounded-lg bg-gray-100 dark:bg-slate-800">
+            <i data-lucide="sun" id="sun-icon" class="hidden"></i>
+            <i data-lucide="moon" id="moon-icon"></i>
+        </button>
+        <button onclick="toggleDirection()" class="p-2 rounded-lg bg-gray-100 dark:bg-slate-800 text-xs font-bold">
+            <span id="dir-text">LTR</span>
+        </button>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+    const navLinks = document.querySelectorAll('.nav-link');
+    const currentUrl = window.location.href;
+
+    function setActiveLink(link) {
+        // Remove active styles from all links
+        navLinks.forEach(l => {
+            l.classList.remove('text-blue-600', 'font-bold', 'border-b-2', 'border-blue-600');
+            l.classList.add('text-slate-600', 'dark:text-slate-400'); // Reset to default
+        });
+
+        // Add active styles to the chosen link
+        link.classList.add('text-blue-600', 'font-bold', 'border-b-2', 'border-blue-600');
+        link.classList.remove('text-slate-600', 'dark:text-slate-400');
+    }
+
+    // 1. Set active based on current URL on page load
+    navLinks.forEach(link => {
+        if (currentUrl.includes(link.getAttribute('href')) && link.getAttribute('href') !== "#") {
+            setActiveLink(link);
+        }
+
+        // 2. Set active on Click (for single page feeling)
+        link.addEventListener('click', function() {
+            setActiveLink(this);
+        });
+    });
+});
+</script>
+
+                <div class="lg:hidden flex items-center gap-4">
+                    <button onclick="toggleTheme()" class="p-2 rounded-lg bg-gray-100 dark:bg-slate-800">
+                        <i data-lucide="moon" class="w-5 h-5" id="mobile-theme-icon"></i>
+                    </button>
+                    <button id="mobile-menu-btn" class="p-2">
+                        <i data-lucide="menu" class="w-8 h-8"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden lg:hidden bg-white dark:bg-slate-900 border-b border-gray-200 dark:border-slate-700 px-4 pt-2 pb-6 space-y-1">
+    <a href="index.html" class="mobile-nav-link block py-3 px-4 rounded-xl transition-all">Home</a>
+    <a href="home2.html" class="mobile-nav-link block py-3 px-4 rounded-xl transition-all border-t dark:border-slate-800">Home2</a>
+    <a href="booknow.html" class="mobile-nav-link block py-3 px-4 rounded-xl transition-all border-t dark:border-slate-800">Book Now</a>
+    <a href="service.html" class="mobile-nav-link block py-3 px-4 rounded-xl transition-all border-t dark:border-slate-800">Services</a>
+    <a href="gallery.html" class="mobile-nav-link block py-3 px-4 rounded-xl transition-all border-t dark:border-slate-800">Gallery</a>
+    <a href="about.html" class="mobile-nav-link block py-3 px-4 rounded-xl transition-all border-t dark:border-slate-800">About</a>
+    <a href="contact.html" class="mobile-nav-link block py-3 px-4 rounded-xl transition-all border-t dark:border-slate-800">Contact</a>
+    <a href="user.html" class="mobile-nav-link block py-3 px-4 rounded-xl transition-all border-t dark:border-slate-800">Dashboard</a>
+    
+    <div class="pt-4 flex flex-col gap-3">
+        <a href="login.html">
+        <button class="w-full bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700 transition">Login</button>
+
+        </a>
+        <button onclick="toggleDirection()" class="w-full border border-gray-300 dark:border-slate-600 py-2 rounded-xl text-sm">Switch Direction (LTR/RTL)</button>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+    const currentUrl = window.location.pathname; // Gets the /page.html part
+    
+    // Select both desktop and mobile links
+    const desktopLinks = document.querySelectorAll('.nav-link');
+    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+    function updateActiveState(links, activeClasses, inactiveClasses) {
+        links.forEach(link => {
+            const linkHref = link.getAttribute('href');
+            
+            // Check if URL ends with the link's href
+            if (currentUrl.endsWith(linkHref) && linkHref !== "#") {
+                link.classList.add(...activeClasses);
+                link.classList.remove(...inactiveClasses);
+            } else {
+                link.classList.remove(...activeClasses);
+                link.classList.add(...inactiveClasses);
+            }
+        });
+    }
+
+    // Define the styles for Desktop
+    const deskActive = ['text-blue-600', 'font-bold', 'border-b-2', 'border-blue-600'];
+    const deskInactive = ['text-slate-600', 'dark:text-slate-400'];
+
+    // Define the styles for Mobile (Background highlight)
+    const mobActive = ['bg-blue-50', 'dark:bg-blue-900/20', 'text-blue-600', 'font-bold'];
+    const mobInactive = ['text-slate-700', 'dark:text-slate-300'];
+
+    // Run the update
+    updateActiveState(desktopLinks, deskActive, deskInactive);
+    updateActiveState(mobileLinks, mobActive, mobInactive);
+});
+</script>
+    </nav>
+  
+  <header class="relative py-16 md:py-24 lg:py-32 bg-white dark:bg-slate-900 theme-transition overflow-hidden">
+    
+    <div class="absolute top-10 left-10 opacity-5 dark:opacity-10 -rotate-12 animate-pulse">
+        <i data-lucide="paw-print" class="w-24 h-24 md:w-40 md:h-40 text-blue-500"></i>
+    </div>
+    <div class="absolute bottom-10 right-10 opacity-5 dark:opacity-10 rotate-12 animate-pulse" style="animation-delay: 1s;">
+        <i data-lucide="camera" class="w-24 h-24 md:w-40 md:h-40 text-blue-500"></i>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center max-w-3xl mx-auto space-y-6 md:space-y-8">
+            
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-black text-[10px] md:text-xs uppercase tracking-[0.3em] border border-blue-100 dark:border-blue-800">
+                <i data-lucide="image" class="w-4 h-4"></i>
+                Our Portfolio
+            </div>
+
+            <h1 class="text-4xl xs:text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter text-slate-900 dark:text-white leading-[1.1]">
+                Happy Pets, <br>
+                <span class="text-blue-600">Beautiful Transformations</span>
+            </h1>
+
+            <p class="text-lg md:text-xl text-slate-500 dark:text-slate-400 font-medium leading-relaxed max-w-2xl mx-auto">
+                See the difference we bring to your pet’s wellness. From messy coats to runway-ready styles, every transformation is handled with love.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-4 pt-6 md:pt-10">
+                <div class="flex items-center gap-2 px-6 py-3 bg-gray-50 dark:bg-slate-800 rounded-2xl border border-gray-100 dark:border-slate-700 shadow-sm">
+                    <span class="text-blue-600 font-black">500+</span>
+                    <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">Happy Clients</span>
+                </div>
+                <div class="flex items-center gap-2 px-6 py-3 bg-gray-50 dark:bg-slate-800 rounded-2xl border border-gray-100 dark:border-slate-700 shadow-sm">
+                    <span class="text-blue-600 font-black">100%</span>
+                    <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">Natural Care</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none rotate-180">
+        <svg class="relative block w-full h-12 md:h-20" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="fill-gray-50 dark:fill-slate-950"></path>
+        </svg>
+    </div>
+</header>
+
+<script>
+    // Ensure Lucide icons render for the Gallery Hero
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+</script>
+
+<section class="py-8 bg-gray-50 dark:bg-slate-950 theme-transition sticky top-20 z-40 backdrop-blur-md bg-opacity-90 dark:bg-opacity-90 border-b border-gray-100 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4">
+        
+        <div class="flex items-center lg:justify-center overflow-x-auto no-scrollbar pb-2 lg:pb-0 gap-3 md:gap-4 lg:flex-wrap" id="gallery-filters">
+            
+            <button onclick="filterGallery('all', this)" class="filter-btn active whitespace-nowrap px-6 py-3 rounded-2xl font-black text-sm transition-all active:scale-95 flex items-center gap-2 bg-blue-600 text-white shadow-lg shadow-blue-500/30">
+                All
+            </button>
+
+            <button onclick="filterGallery('dogs', this)" class="filter-btn whitespace-nowrap px-6 py-3 rounded-2xl font-black text-sm transition-all active:scale-95 flex items-center gap-2 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-gray-200 dark:border-slate-800 hover:border-blue-500">
+                <span>🐶</span> Dogs
+            </button>
+
+            <button onclick="filterGallery('cats', this)" class="filter-btn whitespace-nowrap px-6 py-3 rounded-2xl font-black text-sm transition-all active:scale-95 flex items-center gap-2 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-gray-200 dark:border-slate-800 hover:border-blue-500">
+                <span>🐱</span> Cats
+            </button>
+
+            <button onclick="filterGallery('transform', this)" class="filter-btn whitespace-nowrap px-6 py-3 rounded-2xl font-black text-sm transition-all active:scale-95 flex items-center gap-2 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-gray-200 dark:border-slate-800 hover:border-blue-500">
+                <span>✂️</span> Before & After
+            </button>
+
+            <button onclick="filterGallery('process', this)" class="filter-btn whitespace-nowrap px-6 py-3 rounded-2xl font-black text-sm transition-all active:scale-95 flex items-center gap-2 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-gray-200 dark:border-slate-800 hover:border-blue-500">
+                <span>🧼</span> Grooming Process
+            </button>
+
+            <button onclick="filterGallery('van', this)" class="filter-btn whitespace-nowrap px-6 py-3 rounded-2xl font-black text-sm transition-all active:scale-95 flex items-center gap-2 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-gray-100 dark:border-slate-800 hover:border-blue-500">
+                <span>🚐</span> Mobile Van
+            </button>
+
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+    }
+</style>
+
+<script>
+    function filterGallery(category, btn) {
+        // 1. Update Button UI
+        const buttons = document.querySelectorAll('.filter-btn');
+        buttons.forEach(b => {
+            // Reset to Inactive Style
+            b.classList.remove('bg-blue-600', 'text-white', 'shadow-lg', 'shadow-blue-500/30');
+            b.classList.add('bg-white', 'dark:bg-slate-900', 'text-slate-600', 'dark:text-slate-400', 'border-gray-200', 'dark:border-slate-800');
+        });
+
+        // Apply Active Style
+        btn.classList.remove('bg-white', 'dark:bg-slate-900', 'text-slate-600', 'dark:text-slate-400', 'border-gray-200', 'dark:border-slate-800');
+        btn.classList.add('bg-blue-600', 'text-white', 'shadow-lg', 'shadow-blue-500/30');
+
+        // 2. Filter Logic (Placeholder for Gallery Grid)
+        console.log("Filtering gallery by:", category);
+        
+        // Example: logic to hide/show items with data-category tags
+        const items = document.querySelectorAll('.gallery-item');
+        if(items.length > 0) {
+            items.forEach(item => {
+                if(category === 'all' || item.dataset.category === category) {
+                    item.style.display = 'block';
+                    item.classList.add('animate-in', 'fade-in', 'zoom-in-95', 'duration-300');
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    }
+</script>
+<section class="py-12 md:py-20 bg-gray-50 dark:bg-slate-950 theme-transition">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" id="gallery-container">
+            
+            <div class="gallery-item group relative overflow-hidden rounded-[2.5rem] bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/10" data-category="dogs">
+                <img src="assets/dogbath" alt="Dog" class="w-full h-64 md:h-72 lg:h-80 object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-8">
+                    <p class="text-white font-black text-xl">Golden Style</p>
+                    <p class="text-blue-400 text-xs font-bold uppercase tracking-widest">Full Grooming</p>
+                </div>
+            </div>
+
+            <div class="gallery-item group relative overflow-hidden rounded-[2.5rem] bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800 shadow-sm transition-all duration-500 hover:-translate-y-2" data-category="cats">
+                <img src="assets/cat" alt="Cat" class="w-full h-64 md:h-72 lg:h-80 object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-8">
+                    <p class="text-white font-black text-xl">Persian Spa</p>
+                    <p class="text-blue-400 text-xs font-bold uppercase tracking-widest">Bath & Dry</p>
+                </div>
+            </div>
+
+            <div class="gallery-item group relative overflow-hidden rounded-[2.5rem] bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800 shadow-sm transition-all duration-500 hover:-translate-y-2" data-category="transform">
+                <img src="assets/flea" alt="Transform" class="w-full h-64 md:h-72 lg:h-80 object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-8">
+                    <p class="text-white font-black text-xl">Extreme Makeover</p>
+                    <p class="text-blue-400 text-xs font-bold uppercase tracking-widest">✂️ Cut & Style</p>
+                </div>
+            </div>
+
+            <div class="gallery-item group relative overflow-hidden rounded-[2.5rem] bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800 shadow-sm transition-all duration-500 hover:-translate-y-2" data-category="van">
+                <img src="assets/servicehero" alt="Van" class="w-full h-64 md:h-72 lg:h-80 object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-8">
+                    <p class="text-white font-black text-xl">Mobile Luxury</p>
+                    <p class="text-blue-400 text-xs font-bold uppercase tracking-widest">🚐 Van View</p>
+                </div>
+            </div>
+
+            <div class="gallery-item group relative overflow-hidden rounded-[2.5rem] bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800 shadow-sm transition-all duration-500 hover:-translate-y-2" data-category="process">
+                <img src="assets/dentalcare" alt="Process" class="w-full h-64 md:h-72 lg:h-80 object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-8">
+                    <p class="text-white font-black text-xl">Dental Care</p>
+                    <p class="text-blue-400 text-xs font-bold uppercase tracking-widest">🧼 Hygiene</p>
+                </div>
+            </div>
+
+            <div class="gallery-item group relative overflow-hidden rounded-[2.5rem] bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800 shadow-sm transition-all duration-500 hover:-translate-y-2" data-category="dogs">
+                <img src="assets/nailandear" alt="Dog" class="w-full h-64 md:h-72 lg:h-80 object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-8">
+                    <p class="text-white font-black text-xl">Happy Paws</p>
+                    <p class="text-blue-400 text-xs font-bold uppercase tracking-widest">🐶 Breed Style</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section id="customer-moments" class="py-16 md:py-24 bg-white dark:bg-slate-900 theme-transition overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-pink-50 dark:bg-pink-900/20 text-pink-600 dark:text-pink-400 font-black text-[10px] uppercase tracking-widest border border-pink-100 dark:border-pink-800">
+                <i data-lucide="heart" class="w-4 h-4 fill-current"></i>
+                Pure Joy Moments
+            </div>
+            <h2 class="text-3xl md:text-5xl font-black tracking-tighter text-slate-900 dark:text-white leading-tight">
+                Happy Tails & <span class="text-blue-600">Smiling Faces</span>
+            </h2>
+            <p class="text-lg text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
+                There’s nothing quite like the post-grooming glow. See the special bond between our clients and their refreshed furry family.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            
+            <div class="group relative rounded-[2.5rem] overflow-hidden bg-slate-100 dark:bg-slate-800 aspect-[4/5] shadow-xl hover:shadow-pink-500/10 transition-all duration-500">
+                <img src="assets/dog1" 
+                     alt="Happy pet and owner" 
+                     class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 p-8 flex flex-col justify-end">
+                    <button onclick="this.classList.toggle('text-pink-500')" class="absolute top-6 right-6 w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white transition-colors hover:bg-white/40">
+                        <i data-lucide="heart" class="w-6 h-6"></i>
+                    </button>
+                    <p class="text-white italic font-medium mb-2 leading-tight">"Seeing Bella so happy and smelling amazing is the best part of my weekend!"</p>
+                    <p class="text-pink-400 font-black text-xs uppercase tracking-widest">— Sarah & Bella</p>
+                </div>
+            </div>
+
+            <div class="group relative rounded-[2.5rem] overflow-hidden bg-slate-100 dark:bg-slate-800 aspect-[4/5] shadow-xl transition-all duration-500">
+                <img src="assets/dog2" 
+                     alt="After grooming reaction" 
+                     class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 p-8 flex flex-col justify-end">
+                    <button onclick="this.classList.toggle('text-pink-500')" class="absolute top-6 right-6 w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white transition-colors">
+                        <i data-lucide="heart" class="w-6 h-6"></i>
+                    </button>
+                    <p class="text-white italic font-medium mb-2 leading-tight">"Cooper usually hates grooming, but he was so relaxed at our own doorstep."</p>
+                    <p class="text-pink-400 font-black text-xs uppercase tracking-widest">— James & Cooper</p>
+                </div>
+            </div>
+
+            <div class="group relative rounded-[2.5rem] overflow-hidden bg-slate-100 dark:bg-slate-800 aspect-[4/5] shadow-xl transition-all duration-500">
+                <img src="assets/dog3" 
+                     alt="Happy pet cuddle" 
+                     class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 p-8 flex flex-col justify-end">
+                    <button onclick="this.classList.toggle('text-pink-500')" class="absolute top-6 right-6 w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white transition-colors">
+                        <i data-lucide="heart" class="w-6 h-6"></i>
+                    </button>
+                    <p class="text-white italic font-medium mb-2 leading-tight">"Softest coat ever! No more shedding all over my couch. Thank you Paws!"</p>
+                    <p class="text-pink-400 font-black text-xs uppercase tracking-widest">— Anita & Rex</p>
+                </div>
+            </div>
+
+            <div class="group relative rounded-[2.5rem] overflow-hidden bg-slate-100 dark:bg-slate-800 aspect-[4/5] shadow-xl transition-all duration-500">
+                <img src="assets/cat" alt="Grooming joy" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 p-8 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity">
+                    <p class="text-white italic font-medium mb-2 leading-tight">"The convenience of having them come to us is unmatched."</p>
+                    <p class="text-pink-400 font-black text-xs tracking-widest">— The Miller Family</p>
+                </div>
+            </div>
+
+            <div class="group relative rounded-[2.5rem] overflow-hidden bg-slate-100 dark:bg-slate-800 aspect-[4/5] shadow-xl transition-all duration-500">
+                <img src="assets/servicehero" alt="Pet smile" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 p-8 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity">
+                    <p class="text-white italic font-medium mb-2 leading-tight">"Best makeover ever! Goldie looks like a show dog now."</p>
+                    <p class="text-pink-400 font-black text-xs tracking-widest">— Vikram & Goldie</p>
+                </div>
+            </div>
+
+            <div class="group relative rounded-[2.5rem] overflow-hidden bg-slate-100 dark:bg-slate-800 aspect-[4/5] shadow-xl transition-all duration-500">
+                <img src="assets/catdog" alt="Owner love" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 p-8 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity">
+                    <p class="text-white italic font-medium mb-2 leading-tight">"Paws makes life so much easier for busy pet parents."</p>
+                    <p class="text-pink-400 font-black text-xs tracking-widest">— Sneha & Simba</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<script>
+    // Ensure icons render
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+</script>
+<section class="py-16 md:py-24 bg-white dark:bg-slate-900 theme-transition overflow-hidden relative">
+    
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full -z-10 pointer-events-none">
+        <div class="absolute top-0 left-1/4 w-64 h-64 bg-blue-400/10 rounded-full blur-[100px] animate-pulse"></div>
+        <div class="absolute bottom-0 right-1/4 w-64 h-64 bg-pink-400/10 rounded-full blur-[100px] animate-pulse" style="animation-delay: 2s;"></div>
+    </div>
+
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center space-y-8 md:space-y-12">
+        
+        <div class="inline-flex items-center justify-center w-20 h-20 bg-blue-600 text-white rounded-[2rem] shadow-2xl shadow-blue-500/40 mb-4 animate-bounce">
+            <i data-lucide="sparkles" class="w-10 h-10"></i>
+        </div>
+
+        <div class="space-y-4 md:space-y-6">
+            <h2 class="text-4xl xs:text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter text-slate-900 dark:text-white leading-[0.95]">
+                Ready for a <br>
+                <span class="text-blue-600">Happier, Cleaner Pet?</span>
+            </h2>
+            
+            <p class="text-lg md:text-xl text-slate-500 dark:text-slate-400 font-medium max-w-2xl mx-auto leading-relaxed">
+                Join the 2,000+ pet parents in Perundurai who have traded salon stress for doorstep luxury. Your first session is just a click away.
+            </p>
+        </div>
+
+        <div class="flex flex-col items-center gap-6 pt-4">
+            <div class="group relative inline-block w-full xs:w-auto">
+                <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-[2rem] blur opacity-20 group-hover:opacity-60 transition duration-500"></div>
+                
+                <a href="booknow.html" class="relative w-full xs:w-auto px-12 py-6 bg-blue-600 text-white rounded-[2rem] font-black text-xl md:text-2xl shadow-2xl shadow-blue-500/30 hover:bg-blue-700 hover:-translate-y-1.5 transition-all active:scale-95 flex items-center justify-center gap-4 group">
+                    <span>Book Your Spa Day</span>
+                    <i data-lucide="calendar-days" class="w-7 h-7 group-hover:rotate-12 transition-transform"></i>
+                </a>
+            </div>
+
+            <div class="flex items-center gap-6 text-slate-400 dark:text-slate-600">
+                <div class="flex items-center gap-2">
+                    <i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i>
+                    <span class="text-[10px] font-black uppercase tracking-widest">No Hidden Fees</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i>
+                    <span class="text-[10px] font-black uppercase tracking-widest">Instant Confirmation</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<script>
+    // Ensure icons render for this specific CTA
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+</script>
+  
+  <footer class="bg-gray-50 dark:bg-slate-950 border-t border-gray-200 dark:border-slate-800 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <div class="space-y-6">
+                    <a href="index.html">
+  <div class="flex items-center gap-2">
+                        <i data-lucide="dog" class="text-blue-500 w-6 h-6"></i>
+                        <span class="text-xl font-bold">Paws</span>
+                    </div>
+                    </a>
+                  
+                    <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
+                        We are a team of certified pet lovers dedicated to providing premium wellness services directly to your driveway.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="p-2 rounded-full bg-white dark:bg-slate-800 border dark:border-slate-700 hover:text-blue-500 transition shadow-sm"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                        <a href="#" class="p-2 rounded-full bg-white dark:bg-slate-800 border dark:border-slate-700 hover:text-blue-500 transition shadow-sm"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                        <a href="#" class="p-2 rounded-full bg-white dark:bg-slate-800 border dark:border-slate-700 hover:text-blue-500 transition shadow-sm"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+                    </div>
+                </div>
+
+                <div>
+    <h4 class="font-bold mb-6 text-slate-900 dark:text-white">Quick Links</h4>
+    <ul class="grid grid-cols-2 gap-y-4 gap-x-4 md:gap-x-8 text-sm text-slate-500 dark:text-slate-400">
+        <li><a href="index.html" class="hover:text-blue-500 transition-colors">Home</a></li>
+        <li><a href="home2.html" class="hover:text-blue-500 transition-colors">Home2</a></li>
+        <li><a href="booknow.html" class="hover:text-blue-500 transition-colors font-semibold text-blue-600 dark:text-blue-400">Book Now</a></li>
+        <li><a href="service.html" class="hover:text-blue-500 transition-colors">Services</a></li>
+      <li><a href="404.html" class="hover:text-blue-500 transition-colors">404</a></li>
+      <li><a href="comingsoon.html" class="hover:text-blue-500 transition-colors">comingsoon</a></li>
+        <li><a href="about.html" class="hover:text-blue-500 transition-colors">About</a></li>
+        <li><a href="contact.html" class="hover:text-blue-500 transition-colors">Contact</a></li>
+    </ul>
+</div>
+
+                <div class="lg:col-span-2 space-y-6">
+                    <h4 class="font-bold text-lg">Join Our Newsletter</h4>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm">Get grooming tips and exclusive discounts for your first visit.</p>
+                    <form class="flex flex-col xs:flex-row gap-3">
+                        <input type="email" placeholder="Enter your email" class="flex-1 px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-700 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <button class="bg-blue-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-blue-700 transition">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-200 dark:border-slate-800 pt-8 text-center text-sm text-slate-500">
+                &copy; 2026 PawsOnWheels Mobile Grooming. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Theme Toggle Logic
+        function toggleTheme() {
+            const html = document.documentElement;
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                updateIcons('light');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                updateIcons('dark');
+            }
+        }
+
+        function updateIcons(theme) {
+            const sun = document.getElementById('sun-icon');
+            const moon = document.getElementById('moon-icon');
+            if (theme === 'dark') {
+                sun.classList.remove('hidden');
+                moon.classList.add('hidden');
+            } else {
+                sun.classList.add('hidden');
+                moon.classList.remove('hidden');
+            }
+        }
+
+        // Direction Toggle Logic (LTR/RTL)
+        function toggleDirection() {
+            const html = document.getElementById('root-html');
+            const dirText = document.getElementById('dir-text');
+            const currentDir = html.getAttribute('dir');
+            const newDir = currentDir === 'ltr' ? 'rtl' : 'ltr';
+            
+            html.setAttribute('dir', newDir);
+            localStorage.setItem('direction', newDir);
+            dirText.innerText = newDir.toUpperCase();
+        }
+
+        // Load Preferences on Start
+        window.onload = () => {
+            // Theme
+            if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                updateIcons('dark');
+            }
+            
+            // Direction
+            const savedDir = localStorage.getItem('direction') || 'ltr';
+            document.getElementById('root-html').setAttribute('dir', savedDir);
+            document.getElementById('dir-text').innerText = savedDir.toUpperCase();
+        };
+    </script>
+</body>
+</html>
