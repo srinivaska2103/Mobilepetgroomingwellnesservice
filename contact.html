@@ -179,52 +179,56 @@
         </p>
     </div>
 </header>
-<section class="py-16 md:py-24 bg-white dark:bg-slate-900 theme-transition">
+<section id="contact-section" class="py-12 md:py-24 bg-white dark:bg-slate-900 theme-transition overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start">
+        
+        
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-stretch">
             
-            <div class="space-y-10">
-                <div class="grid grid-cols-1 xs:grid-cols-2 gap-8">
-                    <div class="group space-y-4">
-                        <div class="w-14 h-14 bg-blue-100 dark:bg-blue-900/40 text-blue-600 rounded-2xl flex items-center justify-center group-hover:rotate-6 transition-transform">
+            <div class="space-y-8 flex flex-col justify-between">
+                
+                <div class="grid grid-cols-1 xs:grid-cols-2 gap-6 md:gap-8">
+                    <div class="group p-6 rounded-[2rem] bg-gray-50 dark:bg-slate-800/40 border border-transparent hover:border-blue-500/20 transition-all">
+                        <div class="w-14 h-14 bg-blue-100 dark:bg-blue-900/40 text-blue-600 rounded-2xl flex items-center justify-center group-hover:rotate-6 transition-transform mb-4">
                             <i data-lucide="phone-call" class="w-6 h-6"></i>
                         </div>
                         <h3 class="text-xl font-black dark:text-white">Call Us</h3>
-                        <p class="text-slate-500 dark:text-slate-400 text-sm font-bold leading-relaxed">
+                        <p class="text-slate-500 dark:text-slate-400 text-sm font-bold leading-relaxed mt-2">
                             +91 98765 43210<br>
-                            <span class="opacity-60">Mon - Sat, 9am - 8pm</span>
+                            <span class="text-[10px] uppercase opacity-60">Mon - Sat, 9am - 8pm</span>
                         </p>
                     </div>
-                    <div class="group space-y-4">
-                        <div class="w-14 h-14 bg-green-100 dark:bg-green-900/40 text-green-600 rounded-2xl flex items-center justify-center group-hover:rotate-6 transition-transform">
-                            <i data-lucide="message-square" class="w-6 h-6"></i>
+
+                    <div class="group p-6 rounded-[2rem] bg-gray-50 dark:bg-slate-800/40 border border-transparent hover:border-green-500/20 transition-all">
+                        <div class="w-14 h-14 bg-green-100 dark:bg-green-900/40 text-green-600 rounded-2xl flex items-center justify-center group-hover:rotate-6 transition-transform mb-4">
+                            <i data-lucide="mail" class="w-6 h-6"></i>
                         </div>
                         <h3 class="text-xl font-black dark:text-white">Email Us</h3>
-                        <p class="text-slate-500 dark:text-slate-400 text-sm font-bold leading-relaxed">
+                        <p class="text-slate-500 dark:text-slate-400 text-sm font-bold leading-relaxed mt-2">
                             hello@paws.com<br>
-                            <span class="opacity-60">Response within 2 hours</span>
+                            <span class="text-[10px] uppercase opacity-60">Response in 2 hours</span>
                         </p>
                     </div>
                 </div>
 
-                <!-- <div class="p-8 bg-slate-900 text-white rounded-[2.5rem] shadow-2xl relative overflow-hidden group">
+                <div class="p-8 rounded-[2.5rem] bg-blue-600 text-white relative overflow-hidden group">
+                    <i data-lucide="map-pin" class="absolute -bottom-10 -right-10 w-40 h-40 opacity-10 -rotate-12 transition-transform group-hover:translate-x-4"></i>
                     <div class="relative z-10">
-                        <h3 class="text-2xl font-black mb-4">Our Service Area</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                            We are currently serving all major areas in Bangalore including Indiranagar, Koramangala, and Whitefield.
-                        </p>
-                        <div class="inline-flex items-center gap-2 text-blue-400 font-black uppercase text-[10px] tracking-widest">
-                            <span class="w-2 h-2 bg-blue-400 rounded-full animate-ping"></span>
-                            Live Van Tracking Active
+                        <h3 class="text-2xl font-black mb-2">Service Area</h3>
+                        <p class="text-blue-100 font-medium mb-6">Currently serving Perundurai and surrounding 20km zones.</p>
+                        <div class="flex gap-3">
+                            <a href="#" class="p-3 bg-white/20 hover:bg-white/30 rounded-xl transition-all"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                            <a href="#" class="p-3 bg-white/20 hover:bg-white/30 rounded-xl transition-all"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                            <a href="#" class="p-3 bg-white/20 hover:bg-white/30 rounded-xl transition-all"><i data-lucide="twitter" class="w-5 h-5"></i></a>
                         </div>
                     </div>
-                    <i data-lucide="map-pin" class="absolute -bottom-10 -right-10 w-48 h-48 opacity-10 rotate-12 group-hover:scale-110 transition-transform"></i>
-                </div> -->
+                </div>
             </div>
 
-            <div class="bg-gray-50 dark:bg-slate-800/50 p-8 md:p-12 rounded-[2.5rem] border border-gray-100 dark:border-slate-700 shadow-xl shadow-blue-500/5">
+            <div class="bg-gray-50 dark:bg-slate-800/50 p-6 md:p-10 lg:p-12 rounded-[2.5rem] border border-gray-100 dark:border-slate-700 shadow-xl shadow-blue-500/5">
                 <form class="space-y-5" onsubmit="event.preventDefault(); alert('Message Sent! 🐾');">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                         <div class="space-y-1">
                             <label class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Name</label>
                             <input type="text" placeholder="John Doe" class="w-full p-4 rounded-2xl bg-white dark:bg-slate-900 border-2 border-transparent focus:border-blue-500 outline-none transition-all font-bold text-sm">
@@ -236,7 +240,7 @@
                     </div>
                     <div class="space-y-1">
                         <label class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Subject</label>
-                        <select class="w-full p-4 rounded-2xl bg-white dark:bg-slate-900 border-2 border-transparent focus:border-blue-500 outline-none transition-all font-bold text-sm">
+                        <select class="w-full p-4 rounded-2xl bg-white dark:bg-slate-900 border-2 border-transparent focus:border-blue-500 outline-none transition-all font-bold text-sm appearance-none">
                             <option>Booking Inquiry</option>
                             <option>Service Question</option>
                             <option>Partnership</option>
@@ -246,8 +250,9 @@
                         <label class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-1">Message</label>
                         <textarea rows="4" placeholder="How can we help?" class="w-full p-4 rounded-2xl bg-white dark:bg-slate-900 border-2 border-transparent focus:border-blue-500 outline-none transition-all font-bold text-sm resize-none"></textarea>
                     </div>
-                    <button class="w-full py-5 bg-blue-600 text-white rounded-2xl font-black text-lg shadow-xl shadow-blue-500/20 hover:bg-blue-700 hover:-translate-y-1 transition-all active:scale-95">
+                    <button class="w-full py-5 bg-blue-600 text-white rounded-2xl font-black text-lg shadow-xl shadow-blue-500/20 hover:bg-blue-700 hover:-translate-y-1 transition-all active:scale-95 flex items-center justify-center gap-2 group">
                         Send Message
+                        <i data-lucide="send" class="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
                     </button>
                 </form>
             </div>
@@ -255,6 +260,13 @@
         </div>
     </div>
 </section>
+
+<script>
+    // Ensure icons are rendered
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+</script>
 <section class="relative py-12 bg-white dark:bg-slate-900 theme-transition">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
@@ -327,57 +339,71 @@
 
 
   
-  
-  <footer class="bg-gray-50 dark:bg-slate-950 border-t border-gray-200 dark:border-slate-800 pt-16 pb-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-                <div class="space-y-6">
-                    <a href="index.html">
-  <div class="flex items-center gap-2">
+   <footer class="bg-gray-50 dark:bg-slate-950 border-t border-gray-200 dark:border-slate-800 pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 lg:gap-12 mb-12 items-start">
+            
+            <div class="space-y-6">
+                <a href="index.html" class="inline-block">
+                    <div class="flex items-center gap-2">
                         <i data-lucide="dog" class="text-blue-500 w-6 h-6"></i>
-                        <span class="text-xl font-bold">Paws</span>
+                        <span class="text-xl font-bold text-slate-900 dark:text-white">Paws</span>
                     </div>
-                    </a>
-                  
-                    <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
-                        We are a team of certified pet lovers dedicated to providing premium wellness services directly to your driveway.
-                    </p>
-                    <div class="flex gap-4">
-                        <a href="#" class="p-2 rounded-full bg-white dark:bg-slate-800 border dark:border-slate-700 hover:text-blue-500 transition shadow-sm"><i data-lucide="facebook" class="w-5 h-5"></i></a>
-                        <a href="#" class="p-2 rounded-full bg-white dark:bg-slate-800 border dark:border-slate-700 hover:text-blue-500 transition shadow-sm"><i data-lucide="instagram" class="w-5 h-5"></i></a>
-                        <a href="#" class="p-2 rounded-full bg-white dark:bg-slate-800 border dark:border-slate-700 hover:text-blue-500 transition shadow-sm"><i data-lucide="twitter" class="w-5 h-5"></i></a>
-                    </div>
-                </div>
-
-                <div>
-    <h4 class="font-bold mb-6 text-slate-900 dark:text-white">Quick Links</h4>
-    <ul class="grid grid-cols-2 gap-y-4 gap-x-4 md:gap-x-8 text-sm text-slate-500 dark:text-slate-400">
-        <li><a href="index.html" class="hover:text-blue-500 transition-colors">Home</a></li>
-        <li><a href="home2.html" class="hover:text-blue-500 transition-colors">Home2</a></li>
-        <li><a href="booknow.html" class="hover:text-blue-500 transition-colors font-semibold text-blue-600 dark:text-blue-400">Book Now</a></li>
-        <li><a href="service.html" class="hover:text-blue-500 transition-colors">Services</a></li>
-      <li><a href="404.html" class="hover:text-blue-500 transition-colors">404</a></li>
-      <li><a href="comingsoon.html" class="hover:text-blue-500 transition-colors">comingsoon</a></li>
-        <li><a href="about.html" class="hover:text-blue-500 transition-colors">About</a></li>
-        <li><a href="contact.html" class="hover:text-blue-500 transition-colors">Contact</a></li>
-    </ul>
-</div>
-
-                <div class="lg:col-span-2 space-y-6">
-                    <h4 class="font-bold text-lg">Join Our Newsletter</h4>
-                    <p class="text-slate-500 dark:text-slate-400 text-sm">Get grooming tips and exclusive discounts for your first visit.</p>
-                    <form class="flex flex-col xs:flex-row gap-3">
-                        <input type="email" placeholder="Enter your email" class="flex-1 px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-700 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <button class="bg-blue-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-blue-700 transition">Subscribe</button>
-                    </form>
+                </a>
+                <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed max-w-xs">
+                    We are a team of certified pet lovers dedicated to providing premium wellness services directly to your driveway.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#" class="p-2 rounded-full bg-white dark:bg-slate-800 border dark:border-slate-700 hover:text-blue-500 transition shadow-sm"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                    <a href="#" class="p-2 rounded-full bg-white dark:bg-slate-800 border dark:border-slate-700 hover:text-blue-500 transition shadow-sm"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                    <a href="#" class="p-2 rounded-full bg-white dark:bg-slate-800 border dark:border-slate-700 hover:text-blue-500 transition shadow-sm"><i data-lucide="twitter" class="w-5 h-5"></i></a>
                 </div>
             </div>
-            
-            <div class="border-t border-gray-200 dark:border-slate-800 pt-8 text-center text-sm text-slate-500">
-                &copy; 2026 PawsOnWheels Mobile Grooming. All rights reserved.
+
+            <div class="grid grid-cols-2 gap-4 sm:gap-8">
+                <div class="space-y-6">
+                    <h4 class="font-black text-slate-900 dark:text-white uppercase tracking-[0.2em] text-[10px] md:text-xs border-l-4 border-blue-600 pl-3">
+                        General
+                    </h4>
+                    <ul class="space-y-3 text-sm text-slate-500 dark:text-slate-400">
+                        <li><a href="index.html" class="hover:text-blue-600 dark:hover:text-blue-400 hover:translate-x-1 transition-all inline-block">Home</a></li>
+                        <li><a href="about.html" class="hover:text-blue-600 dark:hover:text-blue-400 hover:translate-x-1 transition-all inline-block">About Us</a></li>
+                        <li><a href="contact.html" class="hover:text-blue-600 dark:hover:text-blue-400 hover:translate-x-1 transition-all inline-block">Contact</a></li>
+                        <li><a href="service.html" class="hover:text-blue-600 dark:hover:text-blue-400 hover:translate-x-1 transition-all inline-block">Services</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-6">
+                    <h4 class="font-black text-slate-900 dark:text-white uppercase tracking-[0.2em] text-[10px] md:text-xs border-l-4 border-blue-600 pl-3">
+                        Quick
+                    </h4>
+                    <ul class="space-y-3 text-sm text-slate-500 dark:text-slate-400">
+                        <li><a href="home2.html" class="hover:text-blue-600 dark:hover:text-blue-400 hover:translate-x-1 transition-all inline-block">Home 2</a></li>
+                        <li><a href="booknow.html" class="hover:text-blue-600 dark:hover:text-blue-400 hover:translate-x-1 transition-all inline-block">BookNow</a></li>
+                        <li><a href="comingsoon.html" class="hover:text-blue-600 dark:hover:text-blue-400 hover:translate-x-1 transition-all inline-block">Soon</a></li>
+                        <li><a href="404.html" class="hover:text-blue-600 dark:hover:text-blue-400 hover:translate-x-1 transition-all inline-block">Error</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="space-y-6 lg:col-span-1 md:col-span-2 lg:mt-0 mt-8 lg:border-l lg:pl-12 dark:border-slate-800">
+                <h4 class="font-bold text-lg text-slate-900 dark:text-white leading-tight">Join Our Newsletter</h4>
+                <p class="text-slate-500 dark:text-slate-400 text-sm">Grooming tips and exclusive discounts for your first visit.</p>
+                <form class="flex flex-col sm:flex-row gap-3">
+                    <input type="email" placeholder="Your email" class="flex-1 px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-700 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm transition-all">
+                    <button class="bg-blue-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-blue-700 transition active:scale-95">Subscribe</button>
+                </form>
             </div>
         </div>
-    </footer>
+        
+        <div class="border-t border-gray-200 dark:border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-sm text-slate-500">&copy; 2026 PawsOnWheels Mobile Grooming. All rights reserved.</p>
+            <div class="flex gap-6 text-xs font-bold text-slate-400 uppercase tracking-widest">
+                <a href="#" class="hover:text-blue-500">Privacy</a>
+                <a href="#" class="hover:text-blue-500">Terms</a>
+            </div>
+        </div>
+    </div>
+</footer>
 
     <script>
         // Initialize Lucide Icons
