@@ -1,23 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" id="root-html">
+<html lang="en" dir="ltr" class="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="icon" href="assets/dog_7104247.png">
-    <title>Paws</title>
+     <link rel="icon" href="assets/pawprint_4659771.png">
+    <title>PAW | Stress-Free Mobile Grooming</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        /* Smooth transitions for theme switching */
-        .theme-transition { transition: background-color 0.3s, color 0.3s; }
-        /* Custom 360px breakpoint support */
-        @media (min-width: 360px) { .min-360\:flex { display: flex; } }
-    </style>
     <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
+                    colors: {
+                        primary: '#4CAF50',
+                        secondary: '#8D6E63',
+                        accent: '#FFC107',
+                        background: '#F9FAFB',
+                    },
                     screens: {
                         'xs': '360px',
                     }
@@ -25,824 +24,766 @@
             }
         }
     </script>
+    <style>
+        /* Custom transitions for theme switching */
+        body { transition: background-color 0.3s, color 0.3s; }
+    </style>
 </head>
-<body class="theme-transition bg-white text-slate-900 dark:bg-slate-900 dark:text-white font-sans">
+<body class="bg-background dark:bg-gray-900 text-gray-800 dark:text-gray-100 font-sans">
 
-    <nav class="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-gray-200 dark:border-slate-700">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20 items-center">
-                <a href="index.html">
- <div class="flex-shrink-0 flex items-center gap-2">
-                    <i data-lucide="dog" class="text-blue-500 w-8 h-8"></i>
-                    <span class="text-2xl font-bold tracking-tight">Paws</span>
+ 
+<nav class="sticky top-0 z-[100] bg-white dark:bg-gray-800 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-20 items-center">
+            <a href="index.html" class="flex-shrink-0 flex items-center gap-2">
+                <svg class="w-10 h-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 5C13.6569 5 15 3.65685 15 2C15 0.343146 13.6569 0 12 0C10.3431 0 9 0.343146 9 2C9 3.65685 10.3431 5 12 5Z" fill="#4CAF50"/>
+                    <path d="M5 8C6.65685 8 8 6.65685 8 5C8 3.34315 6.65685 3 5 3C3.34315 3 2 3.34315 2 5C2 6.65685 3.34315 8 5 8Z" fill="#8D6E63"/>
+                    <path d="M19 8C20.6569 8 22 6.65685 22 5C22 3.34315 20.6569 3 19 3C17.3431 3 16 3.34315 16 5C16 6.65685 17.3431 8 19 8Z" fill="#8D6E63"/>
+                    <path d="M12 24C16.4183 24 20 20.4183 20 16C20 11.5817 16.4183 10 12 10C7.58172 10 4 11.5817 4 16C4 20.4183 7.58172 24 12 24Z" fill="#4CAF50"/>
+                    <path d="M9 16H15M9 18H15M9 20H15" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <span class="text-2xl font-black tracking-tighter text-primary dark:text-white uppercase">PAWS</span>
+            </a>
+
+            <div class="hidden lg:flex items-center space-x-6">
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="nav-link py-2 transition-colors hover:text-primary">Home</a>
+                    <a href="home2.html" class="nav-link py-2 transition-colors hover:text-primary">Home2</a>
+                    <a href="booknow.html" class="nav-link py-2 transition-colors hover:text-primary font-bold">Book Now</a>
+                    <a href="service.html" class="nav-link py-2 transition-colors hover:text-primary">Services</a>
+                    <a href="gallery.html" class="nav-link py-2 transition-colors hover:text-primary">Gallery</a>
+                    <a href="about.html" class="nav-link py-2 transition-colors hover:text-primary">About</a>
+                    <a href="contact.html" class="nav-link py-2 transition-colors hover:text-primary">Contact</a>
+                    <a href="user.html" class="nav-link py-2 transition-colors hover:text-primary font-semibold">Dashboard</a>
                 </div>
-                </a>
-               
+                
+                <div class="flex items-center space-x-3 border-l pl-4 dark:border-gray-700">
+                    <a href="login.html">
+                        <button class="bg-primary text-white px-5 py-2 rounded-full hover:brightness-110 transition text-sm font-bold">Login</button>
+                    </a>
+                    <button id="theme-toggle" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition" title="Toggle Theme">🌓</button>
+                    <button id="dir-toggle" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 text-[10px] font-bold hover:bg-gray-200 dark:hover:bg-gray-600 transition" title="Toggle Direction">LTR/RTL</button>
+                </div>
+            </div>
 
-               <div class="hidden lg:flex space-x-6 items-center text-sm font-medium" id="desktop-nav">
-    <a href="index.html" class="nav-link hover:text-blue-500 transition-colors">Home</a>
-    <a href="home2.html" class="nav-link hover:text-blue-500 transition-colors">Home2</a>
-    <a href="booknow.html" class="nav-link hover:text-blue-500 transition-colors">Book Now</a>
-    <a href="service.html" class="nav-link hover:text-blue-500 transition-colors">Services</a>
-    <a href="gallery.html" class="nav-link hover:text-blue-500 transition-colors">Gallery</a>
-    <a href="about.html" class="nav-link hover:text-blue-500 transition-colors">About</a>
-    <a href="contact.html" class="nav-link hover:text-blue-500 transition-colors">Contact</a>
-    <a href="user.html" class="nav-link hover:text-blue-500 transition-colors">Dashboard</a>
-    
-    <a href="login.html">
-    <button class="bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition">Login</button>
-
-    </a>
-    
-    <div class="flex items-center gap-3 border-l pl-6 border-gray-300 dark:border-slate-600">
-        <button onclick="toggleTheme()" class="p-2 rounded-lg bg-gray-100 dark:bg-slate-800">
-            <i data-lucide="sun" id="sun-icon" class="hidden"></i>
-            <i data-lucide="moon" id="moon-icon"></i>
-        </button>
-        <button onclick="toggleDirection()" class="p-2 rounded-lg bg-gray-100 dark:bg-slate-800 text-xs font-bold">
-            <span id="dir-text">LTR</span>
-        </button>
+            <div class="lg:hidden flex items-center space-x-3">
+                <button id="theme-toggle-m" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 transition">🌓</button>
+                <button id="mobile-menu-button" class="p-2 text-gray-600 dark:text-gray-300 focus:outline-none transition">
+                    <svg id="menu-icon" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path id="menu-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
     </div>
-</div>
+
+    <div id="mobile-menu" class="hidden fixed inset-x-0 top-20 bg-white dark:bg-gray-800 border-t dark:border-gray-700 shadow-2xl z-[90] lg:hidden">
+        <div class="px-4 pt-2 pb-6 space-y-1">
+            <a href="index.html" class="mobile-nav-link block py-3 border-b border-gray-50 dark:border-gray-700">Home</a>
+            <a href="home2.html" class="mobile-nav-link block py-3 border-b border-gray-50 dark:border-gray-700">Home2</a>
+            <a href="booknow.html" class="mobile-nav-link block py-3 border-b border-gray-50 dark:border-gray-700">Book Now</a>
+            <a href="service.html" class="mobile-nav-link block py-3 border-b border-gray-50 dark:border-gray-700">Services</a>
+            <a href="gallery.html" class="mobile-nav-link block py-3 border-b border-gray-50 dark:border-gray-700">Gallery</a>
+            <a href="about.html" class="mobile-nav-link block py-3 border-b border-gray-50 dark:border-gray-700">About</a>
+            <a href="contact.html" class="mobile-nav-link block py-3 border-b border-gray-50 dark:border-gray-700">Contact</a>
+            <a href="user.html" class="mobile-nav-link block py-3 font-bold text-secondary">Dashboard</a>
+            
+            <div class="pt-4 space-y-3">
+                <a href="login.html" class="block">
+                    <button class="w-full bg-primary text-white py-3 rounded-xl font-bold shadow-lg">Login</button>
+                </a>
+                <button id="dir-toggle-m" class="w-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 py-3 rounded-xl text-xs font-bold uppercase tracking-widest border border-gray-200 dark:border-gray-600">
+                    Switch Layout (LTR / RTL)
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
-    const navLinks = document.querySelectorAll('.nav-link');
-    const currentUrl = window.location.href;
+document.addEventListener('DOMContentLoaded', () => {
+    const html = document.documentElement;
+    const themeToggles = [document.getElementById('theme-toggle'), document.getElementById('theme-toggle-m')];
+    const dirToggles = [document.getElementById('dir-toggle'), document.getElementById('dir-toggle-m')];
+    const mobileMenuBtn = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuPath = document.getElementById('menu-path');
 
-    function setActiveLink(link) {
-        // Remove active styles from all links
-        navLinks.forEach(l => {
-            l.classList.remove('text-blue-600', 'font-bold', 'border-b-2', 'border-blue-600');
-            l.classList.add('text-slate-600', 'dark:text-slate-400'); // Reset to default
+    // --- 1. THEME PERSISTENCE ---
+    // if (localStorage.getItem('paws-theme') === 'dark' || (!localStorage.getItem('paws-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    //     html.classList.add('dark');
+    // }
+
+    // themeToggles.forEach(btn => {
+    //     btn.addEventListener('click', () => {
+    //         html.classList.toggle('dark');
+    //         localStorage.setItem('paws-theme', html.classList.contains('dark') ? 'dark' : 'light');
+    //     });
+    // });
+
+    // --- 2. DIRECTION PERSISTENCE ---
+    const savedDir = localStorage.getItem('paws-direction') || 'ltr';
+    html.setAttribute('dir', savedDir);
+
+    dirToggles.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const currentDir = html.getAttribute('dir');
+            const newDir = currentDir === 'ltr' ? 'rtl' : 'ltr';
+            html.setAttribute('dir', newDir);
+            localStorage.setItem('paws-direction', newDir);
         });
+    });
 
-        // Add active styles to the chosen link
-        link.classList.add('text-blue-600', 'font-bold', 'border-b-2', 'border-blue-600');
-        link.classList.remove('text-slate-600', 'dark:text-slate-400');
-    }
-
-    // 1. Set active based on current URL on page load
-    navLinks.forEach(link => {
-        if (currentUrl.includes(link.getAttribute('href')) && link.getAttribute('href') !== "#") {
-            setActiveLink(link);
+    // --- 3. MOBILE MENU TOGGLE ---
+    mobileMenuBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isHidden = mobileMenu.classList.contains('hidden');
+        if (isHidden) {
+            mobileMenu.classList.remove('hidden');
+            menuPath.setAttribute('d', 'M6 18L18 6M6 6l12 12'); // X icon
+        } else {
+            mobileMenu.classList.add('hidden');
+            menuPath.setAttribute('d', 'M4 6h16M4 12h16m-7 6h7'); // Hamburger icon
         }
+    });
 
-        // 2. Set active on Click (for single page feeling)
-        link.addEventListener('click', function() {
-            setActiveLink(this);
-        });
+    // Close on click outside
+    document.addEventListener('click', (e) => {
+        if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+            mobileMenu.classList.add('hidden');
+            menuPath.setAttribute('d', 'M4 6h16M4 12h16m-7 6h7');
+        }
     });
 });
 </script>
-
-                <div class="lg:hidden flex items-center gap-4">
-                    <button onclick="toggleTheme()" class="p-2 rounded-lg bg-gray-100 dark:bg-slate-800">
-                        <i data-lucide="moon" class="w-5 h-5" id="mobile-theme-icon"></i>
-                    </button>
-                    <button id="mobile-menu-btn" class="p-2">
-                        <i data-lucide="menu" class="w-8 h-8"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div id="mobile-menu" class="hidden lg:hidden bg-white dark:bg-slate-900 border-b border-gray-200 dark:border-slate-700 px-4 pt-2 pb-6 space-y-1">
-    <a href="index.html" class="mobile-nav-link block py-3 px-4 rounded-xl transition-all">Home</a>
-    <a href="home2.html" class="mobile-nav-link block py-3 px-4 rounded-xl transition-all border-t dark:border-slate-800">Home2</a>
-    <a href="booknow.html" class="mobile-nav-link block py-3 px-4 rounded-xl transition-all border-t dark:border-slate-800">Book Now</a>
-    <a href="service.html" class="mobile-nav-link block py-3 px-4 rounded-xl transition-all border-t dark:border-slate-800">Services</a>
-    <a href="gallery.html" class="mobile-nav-link block py-3 px-4 rounded-xl transition-all border-t dark:border-slate-800">Gallery</a>
-    <a href="about.html" class="mobile-nav-link block py-3 px-4 rounded-xl transition-all border-t dark:border-slate-800">About</a>
-    <a href="contact.html" class="mobile-nav-link block py-3 px-4 rounded-xl transition-all border-t dark:border-slate-800">Contact</a>
-    <a href="user.html" class="mobile-nav-link block py-3 px-4 rounded-xl transition-all border-t dark:border-slate-800">Dashboard</a>
-    
-    <div class="pt-4 flex flex-col gap-3">
-        <a href="login.html">
-        <button class="w-full bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700 transition">Login</button>
-
-        </a>
-        <button onclick="toggleDirection()" class="w-full border border-gray-300 dark:border-slate-600 py-2 rounded-xl text-sm">Switch Direction (LTR/RTL)</button>
-    </div>
-</div>
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
-    const currentUrl = window.location.pathname; // Gets the /page.html part
-    
-    // Select both desktop and mobile links
-    const desktopLinks = document.querySelectorAll('.nav-link');
-    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+    document.addEventListener('DOMContentLoaded', () => {
+    const html = document.documentElement;
+    const dirToggles = [document.getElementById('dir-toggle'), document.getElementById('dir-toggle-m')];
 
-    function updateActiveState(links, activeClasses, inactiveClasses) {
-        links.forEach(link => {
-            const linkHref = link.getAttribute('href');
-            
-            // Check if URL ends with the link's href
-            if (currentUrl.endsWith(linkHref) && linkHref !== "#") {
-                link.classList.add(...activeClasses);
-                link.classList.remove(...inactiveClasses);
-            } else {
-                link.classList.remove(...activeClasses);
-                link.classList.add(...inactiveClasses);
+    // 1. Load saved direction from LocalStorage on page load
+    const savedDir = localStorage.getItem('paws-direction') || 'ltr';
+    html.setAttribute('dir', savedDir);
+
+    // 2. Toggle Function
+    const toggleDirection = () => {
+        const currentDir = html.getAttribute('dir');
+        const newDir = currentDir === 'ltr' ? 'rtl' : 'ltr';
+        
+        // Update DOM
+        html.setAttribute('dir', newDir);
+        
+        // Save to LocalStorage
+        localStorage.setItem('paws-direction', newDir);
+        
+        // Optional: Provide visual feedback/re-trigger AOS or other layout scripts if used
+        console.log(`Direction changed to: ${newDir}`);
+    };
+
+    // 3. Attach event listeners to both desktop and mobile buttons
+    dirToggles.forEach(btn => {
+        if(btn) {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                toggleDirection();
+            });
+        }
+    });
+
+    // --- Keep your existing Mobile Menu and Active State logic below ---
+});
+document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuBtn = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuPath = document.getElementById('menu-path');
+    const currentPage = window.location.pathname.split("/").pop() || 'index.html';
+    const allLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
+
+    // 1. IMPROVED TOGGLE LOGIC
+    const toggleMenu = () => {
+        const isHidden = mobileMenu.classList.contains('hidden');
+        if (isHidden) {
+            mobileMenu.classList.remove('hidden');
+            // Change icon to X
+            menuPath.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+        } else {
+            mobileMenu.classList.add('hidden');
+            // Change icon back to Hamburger
+            menuPath.setAttribute('d', 'M4 6h16M4 12h16m-7 6h7');
+        }
+    };
+
+    mobileMenuBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMenu();
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!mobileMenu.classList.contains('hidden') && !mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+            mobileMenu.classList.add('hidden');
+            menuPath.setAttribute('d', 'M4 6h16M4 12h16m-7 6h7');
+        }
+    });
+
+    // 2. ACTIVE STATE LOGIC
+    allLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href === currentPage) {
+            link.classList.add('text-primary');
+            if (link.classList.contains('nav-link')) {
+                link.classList.add('border-b-2', 'border-primary');
             }
-        });
-    }
-
-    // Define the styles for Desktop
-    const deskActive = ['text-blue-600', 'font-bold', 'border-b-2', 'border-blue-600'];
-    const deskInactive = ['text-slate-600', 'dark:text-slate-400'];
-
-    // Define the styles for Mobile (Background highlight)
-    const mobActive = ['bg-blue-50', 'dark:bg-blue-900/20', 'text-blue-600', 'font-bold'];
-    const mobInactive = ['text-slate-700', 'dark:text-slate-300'];
-
-    // Run the update
-    updateActiveState(desktopLinks, deskActive, deskInactive);
-    updateActiveState(mobileLinks, mobActive, mobInactive);
+            if (link.classList.contains('mobile-nav-link')) {
+                link.classList.add('font-bold', 'pl-3', 'border-l-4', 'border-primary', 'bg-green-50', 'dark:bg-gray-800');
+            }
+        } else {
+            link.classList.add('text-gray-600', 'dark:text-gray-300');
+        }
+    });
 });
 </script>
-    </nav>
-<section class="relative min-h-[80vh] flex items-center bg-white dark:bg-slate-900 theme-transition overflow-hidden">
+<br>
+
+<section id="hero" class="relative min-h-[85vh] lg:min-h-screen flex items-center bg-white dark:bg-gray-900 transition-colors duration-500 overflow-hidden">
     
-    <div class="absolute top-0 right-0 w-1/2 h-full bg-blue-50/50 dark:bg-blue-900/10 -z-10 skew-x-[-12deg] translate-x-20 hidden lg:block"></div>
-    <div class="absolute top-10 left-10 opacity-5 dark:opacity-10 rotate-12">
-        <i data-lucide="paw-print" class="w-32 h-32 md:w-64 md:h-64 text-blue-600"></i>
-    </div>
+    <div class="absolute top-0 right-0 w-1/2 h-full bg-primary/5 rounded-l-[10rem] -z-0 hidden lg:block animate-pulse-slow"></div>
+    <div class="absolute -bottom-24 -left-24 w-72 h-72 md:w-96 md:h-96 bg-secondary/5 rounded-full blur-3xl"></div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20 w-full">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 py-12 lg:py-0">
+        <div class="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
             
-            <div class="text-center lg:text-left space-y-6 md:space-y-10 order-2 lg:order-1">
-                
-                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 font-black text-[10px] md:text-xs uppercase tracking-[0.2em] border border-green-100 dark:border-green-800 shadow-sm">
-                    <span class="relative flex h-2 w-2">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-green-600"></span>
-                    </span>
-                    Grooming Vans Active in Perundurai
+            <div class="w-full lg:w-3/5 text-center lg:text-left order-2 lg:order-1">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] md:text-xs font-black uppercase tracking-widest mb-6">
+                    <i data-lucide="award" class="w-4 h-4"></i>
+                    #1 Mobile Pet Spa in Perundurai
                 </div>
 
-                <div class="space-y-4">
-                    <h1 class="text-4xl xs:text-5xl md:text-7xl font-black tracking-tighter text-slate-900 dark:text-white leading-[0.95]">
-                        Professional <br>
-                        <span class="text-blue-600">Pet Grooming</span> <br>
-                        at Your Doorstep
-                    </h1>
-                    
-                    <p class="text-xl md:text-2xl font-black text-slate-400 dark:text-slate-500 tracking-tight flex items-center justify-center lg:justify-start gap-3">
-                        Safe <span class="text-blue-500">•</span> Hygienic <span class="text-blue-500">•</span> Stress-Free
-                    </p>
+                <h1 class="text-4xl xs:text-5xl md:text-7xl xl:text-8xl font-black text-gray-900 dark:text-white leading-[1.1] tracking-tighter uppercase mb-6">
+                    Professional <br> <span class="text-primary">Pet Grooming</span> <br> At Your Doorstep
+                </h1>
+
+                <div class="flex items-center justify-center lg:justify-start gap-4 mb-8">
+                    <div class="flex items-center gap-2 text-slate-500 dark:text-slate-400 font-bold text-sm md:text-lg">
+                        <span class="w-2 h-2 rounded-full bg-secondary"></span> Safe
+                    </div>
+                    <div class="flex items-center gap-2 text-slate-500 dark:text-slate-400 font-bold text-sm md:text-lg">
+                        <span class="w-2 h-2 rounded-full bg-secondary"></span> Hygienic
+                    </div>
+                    <div class="flex items-center gap-2 text-slate-500 dark:text-slate-400 font-bold text-sm md:text-lg">
+                        <span class="w-2 h-2 rounded-full bg-secondary"></span> Stress-Free
+                    </div>
                 </div>
 
-                <p class="text-lg text-slate-500 dark:text-slate-400 font-medium max-w-xl mx-auto lg:mx-0 leading-relaxed">
-                    We bring the luxury spa experience to your driveway. No more traffic, no more cages—just expert care for your furry family members.
-                </p>
-
-                <div class="pt-4">
-                    <a href="booknow.html" class="group relative inline-flex items-center justify-center w-full xs:w-auto px-12 py-6 bg-blue-600 text-white rounded-[2rem] font-black text-2xl shadow-2xl shadow-blue-500/40 hover:bg-blue-700 hover:-translate-y-1.5 transition-all active:scale-95">
-                        <span class="mr-3">Book Now</span>
-                        <i data-lucide="calendar-check" class="w-7 h-7 group-hover:rotate-12 transition-transform"></i>
+                <div class="flex flex-col xs:flex-row items-center justify-center lg:justify-start gap-4">
+                    <a href="booknow.html" class="w-full xs:w-auto px-10 py-5 bg-primary text-white rounded-2xl font-black uppercase tracking-widest text-sm hover:scale-105 hover:shadow-2xl hover:shadow-primary/30 transition-all duration-300 flex items-center justify-center gap-2">
+                        Book Now
+                        <i data-lucide="calendar" class="w-4 h-4"></i>
+                    </a>
+                    <a href="comingsoon.html" class="w-full xs:w-auto px-10 py-5 bg-white dark:bg-gray-800 border-2 border-gray-100 dark:border-gray-700 text-gray-900 dark:text-white rounded-2xl font-black uppercase tracking-widest text-sm hover:bg-gray-50 dark:hover:bg-gray-700 transition-all flex items-center justify-center gap-2">
+                        View Pricing
                     </a>
                 </div>
             </div>
 
-            <div class="relative order-1 lg:order-2 group">
-                <div class="relative rounded-[3rem] md:rounded-[4rem] overflow-hidden aspect-square xs:aspect-video lg:aspect-square shadow-2xl border-8 border-white dark:border-slate-800">
+            <div class="w-full lg:w-2/5 relative order-1 lg:order-2 max-w-[450px] lg:max-w-none mx-auto">
+                <div class="relative z-10 rounded-[3rem] overflow-hidden shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-700 aspect-square">
                     <img src="assets/servicehero" 
-                         alt="Mobile Pet Grooming" 
-                         class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
-                    
-                    <div class="absolute bottom-6 left-6 right-6 bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl p-6 rounded-[2.5rem] border border-white/20 shadow-2xl flex items-center justify-between">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center">
-                                <i data-lucide="shield-check" class="text-blue-600 w-7 h-7"></i>
-                            </div>
-                            <div>
-                                <p class="text-sm font-black text-slate-900 dark:text-white">Expert Certified</p>
-                                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Safety Guaranteed</p>
-                            </div>
-                        </div>
-                        <!-- <div class="flex -space-x-3">
-                            <img class="w-10 h-10 rounded-full border-2 border-white dark:border-slate-800" src="https://i.pravatar.cc/100?u=dog1" alt="Pet 1">
-                            <img class="w-10 h-10 rounded-full border-2 border-white dark:border-slate-800" src="https://i.pravatar.cc/100?u=dog2" alt="Pet 2">
-                            <div class="w-10 h-10 rounded-full bg-blue-600 border-2 border-white dark:border-slate-800 flex items-center justify-center text-[10px] font-bold text-white">+50</div>
-                        </div> -->
-                    </div>
+                         alt="Happy Dog Grooming" 
+                         class="w-full h-full object-cover">
                 </div>
+                <div class="absolute -top-6 -right-6 bg-accent p-5 rounded-3xl shadow-xl z-20 animate-bounce hidden xs:block">
+                    <i data-lucide="star" class="w-6 h-6 text-gray-900 fill-current"></i>
+                </div>
+                <div class="absolute inset-0 border-4 border-secondary/20 rounded-[3rem] -rotate-3 -z-10 translate-x-4 translate-y-4"></div>
             </div>
 
         </div>
     </div>
 </section>
-
-<script>
-    // Initialize icons
-    if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-    }
-</script>
-<section id="services-grid" class="py-16 md:py-24 bg-gray-50 dark:bg-slate-950 theme-transition overflow-hidden">
+<section id="dog-services" class="py-12 md:py-24 bg-white dark:bg-gray-900 transition-colors duration-500 overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 font-black text-[10px] uppercase tracking-widest border border-blue-100 dark:border-blue-800">
-                <i data-lucide="scissors" class="w-4 h-4"></i>
-                Premium Care
-            </div>
-            <h2 class="text-4xl md:text-6xl font-black tracking-tighter text-slate-900 dark:text-white leading-tight">
-                🐶 Dog <span class="text-blue-600">Grooming</span>
+        <div class="mb-12 md:mb-16 text-center lg:text-left">
+            <h2 class="text-3xl md:text-5xl font-black tracking-tighter uppercase text-slate-900 dark:text-white">
+                Our Signature <span class="text-primary">Dog Care</span>
             </h2>
-            <p class="text-lg text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
-                Choose the perfect care package for your furry friend. All services are performed by certified professionals right at your doorstep.
-            </p>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            
-            <div class="group relative p-8 rounded-[2.5rem] bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800 shadow-xl hover:shadow-blue-500/10 transition-all duration-500 hover:-translate-y-2">
-                <div class="w-16 h-16 bg-blue-50 dark:bg-blue-900/20 text-blue-600 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 group-hover:rotate-6 transition-transform">
-                    <i data-lucide="droplets" class="w-8 h-8"></i>
-                </div>
-                <h3 class="text-2xl font-black text-slate-900 dark:text-white mb-4">Bath & Blow Dry</h3>
-                <ul class="space-y-3 mb-8">
-                    <li class="flex items-center gap-3 text-slate-500 dark:text-slate-400 font-medium text-sm">
-                        <i data-lucide="check" class="w-4 h-4 text-green-500"></i> Organic Shampoo
-                    </li>
-                    <li class="flex items-center gap-3 text-slate-500 dark:text-slate-400 font-medium text-sm">
-                        <i data-lucide="check" class="w-4 h-4 text-green-500"></i> Warm Water Bath
-                    </li>
-                    <li class="flex items-center gap-3 text-slate-500 dark:text-slate-400 font-medium text-sm">
-                        <i data-lucide="check" class="w-4 h-4 text-green-500"></i> Fluff Dry & Brush
-                    </li>
-                </ul>
-                <button class="w-full py-4 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-2xl font-black text-sm group-hover:bg-blue-600 group-hover:text-white transition-all active:scale-95">
-                    Select Package
-                </button>
-            </div>
-
-            <div class="group relative p-8 rounded-[2.5rem] bg-white dark:bg-slate-900 border-2 border-blue-100 dark:border-blue-900 shadow-2xl shadow-blue-500/10 transition-all duration-500 hover:-translate-y-2">
-                <div class="absolute -top-4 right-8 bg-blue-600 text-white px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">Most Popular</div>
-                <div class="w-16 h-16 bg-blue-600 text-white rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 group-hover:rotate-6 transition-transform">
-                    <i data-lucide="scissors" class="w-8 h-8"></i>
-                </div>
-                <h3 class="text-2xl font-black text-slate-900 dark:text-white mb-4">Haircut & Styling</h3>
-                <ul class="space-y-3 mb-8">
-                    <li class="flex items-center gap-3 text-slate-500 dark:text-slate-400 font-medium text-sm">
-                        <i data-lucide="check" class="w-4 h-4 text-green-500"></i> Breed-Specific Cut
-                    </li>
-                    <li class="flex items-center gap-3 text-slate-500 dark:text-slate-400 font-medium text-sm">
-                        <i data-lucide="check" class="w-4 h-4 text-green-500"></i> Mat Removal
-                    </li>
-                    <li class="flex items-center gap-3 text-slate-500 dark:text-slate-400 font-medium text-sm">
-                        <i data-lucide="check" class="w-4 h-4 text-green-500"></i> Paw Pad Trimming
-                    </li>
-                </ul>
-                <button class="w-full py-4 bg-blue-600 text-white rounded-2xl font-black text-sm shadow-lg shadow-blue-500/30 transition-all active:scale-95">
-                    Select Package
-                </button>
-            </div>
-
-            <div class="group relative p-8 rounded-[2.5rem] bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800 shadow-xl hover:shadow-blue-500/10 transition-all duration-500 hover:-translate-y-2">
-                <div class="w-16 h-16 bg-orange-50 dark:bg-orange-900/20 text-orange-500 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 group-hover:rotate-6 transition-transform">
-                    <i data-lucide="shrub" class="w-8 h-8"></i>
-                </div>
-                <h3 class="text-2xl font-black text-slate-900 dark:text-white mb-4">Nail Trimming</h3>
-                <ul class="space-y-3 mb-8">
-                    <li class="flex items-center gap-3 text-slate-500 dark:text-slate-400 font-medium text-sm">
-                        <i data-lucide="check" class="w-4 h-4 text-green-500"></i> Precise Clipping
-                    </li>
-                    <li class="flex items-center gap-3 text-slate-500 dark:text-slate-400 font-medium text-sm">
-                        <i data-lucide="check" class="w-4 h-4 text-green-500"></i> Smooth Buffing
-                    </li>
-                    <li class="flex items-center gap-3 text-slate-500 dark:text-slate-400 font-medium text-sm">
-                        <i data-lucide="check" class="w-4 h-4 text-green-500"></i> Quick-Safe Method
-                    </li>
-                </ul>
-                <button class="w-full py-4 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-2xl font-black text-sm group-hover:bg-blue-600 group-hover:text-white transition-all active:scale-95">
-                    Select Package
-                </button>
-            </div>
-
-            <div class="group relative p-8 rounded-[2.5rem] bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800 shadow-xl hover:shadow-blue-500/10 transition-all duration-500 hover:-translate-y-2">
-                <div class="w-16 h-16 bg-purple-50 dark:bg-purple-900/20 text-purple-600 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 group-hover:rotate-6 transition-transform">
-                    <i data-lucide="ear" class="w-8 h-8"></i>
-                </div>
-                <h3 class="text-2xl font-black text-slate-900 dark:text-white mb-4">Ear Cleaning</h3>
-                <ul class="space-y-3 mb-8">
-                    <li class="flex items-center gap-3 text-slate-500 dark:text-slate-400 font-medium text-sm">
-                        <i data-lucide="check" class="w-4 h-4 text-green-500"></i> Gentle Solution
-                    </li>
-                    <li class="flex items-center gap-3 text-slate-500 dark:text-slate-400 font-medium text-sm">
-                        <i data-lucide="check" class="w-4 h-4 text-green-500"></i> Debris Removal
-                    </li>
-                    <li class="flex items-center gap-3 text-slate-500 dark:text-slate-400 font-medium text-sm">
-                        <i data-lucide="check" class="w-4 h-4 text-green-500"></i> Infection Check
-                    </li>
-                </ul>
-                <button class="w-full py-4 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-2xl font-black text-sm group-hover:bg-blue-600 group-hover:text-white transition-all active:scale-95">
-                    Select Package
-                </button>
-            </div>
-
-            <div class="group relative p-8 rounded-[2.5rem] bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800 shadow-xl hover:shadow-blue-500/10 transition-all duration-500 hover:-translate-y-2">
-                <div class="w-16 h-16 bg-green-50 dark:bg-green-900/20 text-green-600 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 group-hover:rotate-6 transition-transform">
-                    <i data-lucide="sparkles" class="w-8 h-8"></i>
-                </div>
-                <h3 class="text-2xl font-black text-slate-900 dark:text-white mb-4">The Works</h3>
-                <ul class="space-y-3 mb-8">
-                    <li class="flex items-center gap-3 text-slate-500 dark:text-slate-400 font-medium text-sm">
-                        <i data-lucide="check" class="w-4 h-4 text-green-500"></i> All Base Services
-                    </li>
-                    <li class="flex items-center gap-3 text-slate-500 dark:text-slate-400 font-medium text-sm">
-                        <i data-lucide="check" class="w-4 h-4 text-green-500"></i> Dental Cleaning
-                    </li>
-                    <li class="flex items-center gap-3 text-slate-500 dark:text-slate-400 font-medium text-sm">
-                        <i data-lucide="check" class="w-4 h-4 text-green-500"></i> Scented Finish
-                    </li>
-                </ul>
-                <button class="w-full py-4 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-2xl font-black text-sm group-hover:bg-blue-600 group-hover:text-white transition-all active:scale-95">
-                    Select Package
-                </button>
-            </div>
-
-            <div class="group relative p-8 rounded-[2.5rem] bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800 shadow-xl hover:shadow-blue-500/10 transition-all duration-500 hover:-translate-y-2">
-                <div class="w-16 h-16 bg-pink-50 dark:bg-pink-900/20 text-pink-600 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 group-hover:rotate-6 transition-transform">
-                    <i data-lucide="smile" class="w-8 h-8"></i>
-                </div>
-                <h3 class="text-2xl font-black text-slate-900 dark:text-white mb-4">Puppy First</h3>
-                <ul class="space-y-3 mb-8">
-                    <li class="flex items-center gap-3 text-slate-500 dark:text-slate-400 font-medium text-sm">
-                        <i data-lucide="check" class="w-4 h-4 text-green-500"></i> Slow Introduction
-                    </li>
-                    <li class="flex items-center gap-3 text-slate-500 dark:text-slate-400 font-medium text-sm">
-                        <i data-lucide="check" class="w-4 h-4 text-green-500"></i> Gentle Brushing
-                    </li>
-                    <li class="flex items-center gap-3 text-slate-500 dark:text-slate-400 font-medium text-sm">
-                        <i data-lucide="check" class="w-4 h-4 text-green-500"></i> Stress-Free Play
-                    </li>
-                </ul>
-                <button class="w-full py-4 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-2xl font-black text-sm group-hover:bg-blue-600 group-hover:text-white transition-all active:scale-95">
-                    Select Package
-                </button>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<script>
-    if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-    }
-</script>
-<section id="cat-spa-services" class="py-16 md:py-24 bg-white dark:bg-slate-900 theme-transition overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div class="mb-20">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-                <div class="space-y-3">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-pink-50 dark:bg-pink-900/20 text-pink-600 dark:text-pink-400 font-black text-[10px] uppercase tracking-widest border border-pink-100 dark:border-pink-800">
-                        <i data-lucide="cat" class="w-4 h-4"></i> Feline Expert
-                    </div>
-                    <h2 class="text-3xl md:text-5xl font-black tracking-tighter text-slate-900 dark:text-white">
-                        🐱 Cat <span class="text-pink-500">Grooming</span>
-                    </h2>
-                </div>
-                <p class="text-slate-500 dark:text-slate-400 font-medium max-w-sm">Specialized low-stress techniques for our feline friends who prefer a gentle touch.</p>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="group p-8 rounded-[2.5rem] bg-gray-50 dark:bg-slate-800/50 border border-transparent hover:border-pink-500/30 transition-all duration-500 hover:-translate-y-2">
-                    <div class="w-14 h-14 bg-pink-100 dark:bg-pink-900/40 text-pink-600 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-12 transition-transform">
-                        <i data-lucide="waves" class="w-7 h-7"></i>
-                    </div>
-                    <h3 class="text-xl font-black mb-2 dark:text-white">Gentle Bath</h3>
-                    <p class="text-sm text-slate-500 dark:text-slate-400 font-medium">Temperature controlled water and feline-safe shampoos.</p>
-                </div>
-                <div class="group p-8 rounded-[2.5rem] bg-gray-50 dark:bg-slate-800/50 border border-transparent hover:border-pink-500/30 transition-all duration-500 hover:-translate-y-2">
-                    <div class="w-14 h-14 bg-pink-100 dark:bg-pink-900/40 text-pink-600 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-12 transition-transform">
-                        <i data-lucide="sparkles" class="w-7 h-7"></i>
-                    </div>
-                    <h3 class="text-xl font-black mb-2 dark:text-white">Fur Brushing</h3>
-                    <p class="text-sm text-slate-500 dark:text-slate-400 font-medium">Professional detangling to prevent painful mats and knots.</p>
-                </div>
-                <div class="group p-8 rounded-[2.5rem] bg-gray-50 dark:bg-slate-800/50 border border-transparent hover:border-pink-500/30 transition-all duration-500 hover:-translate-y-2">
-                    <div class="w-14 h-14 bg-pink-100 dark:bg-pink-900/40 text-pink-600 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-12 transition-transform">
-                        <i data-lucide="wind" class="w-7 h-7"></i>
-                    </div>
-                    <h3 class="text-xl font-black mb-2 dark:text-white">De-shedding</h3>
-                    <p class="text-sm text-slate-500 dark:text-slate-400 font-medium">Deep undercoat removal to reduce hairballs and shedding.</p>
-                </div>
-                <div class="group p-8 rounded-[2.5rem] bg-gray-50 dark:bg-slate-800/50 border border-transparent hover:border-pink-500/30 transition-all duration-500 hover:-translate-y-2">
-                    <div class="w-14 h-14 bg-pink-100 dark:bg-pink-900/40 text-pink-600 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-12 transition-transform">
-                        <i data-lucide="scissors" class="w-7 h-7"></i>
-                    </div>
-                    <h3 class="text-xl font-black mb-2 dark:text-white">Hygiene Trim</h3>
-                    <p class="text-sm text-slate-500 dark:text-slate-400 font-medium">Essential trimming for comfort and sanitary cleanliness.</p>
-                </div>
-            </div>
-        </div>
-
-        <div>
-            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-                <div class="space-y-3">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 font-black text-[10px] uppercase tracking-widest border border-blue-100 dark:border-blue-800">
-                        <i data-lucide="leaf" class="w-4 h-4"></i> Holistic Care
-                    </div>
-                    <h2 class="text-3xl md:text-5xl font-black tracking-tighter text-slate-900 dark:text-white">
-                        🧼 Spa & <span class="text-blue-600">Wellness</span>
-                    </h2>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="group relative p-10 rounded-[3rem] bg-blue-600 text-white shadow-2xl shadow-blue-500/20 overflow-hidden">
-                    <i data-lucide="heart" class="absolute -bottom-10 -right-10 w-40 h-40 opacity-10 rotate-12 group-hover:scale-110 transition-transform"></i>
-                    <h3 class="text-2xl font-black mb-4">Skin Treatment</h3>
-                    <p class="text-blue-100 font-medium leading-relaxed mb-6">Medicated baths for allergies, hotspots, and itchy skin relief.</p>
-                    <div class="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center"><i data-lucide="check" class="w-6 h-6"></i></div>
-                </div>
-                <div class="group relative p-10 rounded-[3rem] bg-slate-900 text-white shadow-2xl overflow-hidden">
-                    <i data-lucide="shield" class="absolute -bottom-10 -right-10 w-40 h-40 opacity-10 rotate-12 group-hover:scale-110 transition-transform"></i>
-                    <h3 class="text-2xl font-black mb-4">Anti-tick & Flea</h3>
-                    <p class="text-slate-400 font-medium leading-relaxed mb-6">Professional grade repellent treatments to keep pests away.</p>
-                    <div class="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center text-blue-500"><i data-lucide="shield-check" class="w-6 h-6"></i></div>
-                </div>
-                <div class="group relative p-10 rounded-[3rem] bg-gray-50 dark:bg-slate-800 border-2 border-transparent hover:border-blue-500 transition-all overflow-hidden">
-                    <h3 class="text-2xl font-black mb-4 dark:text-white">Coat Conditioning</h3>
-                    <p class="text-slate-500 dark:text-slate-400 font-medium leading-relaxed mb-6">Deep conditioning masks for a silky, runway-ready shine.</p>
-                    <div class="w-12 h-12 bg-blue-600 text-white rounded-2xl flex items-center justify-center shadow-lg"><i data-lucide="sparkles" class="w-6 h-6"></i></div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</section>
-
-<script>
-    if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-    }
-</script>
-
-<section id="pricing" class="py-16 md:py-24 bg-gray-50 dark:bg-slate-950 theme-transition overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <h2 class="text-4xl md:text-6xl font-black tracking-tighter text-slate-900 dark:text-white leading-tight">
-                Simple, <span class="text-blue-600">Transparent</span> Pricing
-            </h2>
-            <p class="text-lg text-slate-500 dark:text-slate-400 font-medium">
-                Choose the perfect spa package for your furry friend. No hidden costs, just professional care.
-            </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-            
-            <div class="group p-8 rounded-[2.5rem] bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800 shadow-xl transition-all duration-500 hover:-translate-y-2">
-                <div class="space-y-6">
-                    <div class="space-y-2">
-                        <h3 class="text-xl font-black text-slate-400 uppercase tracking-widest">Basic</h3>
-                        <div class="flex items-baseline gap-1">
-                            <span class="text-4xl font-black dark:text-white">₹999</span>
-                            <span class="text-slate-400 font-bold">/session</span>
-                        </div>
-                    </div>
-                    
-                    <ul class="space-y-4 pt-6 border-t border-gray-100 dark:border-slate-800">
-                        <li class="flex items-center gap-3 text-sm font-bold text-slate-600 dark:text-slate-400">
-                            <i data-lucide="check-circle" class="w-5 h-5 text-blue-500"></i> Refreshing Bath
-                        </li>
-                        <li class="flex items-center gap-3 text-sm font-bold text-slate-600 dark:text-slate-400">
-                            <i data-lucide="check-circle" class="w-5 h-5 text-blue-500"></i> Professional Nail Trim
-                        </li>
-                        <li class="flex items-center gap-3 text-sm font-bold text-slate-600 dark:text-slate-400">
-                            <i data-lucide="check-circle" class="w-5 h-5 text-blue-500"></i> Ear Cleaning
-                        </li>
-                    </ul>
-
-                    <button class="w-full py-4 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white rounded-2xl font-black text-sm hover:bg-blue-600 hover:text-white transition-all active:scale-95">
-                        Book Basic
-                    </button>
-                </div>
-            </div>
-
-            <div class="relative group p-10 rounded-[3rem] bg-slate-900 dark:bg-blue-600 text-white shadow-2xl shadow-blue-500/20 transform md:scale-110 z-10 border-4 border-blue-500/50">
-                <div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-blue-500 text-white px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-xl animate-bounce">
-                    ⭐ Most Popular
-                </div>
-
-                <div class="space-y-6">
-                    <div class="space-y-2">
-                        <h3 class="text-xl font-black opacity-60 uppercase tracking-widest">Standard</h3>
-                        <div class="flex items-baseline gap-1">
-                            <span class="text-5xl font-black">₹1999</span>
-                            <span class="opacity-60 font-bold">/session</span>
-                        </div>
-                    </div>
-                    
-                    <ul class="space-y-4 pt-6 border-t border-white/10">
-                        <li class="flex items-center gap-3 text-sm font-bold">
-                            <i data-lucide="sparkles" class="w-5 h-5 text-blue-400 dark:text-white"></i> Everything in Basic
-                        </li>
-                        <li class="flex items-center gap-3 text-sm font-bold">
-                            <i data-lucide="check-circle" class="w-5 h-5 text-blue-400 dark:text-white"></i> Professional Haircut
-                        </li>
-                        <li class="flex items-center gap-3 text-sm font-bold">
-                            <i data-lucide="check-circle" class="w-5 h-5 text-blue-400 dark:text-white"></i> Fluff Blow Dry
-                        </li>
-                    </ul>
-
-                    <button class="w-full py-5 bg-blue-600 dark:bg-white text-white dark:text-blue-600 rounded-2xl font-black text-lg shadow-xl hover:-translate-y-1 transition-all active:scale-95">
-                        Book Standard
-                    </button>
-                </div>
-            </div>
-
-            <div class="group p-8 rounded-[2.5rem] bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800 shadow-xl transition-all duration-500 hover:-translate-y-2">
-                <div class="space-y-6">
-                    <div class="space-y-2">
-                        <h3 class="text-xl font-black text-slate-400 uppercase tracking-widest">Premium</h3>
-                        <div class="flex items-baseline gap-1">
-                            <span class="text-4xl font-black dark:text-white">₹2999</span>
-                            <span class="text-slate-400 font-bold">/session</span>
-                        </div>
-                    </div>
-                    
-                    <ul class="space-y-4 pt-6 border-t border-gray-100 dark:border-slate-800">
-                        <li class="flex items-center gap-3 text-sm font-bold text-slate-600 dark:text-slate-400">
-                            <i data-lucide="shield-check" class="w-5 h-5 text-blue-500"></i> Full Grooming
-                        </li>
-                        <li class="flex items-center gap-3 text-sm font-bold text-slate-600 dark:text-slate-400">
-                            <i data-lucide="droplets" class="w-5 h-5 text-blue-500"></i> Skin Treatment
-                        </li>
-                        <li class="flex items-center gap-3 text-sm font-bold text-slate-600 dark:text-slate-400">
-                            <i data-lucide="bug-off" class="w-5 h-5 text-blue-500"></i> Tick & Flea Removal
-                        </li>
-                    </ul>
-
-                    <button class="w-full py-4 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white rounded-2xl font-black text-sm hover:bg-blue-600 hover:text-white transition-all active:scale-95">
-                        Book Premium
-                    </button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<script>
-    if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-    }
-</script>
-<section id="safety-hygiene" class="py-16 md:py-24 bg-white dark:bg-slate-900 theme-transition overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
-            <div class="space-y-4 text-center md:text-left">
-                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 font-black text-[10px] uppercase tracking-[0.2em] border border-green-100 dark:border-green-800">
-                    <i data-lucide="shield-check" class="w-4 h-4"></i>
-                    Your Pet's Safety is Our Priority
-                </div>
-                <h2 class="text-4xl md:text-6xl font-black tracking-tighter text-slate-900 dark:text-white leading-none">
-                    Clinic-Level <span class="text-blue-600">Hygiene</span>
-                </h2>
-            </div>
-            <p class="text-lg text-slate-500 dark:text-slate-400 font-medium max-w-sm text-center md:text-right">
-                We follow strict medical-grade sanitization protocols to ensure a 100% germ-free grooming environment.
+            <p class="mt-4 text-slate-500 dark:text-slate-400 font-medium max-w-xl">
+                Expert grooming services tailored to your dog's breed and coat type, delivered right to your doorstep.
             </p>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             
-            <div class="group p-8 rounded-[2.5rem] bg-gray-50 dark:bg-slate-800/50 border-2 border-transparent hover:border-blue-500/30 transition-all duration-500 hover:-translate-y-2 text-center">
-                <div class="relative w-20 h-20 mx-auto mb-8">
-                    <div class="absolute inset-0 bg-blue-400 rounded-3xl animate-ping opacity-20"></div>
-                    <div class="relative w-full h-full bg-blue-600 text-white rounded-3xl flex items-center justify-center shadow-xl">
-                        <i data-lucide="sparkles" class="w-10 h-10"></i>
-                    </div>
+            <div class="group relative bg-gray-50 dark:bg-slate-800 rounded-[2.5rem] p-8 transition-all duration-500 hover:bg-primary hover:-translate-y-3 shadow-sm hover:shadow-2xl hover:shadow-primary/40 cursor-pointer">
+                <div class="mb-6 w-16 h-16 bg-white dark:bg-slate-700 rounded-2xl flex items-center justify-center text-3xl group-hover:rotate-12 transition-transform duration-500">
+                    🛁
                 </div>
-                <h3 class="text-xl font-black text-slate-900 dark:text-white mb-3">Disinfected Tools</h3>
-               
+                <h3 class="text-xl font-black uppercase tracking-tight text-slate-900 dark:text-white group-hover:text-white transition-colors">
+                    Bath & Blow Dry
+                </h3>
+                <p class="mt-4 text-sm text-slate-500 dark:text-slate-400 group-hover:text-white/80 font-medium leading-relaxed">
+                    Organic shampooing followed by a professional warm-air fluff dry for a silky coat.
+                </p>
+                <div class="mt-6 flex items-center gap-2 text-primary group-hover:text-accent font-bold text-xs uppercase tracking-widest">
+                    <span>Learn More</span>
+                    <i data-lucide="chevron-right" class="w-4 h-4 group-hover:translate-x-2 transition-transform"></i>
+                </div>
             </div>
 
-            <div class="group p-8 rounded-[2.5rem] bg-gray-50 dark:bg-slate-800/50 border-2 border-transparent hover:border-green-500/30 transition-all duration-500 hover:-translate-y-2 text-center">
-                <div class="w-20 h-20 bg-green-600 text-white rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl group-hover:rotate-6 transition-transform">
-                    <i data-lucide="droplets" class="w-10 h-10"></i>
+            <div class="group relative bg-gray-50 dark:bg-slate-800 rounded-[2.5rem] p-8 transition-all duration-500 hover:bg-primary hover:-translate-y-3 shadow-sm hover:shadow-2xl hover:shadow-primary/40 cursor-pointer">
+                <div class="mb-6 w-16 h-16 bg-white dark:bg-slate-700 rounded-2xl flex items-center justify-center text-3xl group-hover:rotate-12 transition-transform duration-500">
+                    ✂️
                 </div>
-                <h3 class="text-xl font-black text-slate-900 dark:text-white mb-3">Clean Equipment</h3>
-                
+                <h3 class="text-xl font-black uppercase tracking-tight text-slate-900 dark:text-white group-hover:text-white transition-colors">
+                    Haircut & Styling
+                </h3>
+                <p class="mt-4 text-sm text-slate-500 dark:text-slate-400 group-hover:text-white/80 font-medium leading-relaxed">
+                    Breed-standard cuts or custom teddy-bear styles to keep your pup looking sharp.
+                </p>
+                <div class="mt-6 flex items-center gap-2 text-primary group-hover:text-accent font-bold text-xs uppercase tracking-widest">
+                    <span>Learn More</span>
+                    <i data-lucide="chevron-right" class="w-4 h-4 group-hover:translate-x-2 transition-transform"></i>
+                </div>
             </div>
 
-            <div class="group p-8 rounded-[2.5rem] bg-gray-50 dark:bg-slate-800/50 border-2 border-transparent hover:border-red-500/30 transition-all duration-500 hover:-translate-y-2 text-center">
-                <div class="w-20 h-20 bg-red-500 text-white rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl group-hover:scale-110 transition-transform">
-                    <i data-lucide="ban" class="w-10 h-10"></i>
+            <div class="group relative bg-gray-50 dark:bg-slate-800 rounded-[2.5rem] p-8 transition-all duration-500 hover:bg-primary hover:-translate-y-3 shadow-sm hover:shadow-2xl hover:shadow-primary/40 cursor-pointer">
+                <div class="mb-6 w-16 h-16 bg-white dark:bg-slate-700 rounded-2xl flex items-center justify-center text-3xl group-hover:rotate-12 transition-transform duration-500">
+                    💅
                 </div>
-                <h3 class="text-xl font-black text-slate-900 dark:text-white mb-3">No Cages</h3>
-               
+                <h3 class="text-xl font-black uppercase tracking-tight text-slate-900 dark:text-white group-hover:text-white transition-colors">
+                    Nail Trimming
+                </h3>
+                <p class="mt-4 text-sm text-slate-500 dark:text-slate-400 group-hover:text-white/80 font-medium leading-relaxed">
+                    Safe clipping and filing to prevent discomfort and protect your home floors.
+                </p>
+                <div class="mt-6 flex items-center gap-2 text-primary group-hover:text-accent font-bold text-xs uppercase tracking-widest">
+                    <span>Learn More</span>
+                    <i data-lucide="chevron-right" class="w-4 h-4 group-hover:translate-x-2 transition-transform"></i>
+                </div>
             </div>
 
-            <div class="group p-8 rounded-[2.5rem] bg-gray-50 dark:bg-slate-800/50 border-2 border-transparent hover:border-orange-500/30 transition-all duration-500 hover:-translate-y-2 text-center">
-                <div class="w-20 h-20 bg-orange-500 text-white rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl group-hover:rotate-[-6deg] transition-transform">
-                    <i data-lucide="heart" class="w-10 h-10"></i>
+            <div class="group relative bg-gray-50 dark:bg-slate-800 rounded-[2.5rem] p-8 transition-all duration-500 hover:bg-primary hover:-translate-y-3 shadow-sm hover:shadow-2xl hover:shadow-primary/40 cursor-pointer">
+                <div class="mb-6 w-16 h-16 bg-white dark:bg-slate-700 rounded-2xl flex items-center justify-center text-3xl group-hover:rotate-12 transition-transform duration-500">
+                    👂
                 </div>
-                <h3 class="text-xl font-black text-slate-900 dark:text-white mb-3">Stress-Free Handling</h3>
-                
+                <h3 class="text-xl font-black uppercase tracking-tight text-slate-900 dark:text-white group-hover:text-white transition-colors">
+                    Ear Cleaning
+                </h3>
+                <p class="mt-4 text-sm text-slate-500 dark:text-slate-400 group-hover:text-white/80 font-medium leading-relaxed">
+                    Gentle debris removal and hygiene check to prevent infections and odors.
+                </p>
+                <div class="mt-6 flex items-center gap-2 text-primary group-hover:text-accent font-bold text-xs uppercase tracking-widest">
+                    <span>Learn More</span>
+                    <i data-lucide="chevron-right" class="w-4 h-4 group-hover:translate-x-2 transition-transform"></i>
+                </div>
             </div>
 
         </div>
-
+    </div>
+</section>
+<section id="cat-services" class="py-12 md:py-24 bg-background dark:bg-slate-950 transition-colors duration-500 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-    </div>
-</section>
+        <div class="mb-12 md:mb-16 text-center lg:text-left">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/10 text-secondary text-[10px] font-black uppercase tracking-widest mb-4">
+                <i data-lucide="cat" class="w-3 h-3"></i> Feline Specialists
+            </div>
+            <h2 class="text-3xl md:text-5xl font-black tracking-tighter uppercase text-slate-900 dark:text-white">
+                Luxury <span class="text-secondary">Cat Grooming</span>
+            </h2>
+            <p class="mt-4 text-slate-500 dark:text-slate-400 font-medium max-w-xl">
+                Cats require a calm, patient touch. Our groomers are trained in stress-free handling for even the most sensitive felines.
+            </p>
+        </div>
 
-<script>
-    // Ensure Lucide icons render for the new section
-    if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-    }
-</script>
-<section class="py-16 md:py-24 bg-blue-50/50 dark:bg-slate-950 theme-transition overflow-hidden relative">
-    
-    <div class="absolute top-0 left-0 w-full h-full -z-10 pointer-events-none">
-        <div class="absolute top-[-20%] right-[-10%] w-[60%] h-[60%] bg-blue-400/10 rounded-full blur-[120px] animate-pulse"></div>
-        <div class="absolute bottom-[-20%] left-[-10%] w-[60%] h-[60%] bg-pink-400/10 rounded-full blur-[120px] animate-pulse" style="animation-delay: 2s;"></div>
-    </div>
-
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="relative bg-white dark:bg-slate-900 rounded-[3rem] md:rounded-[4rem] p-8 md:p-16 lg:p-20 shadow-2xl border border-blue-100 dark:border-slate-800 flex flex-col items-center text-center gap-10 md:gap-12 overflow-hidden">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             
-            <div class="max-w-4xl space-y-6 md:space-y-8 relative z-10">
-                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-black text-[10px] md:text-xs uppercase tracking-[0.2em] border border-blue-100 dark:border-blue-800 shadow-sm mx-auto">
-                    <span class="relative flex h-2 w-2">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
-                    </span>
-                    Booking Perundurai Today
+            <div class="group relative bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 border border-slate-100 dark:border-slate-800 transition-all duration-500 hover:bg-secondary hover:-translate-y-3 shadow-sm hover:shadow-2xl hover:shadow-secondary/30 cursor-pointer">
+                <div class="mb-6 w-16 h-16 bg-secondary/10 rounded-2xl flex items-center justify-center text-3xl group-hover:bg-white/20 group-hover:rotate-12 transition-all duration-500">
+                    🧼
                 </div>
-                
-                <h2 class="text-4xl xs:text-5xl md:text-6xl lg:text-8xl font-black tracking-tighter text-slate-900 dark:text-white leading-[0.95]">
-                    Give Your Pet the <br>
-                    <span class="text-blue-600">Love They Deserve</span>
-                </h2>
-                
-                <p class="text-lg md:text-xl text-slate-500 dark:text-slate-400 font-medium max-w-2xl mx-auto leading-relaxed">
-                    Stress-free, professional grooming delivered right to your doorstep. No traffic, no cages—just happy tails.
+                <h3 class="text-xl font-black uppercase tracking-tight text-slate-900 dark:text-white group-hover:text-white transition-colors">
+                    Gentle Bath
+                </h3>
+                <p class="mt-4 text-sm text-slate-500 dark:text-slate-400 group-hover:text-orange-50 font-medium leading-relaxed">
+                    Water-acclimatized bathing using feline-safe, unscented organic shampoos.
                 </p>
+                <div class="mt-6 flex items-center gap-2 text-secondary group-hover:text-accent font-bold text-xs uppercase tracking-widest">
+                    <span>Explore</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-2 transition-transform"></i>
+                </div>
             </div>
 
-            <div class="flex flex-col xs:flex-row items-center justify-center gap-4 w-full xs:w-auto relative z-10">
-                <a href="booknow.html" class="w-full xs:w-auto px-12 py-6 bg-blue-600 text-white rounded-[2rem] font-black text-xl shadow-2xl shadow-blue-500/40 hover:bg-blue-700 hover:-translate-y-1.5 transition-all active:scale-95 flex items-center justify-center gap-3 group">
-                    Book Now
-                    <i data-lucide="calendar-check" class="w-6 h-6 group-hover:rotate-12 transition-transform"></i>
-                </a>
-                
-                <a href="contact.html" class="w-full xs:w-auto px-12 py-6 bg-white dark:bg-slate-800 border-2 border-slate-100 dark:border-slate-700 text-slate-900 dark:text-white rounded-[2rem] font-black text-xl hover:bg-gray-50 dark:hover:bg-slate-700 transition-all active:scale-95 flex items-center justify-center gap-3">
-                    <i data-lucide="phone" class="w-5 h-5"></i>
-                    Talk to Us
-                </a>
+            <div class="group relative bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 border border-slate-100 dark:border-slate-800 transition-all duration-500 hover:bg-secondary hover:-translate-y-3 shadow-sm hover:shadow-2xl hover:shadow-secondary/30 cursor-pointer">
+                <div class="mb-6 w-16 h-16 bg-secondary/10 rounded-2xl flex items-center justify-center text-3xl group-hover:bg-white/20 group-hover:rotate-12 transition-all duration-500">
+                    ✨
+                </div>
+                <h3 class="text-xl font-black uppercase tracking-tight text-slate-900 dark:text-white group-hover:text-white transition-colors">
+                    Fur Brushing
+                </h3>
+                <p class="mt-4 text-sm text-slate-500 dark:text-slate-400 group-hover:text-orange-50 font-medium leading-relaxed">
+                    Deep detangling and brushing to maintain a sleek, knot-free coat and healthy skin.
+                </p>
+                <div class="mt-6 flex items-center gap-2 text-secondary group-hover:text-accent font-bold text-xs uppercase tracking-widest">
+                    <span>Explore</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-2 transition-transform"></i>
+                </div>
             </div>
 
-            <i data-lucide="dog" class="absolute -bottom-10 -right-10 w-64 h-64 text-slate-100 dark:text-slate-800 -z-0 opacity-50 dark:opacity-20 rotate-12 pointer-events-none"></i>
+            <div class="group relative bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 border border-slate-100 dark:border-slate-800 transition-all duration-500 hover:bg-secondary hover:-translate-y-3 shadow-sm hover:shadow-2xl hover:shadow-secondary/30 cursor-pointer">
+                <div class="mb-6 w-16 h-16 bg-secondary/10 rounded-2xl flex items-center justify-center text-3xl group-hover:bg-white/20 group-hover:rotate-12 transition-all duration-500">
+                    ☁️
+                </div>
+                <h3 class="text-xl font-black uppercase tracking-tight text-slate-900 dark:text-white group-hover:text-white transition-colors">
+                    De-shedding
+                </h3>
+                <p class="mt-4 text-sm text-slate-500 dark:text-slate-400 group-hover:text-orange-50 font-medium leading-relaxed">
+                    Reduces hairballs and household shedding using specialized undercoat tools.
+                </p>
+                <div class="mt-6 flex items-center gap-2 text-secondary group-hover:text-accent font-bold text-xs uppercase tracking-widest">
+                    <span>Explore</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-2 transition-transform"></i>
+                </div>
+            </div>
+
+            <div class="group relative bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 border border-slate-100 dark:border-slate-800 transition-all duration-500 hover:bg-secondary hover:-translate-y-3 shadow-sm hover:shadow-2xl hover:shadow-secondary/30 cursor-pointer">
+                <div class="mb-6 w-16 h-16 bg-secondary/10 rounded-2xl flex items-center justify-center text-3xl group-hover:bg-white/20 group-hover:rotate-12 transition-all duration-500">
+                    ✂️
+                </div>
+                <h3 class="text-xl font-black uppercase tracking-tight text-slate-900 dark:text-white group-hover:text-white transition-colors">
+                    Hygiene Trim
+                </h3>
+                <p class="mt-4 text-sm text-slate-500 dark:text-slate-400 group-hover:text-orange-50 font-medium leading-relaxed">
+                    Precise sanitary clipping and paw-pad tidying for improved feline hygiene.
+                </p>
+                <div class="mt-6 flex items-center gap-2 text-secondary group-hover:text-accent font-bold text-xs uppercase tracking-widest">
+                    <span>Explore</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-2 transition-transform"></i>
+                </div>
+            </div>
+
         </div>
     </div>
 </section>
-
-<script>
-    if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-    }
-</script>
-
-      
-   <footer class="bg-gray-50 dark:bg-slate-950 border-t border-gray-200 dark:border-slate-800 pt-16 pb-8">
+<section id="trust-us" class="py-12 md:py-24 bg-gray-50 dark:bg-gray-800/30 transition-colors duration-500">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 lg:gap-12 mb-12 items-start">
+        
+        <div class="text-center mb-12 md:mb-16">
+            <h2 class="text-3xl md:text-5xl font-black text-gray-900 dark:text-white uppercase tracking-tighter">
+                Why Pet Owners <span class="text-primary">Trust</span> Us
+            </h2>
+            <p class="text-gray-500 dark:text-gray-400 mt-4 max-w-xl mx-auto text-sm md:text-base px-4">
+                We’ve replaced the stress of traditional salons with a sanctuary of safety and care.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             
-            <div class="space-y-6">
-                <a href="index.html" class="inline-block">
+            <div class="group bg-white dark:bg-gray-800 rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 border border-gray-100 dark:border-gray-700">
+                <div class="h-48 overflow-hidden">
+                    <img src="assets/no cage" alt="No Cages" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                </div>
+                <div class="p-6 text-center">
+                    <!-- <div class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-red-50 dark:bg-red-900/20 text-red-500 mb-4 font-bold text-xl">🚫</div> -->
+                    <h3 class="font-bold text-gray-900 dark:text-white uppercase text-sm tracking-widest">No Cages</h3>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-2 leading-relaxed">No waiting in cramped boxes. Your pet is free and relaxed throughout the session.</p>
+                </div>
+            </div>
+
+            <div class="group bg-white dark:bg-gray-800 rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 border border-gray-100 dark:border-gray-700">
+                <div class="h-48 overflow-hidden">
+                    <img src="assets/Fully Sanitized" alt="Sanitized Tools" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                </div>
+                <div class="p-6 text-center">
+                    <!-- <div class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-blue-50 dark:bg-blue-900/20 text-blue-500 mb-4 font-bold text-xl">🧼</div> -->
+                    <h3 class="font-bold text-gray-900 dark:text-white uppercase text-sm tracking-widest">Fully Sanitized</h3>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-2 leading-relaxed">Hospital-grade sterilization for every tool, every single time. Safety is our priority.</p>
+                </div>
+            </div>
+
+            <div class="group bg-white dark:bg-gray-800 rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 border border-gray-100 dark:border-gray-700">
+                <div class="h-48 overflow-hidden">
+                    <img src="assets/One-on-One" alt="1-on-1 Attention" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                </div>
+                <div class="p-6 text-center">
+                    <!-- <div class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary/10 text-primary mb-4 font-bold text-xl">🐾</div> -->
+                    <h3 class="font-bold text-gray-900 dark:text-white uppercase text-sm tracking-widest">1-on-1 Care</h3>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-2 leading-relaxed">No distractions or barking dogs. Just our groomer and your pet in a calm bond.</p>
+                </div>
+            </div>
+
+            <div class="group bg-white dark:bg-gray-800 rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 border border-gray-100 dark:border-gray-700">
+                <div class="h-48 overflow-hidden">
+                    <img src="assets/Eco-Friendly" alt="Eco-Friendly Products" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                </div>
+                <div class="p-6 text-center">
+                    <!-- <div class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-green-50 dark:bg-green-900/20 text-green-500 mb-4 font-bold text-xl">🌿</div> -->
+                    <h3 class="font-bold text-gray-900 dark:text-white uppercase text-sm tracking-widest">Eco-Friendly</h3>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-2 leading-relaxed">We use biodegradable, toxin-free shampoos that are gentle on skin and nature.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<section id="reviews" class="py-12 md:py-20 lg:py-24 bg-background dark:bg-slate-950 transition-colors duration-500 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16 space-y-4">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary font-black text-[10px] uppercase tracking-widest border border-primary/20">
+                <i data-lucide="heart" class="w-4 h-4 fill-current"></i> 2,000+ Happy Tails
+            </div>
+            <h2 class="text-3xl md:text-5xl font-black tracking-tighter text-slate-900 dark:text-white uppercase leading-tight">
+                Customer <span class="text-primary">Reviews</span>
+            </h2>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 items-stretch">
+            
+            <div class="group flex flex-col bg-white dark:bg-slate-900 rounded-[2.5rem] overflow-hidden shadow-lg border border-slate-100 dark:border-slate-800 transition-all duration-500 hover:-translate-y-2">
+                <div class="aspect-[4/3] overflow-hidden">
+                    <img src="assets/gruno" alt="Happy Poodle" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                </div>
+                <div class="p-6 md:p-8 flex flex-col flex-grow">
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 text-primary fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-primary fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-primary fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-primary fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-primary fill-current"></i>
+                    </div>
+                    <p class="text-sm md:text-base text-slate-600 dark:text-slate-300 font-medium italic mb-6">
+                        "Convenience at its best! Bruno used to get so stressed at the salon, but he loves the mobile unit."
+                    </p>
+                    <div class="flex items-center gap-3 mt-auto pt-4 border-t border-slate-50 dark:border-slate-800">
+                        <div class="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center font-black text-secondary uppercase text-xs">SM</div>
+                        <div>
+                            <p class="text-xs font-black text-slate-900 dark:text-white uppercase">Sarah Miller</p>
+                            <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Mom of Bruno</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group flex flex-col bg-white dark:bg-slate-900 rounded-[2.5rem] overflow-hidden shadow-lg border border-slate-100 dark:border-slate-800 transition-all duration-500 hover:-translate-y-2">
+                <div class="aspect-[4/3] overflow-hidden">
+                    <img src="assets/cat 1" alt="Clean Persian Cat" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                </div>
+                <div class="p-6 md:p-8 flex flex-col flex-grow">
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 text-primary fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-primary fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-primary fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-primary fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-primary fill-current"></i>
+                    </div>
+                    <p class="text-sm md:text-base text-slate-600 dark:text-slate-300 font-medium italic mb-6">
+                        "They handle my senior cat with such patience. She smells amazing and feels so much softer now!"
+                    </p>
+                    <div class="flex items-center gap-3 mt-auto pt-4 border-t border-slate-50 dark:border-slate-800">
+                        <div class="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center font-black text-secondary uppercase text-xs">RK</div>
+                        <div>
+                            <p class="text-xs font-black text-slate-900 dark:text-white uppercase">Rajesh K.</p>
+                            <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Dad of Luna</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group flex flex-col sm:flex-row lg:flex-col sm:col-span-2 lg:col-span-1 bg-white dark:bg-slate-900 rounded-[2.5rem] overflow-hidden shadow-lg border border-slate-100 dark:border-slate-800 transition-all duration-500 hover:-translate-y-2">
+                <div class="sm:w-1/3 lg:w-full shrink-0 overflow-hidden aspect-[4/3] sm:aspect-auto lg:aspect-[4/3]">
+                    <img src="assets/browndog" alt="Happy Golden" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                </div>
+                <div class="p-6 md:p-8 flex flex-col flex-grow justify-center">
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 text-primary fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-primary fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-primary fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-primary fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-primary fill-current"></i>
+                    </div>
+                    <p class="text-sm md:text-base text-slate-600 dark:text-slate-300 font-medium italic mb-6">
+                        "Super professional setup! No mess in my house, and Cooper looks like a show dog now."
+                    </p>
+                    <div class="flex items-center gap-3 mt-auto pt-4 border-t border-slate-50 dark:border-slate-800">
+                        <div class="w-10 h-10 rounded-full bg-secondary text-white flex items-center justify-center font-black text-xs">AB</div>
+                        <div>
+                            <p class="text-xs font-black text-slate-900 dark:text-white uppercase">Anita Ben</p>
+                            <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Mom of Cooper</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="mt-12 text-center">
+            <p class="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400 dark:text-slate-600">
+                4.9/5 Rating // PAWS Mobile Wellness
+            </p>
+        </div>
+    </div>
+</section>
+<section id="booking-cta" class="py-12 md:py-24 bg-white dark:bg-slate-900 transition-colors duration-500 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="relative rounded-[3rem] bg-gradient-to-br from-primary to-green-700 p-8 md:p-16 lg:p-20 shadow-2xl shadow-primary/20 overflow-hidden group">
+            
+            <div class="absolute -top-24 -right-24 w-80 h-80 bg-white/10 rounded-full blur-[100px] group-hover:scale-125 transition-transform duration-700"></div>
+            <div class="absolute -bottom-24 -left-24 w-80 h-80 bg-secondary/20 rounded-full blur-[100px] group-hover:scale-125 transition-transform duration-700"></div>
+
+            <div class="relative z-10 max-w-4xl mx-auto text-center space-y-6 md:space-y-10">
+                
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-[10px] md:text-xs font-black uppercase tracking-[0.2em] animate-bounce mx-auto">
+                    <i data-lucide="sparkles" class="w-4 h-4 text-accent fill-current"></i>
+                    Limited Slots Available This Week
+                </div>
+
+                <div class="space-y-4">
+                    <h2 class="text-3xl xs:text-4xl md:text-6xl lg:text-7xl font-black text-white leading-[0.95] tracking-tighter uppercase">
+                        Give Your Pet the <br class="hidden xs:block"> 
+                        <span class="text-accent">Royal Treatment</span>
+                    </h2>
+                    <p class="text-green-50 text-sm md:text-xl font-medium max-w-2xl mx-auto leading-relaxed opacity-90">
+                        Join 2,000+ happy pets in Perundurai. Professional, stress-free grooming delivered directly to your doorstep.
+                    </p>
+                </div>
+
+                <div class="flex flex-col xs:flex-row items-center justify-center gap-4 pt-4">
+                    <a href="booknow.html" class="w-full xs:w-auto px-12 py-5 bg-accent text-slate-900 rounded-[2rem] font-black uppercase tracking-widest text-sm hover:bg-white hover:scale-105 hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-3 group/btn">
+                        Book a Session
+                        <i data-lucide="arrow-right" class="w-5 h-5 group-hover/btn:translate-x-2 transition-transform"></i>
+                    </a>
+                    <a href="contact.html" class="w-full xs:w-auto px-12 py-5 bg-transparent border-2 border-white/40 text-white rounded-[2rem] font-black uppercase tracking-widest text-sm hover:bg-white/10 transition-all">
+                        Talk to an Expert
+                    </a>
+                </div>
+
+                <div class="flex flex-wrap justify-center items-center gap-x-8 gap-y-4 pt-8 opacity-60">
+                    <div class="flex items-center gap-2 text-white text-[10px] font-bold uppercase tracking-widest">
+                        <i data-lucide="check-circle" class="w-4 h-4 text-accent"></i> 100% Organic
+                    </div>
+                    <div class="flex items-center gap-2 text-white text-[10px] font-bold uppercase tracking-widest">
+                        <i data-lucide="check-circle" class="w-4 h-4 text-accent"></i> No Cage Stress
+                    </div>
+                    <div class="flex items-center gap-2 text-white text-[10px] font-bold uppercase tracking-widest">
+                        <i data-lucide="check-circle" class="w-4 h-4 text-accent"></i> Verified Pros
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+  <footer class="bg-gray-50 dark:bg-gray-800 border-t dark:border-gray-700 pt-8 pb-6 md:pt-12 md:pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-4 sm:gap-x-8">
+            
+            <div class="col-span-2 lg:col-span-1 flex flex-col space-y-3">
+                <a href="index.html" class="inline-block w-fit">
                     <div class="flex items-center gap-2">
-                        <i data-lucide="dog" class="text-blue-500 w-6 h-6"></i>
-                        <span class="text-xl font-bold text-slate-900 dark:text-white">Paws</span>
+                        <svg class="w-8 h-8 md:w-9 md:h-9" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 5C13.6569 5 15 3.65685 15 2C15 0.343146 13.6569 0 12 0C10.3431 0 9 0.343146 9 2C9 3.65685 10.3431 5 12 5Z" fill="#4CAF50"/>
+                            <path d="M5 8C6.65685 8 8 6.65685 8 5C8 3.34315 6.65685 3 5 3C3.34315 3 2 3.34315 2 5C2 6.65685 3.34315 8 5 8Z" fill="#8D6E63"/>
+                            <path d="M19 8C20.6569 8 22 6.65685 22 5C22 3.34315 20.6569 3 19 3C17.3431 3 16 3.34315 16 5C16 6.65685 17.3431 8 19 8Z" fill="#8D6E63"/>
+                            <path d="M12 24C16.4183 24 20 20.4183 20 16C20 11.5817 16.4183 10 12 10C7.58172 10 4 11.5817 4 16C4 20.4183 7.58172 24 12 24Z" fill="#4CAF50"/>
+                            <path d="M9 16H15M9 18H15M9 20H15" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                        <span class="text-xl md:text-2xl font-black tracking-tighter text-primary dark:text-white uppercase">PAWS</span>
                     </div>
                 </a>
-                <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed max-w-xs">
-                    We are a team of certified pet lovers dedicated to providing premium wellness services directly to your driveway.
+                <p class="text-gray-500 dark:text-gray-400 text-sm leading-snug max-w-sm">
+                    Professional grooming at your door. Organic and stress-free.
                 </p>
-                <div class="flex gap-4">
-                    <a href="#" class="p-2 rounded-full bg-white dark:bg-slate-800 border dark:border-slate-700 hover:text-blue-500 transition shadow-sm"><i data-lucide="facebook" class="w-5 h-5"></i></a>
-                    <a href="#" class="p-2 rounded-full bg-white dark:bg-slate-800 border dark:border-slate-700 hover:text-blue-500 transition shadow-sm"><i data-lucide="instagram" class="w-5 h-5"></i></a>
-                    <a href="#" class="p-2 rounded-full bg-white dark:bg-slate-800 border dark:border-slate-700 hover:text-blue-500 transition shadow-sm"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+                <div class="flex space-x-4 pt-1">
+                    <a href="#" class="text-secondary hover:text-primary transition-colors"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg></a>
+                    <a href="#" class="text-secondary hover:text-primary transition-colors"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.332 3.608 1.308.975.975 1.245 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.063 1.366-.333 2.633-1.308 3.608-.975.975-2.242 1.245-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.063-2.633-.333-3.608-1.308-.975-.975-1.245-2.242-1.308-3.608-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.062-1.366.332-2.633 1.308-3.608.975-.975 2.242-1.245 3.608-1.308 1.266-.058 1.646-.07 4.85-.07zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.355 2.618 6.778 6.98 6.978 1.28.058 1.688.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.668-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+                    <a href="#" class="text-secondary hover:text-primary transition-colors"><svg class="w-4 h-4 mt-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932L18.901 1.153zM17.61 20.644h2.039L6.486 3.24H4.298L17.61 20.644z"/></svg></a>
                 </div>
             </div>
 
-            <div class="grid grid-cols-2 gap-4 sm:gap-8">
-                <div class="space-y-6">
-                    <h4 class="font-black text-slate-900 dark:text-white uppercase tracking-[0.2em] text-[10px] md:text-xs border-l-4 border-blue-600 pl-3">
-                        General
-                    </h4>
-                    <ul class="space-y-3 text-sm text-slate-500 dark:text-slate-400">
-                        <li><a href="index.html" class="hover:text-blue-600 dark:hover:text-blue-400 hover:translate-x-1 transition-all inline-block">Home</a></li>
-                        <li><a href="about.html" class="hover:text-blue-600 dark:hover:text-blue-400 hover:translate-x-1 transition-all inline-block">About Us</a></li>
-                        <li><a href="contact.html" class="hover:text-blue-600 dark:hover:text-blue-400 hover:translate-x-1 transition-all inline-block">Contact</a></li>
-                        <li><a href="service.html" class="hover:text-blue-600 dark:hover:text-blue-400 hover:translate-x-1 transition-all inline-block">Services</a></li>
-                    </ul>
-                </div>
-                <div class="space-y-6">
-                    <h4 class="font-black text-slate-900 dark:text-white uppercase tracking-[0.2em] text-[10px] md:text-xs border-l-4 border-blue-600 pl-3">
-                        Quick
-                    </h4>
-                    <ul class="space-y-3 text-sm text-slate-500 dark:text-slate-400">
-                        <li><a href="home2.html" class="hover:text-blue-600 dark:hover:text-blue-400 hover:translate-x-1 transition-all inline-block">Home 2</a></li>
-                        <li><a href="booknow.html" class="hover:text-blue-600 dark:hover:text-blue-400 hover:translate-x-1 transition-all inline-block">BookNow</a></li>
-                        <li><a href="comingsoon.html" class="hover:text-blue-600 dark:hover:text-blue-400 hover:translate-x-1 transition-all inline-block">Soon</a></li>
-                        <li><a href="404.html" class="hover:text-blue-600 dark:hover:text-blue-400 hover:translate-x-1 transition-all inline-block">Error</a></li>
-                    </ul>
-                </div>
+            <div class="flex flex-col pt-2 lg:pt-0">
+                <h4 class="font-bold mb-3 text-gray-800 dark:text-white border-b border-primary w-fit pb-0.5 text-xs uppercase tracking-wider">Quick Links</h4>
+                <ul class="space-y-1.5 text-gray-500 dark:text-gray-400 text-sm">
+                    <li><a href="index.html" class="hover:text-primary transition-colors">Home</a></li>
+                    <li><a href="home2.html" class="hover:text-primary transition-colors">Home2</a></li>
+                    <li><a href="booknow.html" class="hover:text-primary transition-colors">Book Now</a></li>
+                    <li><a href="service.html" class="hover:text-primary transition-colors">Services</a></li>
+                </ul>
             </div>
 
-            <div class="space-y-6 lg:col-span-1 md:col-span-2 lg:mt-0 mt-8 lg:border-l lg:pl-12 dark:border-slate-800">
-                <h4 class="font-bold text-lg text-slate-900 dark:text-white leading-tight">Join Our Newsletter</h4>
-                <p class="text-slate-500 dark:text-slate-400 text-sm">Grooming tips and exclusive discounts for your first visit.</p>
-                <form class="flex flex-col sm:flex-row gap-3">
-                    <input type="email" placeholder="Your email" class="flex-1 px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-700 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm transition-all">
-                    <button class="bg-blue-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-blue-700 transition active:scale-95">Subscribe</button>
+            <div class="flex flex-col pt-2 lg:pt-0">
+                <h4 class="font-bold mb-3 text-gray-800 dark:text-white border-b border-secondary w-fit pb-0.5 text-sm uppercase tracking-wider">Navigation</h4>
+                <ul class="space-y-1.5 text-gray-500 dark:text-gray-400 text-sm">
+                    <li><a href="gallery.html" class="hover:text-primary transition-colors">Gallery</a></li>
+                    <li><a href="about.html" class="hover:text-primary transition-colors">About</a></li>
+                    <li><a href="comingsoon.html" class="hover:text-primary transition-colors">Comingsoon</a></li>
+                    <li><a href="404.html" class="hover:text-primary transition-colors">404</a></li>
+                </ul>
+            </div>
+
+            <div class="col-span-2 lg:col-span-1 pt-4 lg:pt-0 flex flex-col justify-start">
+                <h4 class="font-bold mb-3 text-gray-800 dark:text-white text-sm uppercase tracking-wider">Join Us</h4>
+                <p class="text-gray-500 dark:text-gray-400 mb-3 text-sm">Get grooming tips and offers.</p>
+                <form class="flex flex-row sm:flex-row gap-2">
+                    <input type="email" placeholder="Email" class="w-full max-w-[200px] sm:max-w-none px-3 py-2 rounded-lg border dark:bg-gray-700 dark:border-gray-600 focus:ring-1 focus:ring-primary outline-none transition-all text-sm">
+                    <button class="bg-secondary text-white px-4 py-2 rounded-lg font-bold hover:opacity-90 transition-all text-sm whitespace-nowrap">Join</button>
                 </form>
             </div>
         </div>
-        
-        <div class="border-t border-gray-200 dark:border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p class="text-sm text-slate-500">&copy; 2026 PawsOnWheels Mobile Grooming. All rights reserved.</p>
-            <div class="flex gap-6 text-xs font-bold text-slate-400 uppercase tracking-widest">
-                <a href="#" class="hover:text-blue-500">Privacy</a>
-                <a href="#" class="hover:text-blue-500">Terms</a>
+
+        <div class="mt-8 pt-4 border-t dark:border-gray-700 flex flex-col sm:flex-row justify-between items-center gap-3 text-gray-400 text-[10px] md:text-xs text-center sm:text-left">
+            <p>&copy; 2026 PAWS Mobile Wellness. All rights reserved.</p>
+            <div class="flex gap-4">
+                <a href="#" class="hover:text-primary transition-colors">Privacy</a>
+                <a href="#" class="hover:text-primary transition-colors">Terms</a>
             </div>
         </div>
     </div>
 </footer>
 
     <script>
-        // Initialize Lucide Icons
-        lucide.createIcons();
+        // Selectors
+        const html = document.documentElement;
+        const themeToggles = [document.getElementById('theme-toggle'), document.getElementById('theme-toggle-m')];
+        const dirToggles = [document.getElementById('dir-toggle'), document.getElementById('dir-toggle-m')];
+        const mobileMenuBtn = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
 
-        // Mobile Menu Toggle
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-        });
+        // Initial Load from LocalStorage
+        if (localStorage.getItem('theme') === 'dark') {
+            html.classList.add('dark');
+        }
+        if (localStorage.getItem('dir') === 'rtl') {
+            html.setAttribute('dir', 'rtl');
+        }
 
         // Theme Toggle Logic
-        function toggleTheme() {
-            const html = document.documentElement;
-            if (html.classList.contains('dark')) {
-                html.classList.remove('dark');
-                localStorage.setItem('theme', 'light');
-                updateIcons('light');
-            } else {
-                html.classList.add('dark');
-                localStorage.setItem('theme', 'dark');
-                updateIcons('dark');
-            }
-        }
+        themeToggles.forEach(btn => {
+            btn.addEventListener('click', () => {
+                html.classList.toggle('dark');
+                localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+            });
+        });
 
-        function updateIcons(theme) {
-            const sun = document.getElementById('sun-icon');
-            const moon = document.getElementById('moon-icon');
-            if (theme === 'dark') {
-                sun.classList.remove('hidden');
-                moon.classList.add('hidden');
-            } else {
-                sun.classList.add('hidden');
-                moon.classList.remove('hidden');
-            }
-        }
+        // Direction Toggle Logic
+        dirToggles.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const currentDir = html.getAttribute('dir');
+                const newDir = currentDir === 'ltr' ? 'rtl' : 'ltr';
+                html.setAttribute('dir', newDir);
+                localStorage.setItem('dir', newDir);
+            });
+        });
 
-        // Direction Toggle Logic (LTR/RTL)
-        function toggleDirection() {
-            const html = document.getElementById('root-html');
-            const dirText = document.getElementById('dir-text');
-            const currentDir = html.getAttribute('dir');
-            const newDir = currentDir === 'ltr' ? 'rtl' : 'ltr';
-            
-            html.setAttribute('dir', newDir);
-            localStorage.setItem('direction', newDir);
-            dirText.innerText = newDir.toUpperCase();
-        }
-
-        // Load Preferences on Start
-        window.onload = () => {
-            // Theme
-            if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark');
-                updateIcons('dark');
-            }
-            
-            // Direction
-            const savedDir = localStorage.getItem('direction') || 'ltr';
-            document.getElementById('root-html').setAttribute('dir', savedDir);
-            document.getElementById('dir-text').innerText = savedDir.toUpperCase();
-        };
+        // Mobile Menu Logic
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
     </script>
 </body>
 </html>
+

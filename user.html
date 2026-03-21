@@ -1,613 +1,485 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" id="app-html">
+<html lang="en" dir="ltr" id="root-html" class="h-full">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="icon" href="assets/dog_7104247.png">
-    <title>PawsDash - Premium Pet Care</title>
+     <link rel="icon" href="assets/pawprint_4659771.png">
+    <title>PAWS | Full Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: { primary: '#4CAF50', secondary: '#8D6E63', accent: '#FFC107' },
+                    screens: { 'xs': '360px' }
+                }
+            }
         }
     </script>
     <style>
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .tab-content { display: none; }
-        .tab-content.active { display: block; }
-        .sidebar-item.active { background-color: #2563eb; color: white; box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3); }
-        [dir="rtl"] .sidebar { right: 0; left: auto; }
+        .tab-content.active { display: block; animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .nav-btn.active { background-color: #4CAF50 !important; color: white !important; box-shadow: 0 10px 15px -3px rgba(76, 175, 80, 0.3); }
+        .mobile-aside { transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        
+        /* RTL Icon Fix */
+        [dir="rtl"] .nav-btn i { margin-left: 1rem; margin-right: 0; }
+        [dir="rtl"] .nav-btn { text-align: right; }
     </style>
 </head>
-<body class="bg-gray-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300">
+<body class="h-full font-sans bg-gray-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-500">
 
-    <aside id="sidebar" class="fixed top-0 left-0 h-full w-64 bg-white dark:bg-slate-900 border-r dark:border-slate-800 z-50 transition-all duration-300 transform -translate-x-full lg:translate-x-0">
-        <div class="p-6 flex flex-col h-full">
-           <a href="index.html">
- <div class="flex-shrink-0 flex items-center gap-2">
-                    <i data-lucide="dog" class="text-blue-500 w-8 h-8"></i>
-                    <span class="text-2xl font-bold tracking-tight">Paws</span>
-                </div>
-                </a>
-                <br>
+    <div id="mobile-overlay" onclick="toggleMobileMenu()" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-40 hidden lg:hidden opacity-0 transition-opacity duration-300"></div>
 
-            <nav class="flex-1 space-y-2 overflow-y-auto no-scrollbar">
-                <button onclick="switchTab('dashboard', this)" class="sidebar-item active w-full flex items-center gap-4 px-4 py-3 rounded-2xl font-bold transition-all hover:bg-blue-50 dark:hover:bg-slate-800">
-                    <i data-lucide="layout-dashboard" class="w-5 h-5"></i> Dashboard
-                </button>
-                <button onclick="switchTab('booking', this)" class="sidebar-item w-full flex items-center gap-4 px-4 py-3 rounded-2xl font-bold transition-all hover:bg-blue-50 dark:hover:bg-slate-800">
-                    <i data-lucide="calendar" class="w-5 h-5"></i> Bookings
-                </button>
-                <button onclick="switchTab('pets', this)" class="sidebar-item w-full flex items-center gap-4 px-4 py-3 rounded-2xl font-bold transition-all hover:bg-blue-50 dark:hover:bg-slate-800">
-                    <i data-lucide="dog" class="w-5 h-5"></i> My Pets
-                </button>
-                <button onclick="switchTab('history', this)" class="sidebar-item w-full flex items-center gap-4 px-4 py-3 rounded-2xl font-bold transition-all hover:bg-blue-50 dark:hover:bg-slate-800">
-                    <i data-lucide="book-open" class="w-5 h-5"></i> History
-                </button>
-                <button onclick="switchTab('plans', this)" class="sidebar-item w-full flex items-center gap-4 px-4 py-3 rounded-2xl font-bold transition-all hover:bg-blue-50 dark:hover:bg-slate-800">
-                    <i data-lucide="credit-card" class="w-5 h-5"></i> Wellness
-                </button>
-                <button onclick="switchTab('settings', this)" class="sidebar-item w-full flex items-center gap-4 px-4 py-3 rounded-2xl font-bold transition-all hover:bg-blue-50 dark:hover:bg-slate-800">
-                    <i data-lucide="settings" class="w-5 h-5"></i> Settings
-                </button>
-                <a href="login.html">
-  <button class="w-full flex items-center gap-4 px-4 py-3 rounded-2xl font-bold text-red-500 hover:bg-red-50 dark:hover:bg-red-900/10 transition-all mt-4">
-                    <i data-lucide="log-out" class="w-5 h-5"></i> Logout
-                </button>
-                </a>
-              
-            </nav>
-
-            <div class="pt-6 border-t dark:border-slate-800 space-y-4">
-                <button onclick="toggleDarkMode()" class="w-full flex items-center justify-between p-3 bg-gray-100 dark:bg-slate-800 rounded-xl">
-                    <span class="flex items-center gap-2"><i data-lucide="moon" class="w-4 h-4"></i> <span class="text-xs font-bold uppercase">Mode</span></span>
-                    <div id="dark-status" class="w-8 h-4 bg-gray-300 dark:bg-blue-600 rounded-full relative transition-colors">
-                        <div class="absolute left-1 top-1 w-2 h-2 bg-white rounded-full transition-transform dark:translate-x-4"></div>
-                    </div>
-                </button>
-                <button onclick="toggleDirection()" class="w-full flex items-center justify-between p-3 bg-gray-100 dark:bg-slate-800 rounded-xl text-xs font-bold uppercase tracking-widest">
-                    <i data-lucide="languages" class="w-4 h-4"></i> <span id="dir-label">LTR</span>
-                </button>
+    <aside id="mobile-menu" class="mobile-aside fixed top-0 bottom-0 left-0 w-[280px] bg-white dark:bg-slate-900 z-50 transform -translate-x-full lg:hidden border-r dark:border-slate-800 flex flex-col shadow-2xl">
+        <div class="p-6 flex items-center justify-between border-b dark:border-slate-800">
+            <div class="flex items-center gap-3">
+                <!-- <div class="p-2 bg-primary rounded-xl text-white shadow-lg"><i data-lucide="dog" class="w-5 h-5"></i></div> -->
+                <a href="index.html" class="flex-shrink-0 flex items-center gap-2">
+                <svg class="w-10 h-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 5C13.6569 5 15 3.65685 15 2C15 0.343146 13.6569 0 12 0C10.3431 0 9 0.343146 9 2C9 3.65685 10.3431 5 12 5Z" fill="#4CAF50"/>
+                    <path d="M5 8C6.65685 8 8 6.65685 8 5C8 3.34315 6.65685 3 5 3C3.34315 3 2 3.34315 2 5C2 6.65685 3.34315 8 5 8Z" fill="#8D6E63"/>
+                    <path d="M19 8C20.6569 8 22 6.65685 22 5C22 3.34315 20.6569 3 19 3C17.3431 3 16 3.34315 16 5C16 6.65685 17.3431 8 19 8Z" fill="#8D6E63"/>
+                    <path d="M12 24C16.4183 24 20 20.4183 20 16C20 11.5817 16.4183 10 12 10C7.58172 10 4 11.5817 4 16C4 20.4183 7.58172 24 12 24Z" fill="#4CAF50"/>
+                    <path d="M9 16H15M9 18H15M9 20H15" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <span class="text-2xl font-black tracking-tighter text-primary dark:text-white uppercase">PAWS</span>
+            </a>
+                <!-- 
+                <span class="text-lg font-black uppercase tracking-tighter text-primary">PAWS App</span> -->
             </div>
+            <button onclick="toggleMobileMenu()" class="p-2 text-slate-400"><i data-lucide="x" class="w-6 h-6"></i></button>
+        </div>
+        <nav class="flex-grow p-4 space-y-2 overflow-y-auto" id="mobile-nav-container"></nav>
+        <div class="p-6 border-t dark:border-slate-800 space-y-4">
+            <button onclick="toggleDirection()" class="w-full flex items-center justify-between px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 font-bold text-[10px] uppercase tracking-widest text-slate-500">
+                <span id="dir-label-mobile">LTR Mode</span>
+                <i data-lucide="languages" class="w-4 h-4"></i>
+            </button>
+            <a href="index.html">
+ <button class="w-full flex items-center gap-4 px-4 py-3 text-red-500 font-black uppercase text-[11px] tracking-widest">
+                <i data-lucide="log-out" class="w-5 h-5"></i> Logout
+            </button>
+            </a>
+           
         </div>
     </aside>
 
-    <main class="lg:ml-64 min-h-screen p-4 md:p-8 pb-24 lg:pb-8 transition-all duration-300">
-        
-        <header class="lg:hidden flex justify-between items-center mb-6">
-            <button onclick="toggleSidebar()" class="p-2 bg-white dark:bg-slate-900 rounded-xl shadow-sm"><i data-lucide="menu"></i></button>
-            <span class="font-black text-blue-600">PAWS</span>
-            <div class="w-10 h-10 rounded-full border-2 border-blue-600 overflow-hidden bg-blue-100 flex-shrink-0">
-    <img 
-        src="assets/dog1" 
-        alt="User Profile" 
-        class="w-full h-full object-cover"
-    >
-</div>
-        </header>
+    <div class="flex h-full overflow-hidden">
+        <aside class="hidden lg:flex flex-col w-72 bg-white dark:bg-slate-900 border-r dark:border-slate-800 p-6 shrink-0">
+            <div class="flex items-center gap-3 mb-10 px-2">
+                <!-- <div class="p-2 bg-primary rounded-xl text-white shadow-lg shadow-primary/30"><i data-lucide="dog" class="w-6 h-6"></i></div> -->
+               <a href="index.html" class="flex-shrink-0 flex items-center gap-2">
+                <svg class="w-10 h-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 5C13.6569 5 15 3.65685 15 2C15 0.343146 13.6569 0 12 0C10.3431 0 9 0.343146 9 2C9 3.65685 10.3431 5 12 5Z" fill="#4CAF50"/>
+                    <path d="M5 8C6.65685 8 8 6.65685 8 5C8 3.34315 6.65685 3 5 3C3.34315 3 2 3.34315 2 5C2 6.65685 3.34315 8 5 8Z" fill="#8D6E63"/>
+                    <path d="M19 8C20.6569 8 22 6.65685 22 5C22 3.34315 20.6569 3 19 3C17.3431 3 16 3.34315 16 5C16 6.65685 17.3431 8 19 8Z" fill="#8D6E63"/>
+                    <path d="M12 24C16.4183 24 20 20.4183 20 16C20 11.5817 16.4183 10 12 10C7.58172 10 4 11.5817 4 16C4 20.4183 7.58172 24 12 24Z" fill="#4CAF50"/>
+                    <path d="M9 16H15M9 18H15M9 20H15" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <span class="text-2xl font-black tracking-tighter text-primary dark:text-white uppercase">PAWS</span>
+            </a>
+                <!-- <span class="text-xl font-black uppercase tracking-tighter text-primary">PAWS Admin</span> -->
+            </div>
+            <nav class="space-y-2 flex-grow" id="desktop-nav">
+                <button onclick="switchTab('dashboard', this)" class="nav-btn active w-full flex items-center gap-4 px-4 py-4 rounded-2xl font-black uppercase text-[11px] tracking-widest transition-all text-left">
+                    <i data-lucide="home" class="w-5 h-5"></i> Dashboard
+                </button>
+                <button onclick="switchTab('booking', this)" class="nav-btn w-full flex items-center gap-4 px-4 py-4 rounded-2xl font-black uppercase text-[11px] tracking-widest transition-all text-left text-slate-400">
+                    <i data-lucide="calendar" class="w-5 h-5"></i> Book Appointment
+                </button>
+                <button onclick="switchTab('pets', this)" class="nav-btn w-full flex items-center gap-4 px-4 py-4 rounded-2xl font-black uppercase text-[11px] tracking-widest transition-all text-left text-slate-400">
+                    <i data-lucide="paw-print" class="w-5 h-5"></i> My Pets
+                </button>
+                <button onclick="switchTab('history', this)" class="nav-btn w-full flex items-center gap-4 px-4 py-4 rounded-2xl font-black uppercase text-[11px] tracking-widest transition-all text-left text-slate-400">
+                    <i data-lucide="history" class="w-5 h-5"></i> History
+                </button>
+                <button onclick="switchTab('wellness', this)" class="nav-btn w-full flex items-center gap-4 px-4 py-4 rounded-2xl font-black uppercase text-[11px] tracking-widest transition-all text-left text-slate-400">
+                    <i data-lucide="credit-card" class="w-5 h-5"></i> Wellness Plans
+                </button>
+                <button onclick="switchTab('settings', this)" class="nav-btn w-full flex items-center gap-4 px-4 py-4 rounded-2xl font-black uppercase text-[11px] tracking-widest transition-all text-left text-slate-400">
+                    <i data-lucide="settings" class="w-5 h-5"></i> Settings
+                </button>
+                <a href="login.html">
+                    <button  class="nav-btn w-full flex items-center gap-4 px-4 py-4 rounded-2xl font-black uppercase text-[11px] tracking-widest transition-all text-left text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/20 group">
+    <i data-lucide="log-out" class="w-5 h-5 group-hover:scale-110 transition-transform"></i> 
+    Logout
+</button>
+                </a>
+                
+            </nav>
+            <div class="mt-auto pt-6 border-t dark:border-slate-800">
+                <button onclick="toggleDirection()" class="w-full flex items-center justify-between px-4 py-3 text-slate-400 font-bold text-[10px] uppercase tracking-widest">
+                    <span id="dir-label-desktop">LTR</span> <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </aside>
 
-       <div id="dashboard" class="tab-content active space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-    
-    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <main class="flex-grow flex flex-col min-w-0">
+            <header class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b dark:border-slate-800 px-4 sm:px-8 py-5 flex items-center justify-between shrink-0">
+                <div class="flex items-center gap-4">
+                    <button onclick="toggleMobileMenu()" class="lg:hidden p-2 bg-white dark:bg-slate-800 rounded-xl shadow-sm border dark:border-slate-700"><i data-lucide="menu" class="w-6 h-6 text-primary"></i></button>
+                    <h1 id="page-title" class="text-lg md:text-2xl font-black uppercase tracking-tight">Dashboard Overview</h1>
+                </div>
+                <div class="flex items-center gap-3">
+                    <button onclick="toggleTheme()" class="p-2.5 bg-gray-100 dark:bg-slate-800 rounded-xl"><i data-lucide="moon" id="theme-toggle-icon" class="w-5 h-5"></i></button>
+<img src="assets/udog1" 
+     alt="Profile" 
+     class="w-10 h-10 rounded-full object-cover border-2 border-white dark:border-slate-800 shadow-lg shrink-0">                </div>
+            </header>
+
+            <div class="flex-grow overflow-y-auto p-4 sm:p-8 no-scrollbar pb-24 lg:pb-8">
+                
+                <section id="dashboard" class="tab-content active space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                        <div class="bg-white dark:bg-slate-900 p-8 rounded-[2.5rem] border dark:border-slate-800">
+                            <span class="text-[10px] font-black uppercase text-slate-400 tracking-widest">Next Appointment</span>
+                            <h3 class="text-2xl font-black uppercase mt-2">Bruno 🐶</h3>
+                            <p class="text-xs font-bold text-primary mt-1">Full Grooming • 24 Mar, 10 AM</p>
+                            <button class="mt-6 w-full py-3 bg-primary text-white rounded-xl font-black uppercase text-[10px] tracking-widest">Reschedule</button>
+                        </div>
+                        <div class="bg-white dark:bg-slate-900 p-8 rounded-[2.5rem] border dark:border-slate-800">
+                            <h4 class="text-[10px] font-black uppercase text-slate-400 mb-4">Pet Wellness</h4>
+                            <div class="space-y-4">
+                                <div><div class="flex justify-between text-[10px] font-black uppercase mb-1"><span>Coat Health</span><span>85%</span></div>
+                                <div class="h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden"><div class="h-full bg-primary w-[85%]"></div></div></div>
+                                <div><div class="flex justify-between text-[10px] font-black uppercase mb-1"><span>Hygiene Score</span><span>92%</span></div>
+                                <div class="h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden"><div class="h-full bg-secondary w-[92%]"></div></div></div>
+                            </div>
+                        </div>
+                        <div class="bg-primary p-8 rounded-[2.5rem] text-white relative overflow-hidden">
+                            <i data-lucide="crown" class="absolute -right-4 -top-4 w-24 h-24 opacity-20"></i>
+                            <h3 class="text-2xl font-black uppercase">Monthly VIP</h3>
+                            <p class="text-xs font-bold opacity-80 mt-1">Active Plan</p>
+                            <button class="mt-6 px-6 py-2 bg-white/20 rounded-lg text-[10px] font-black uppercase backdrop-blur-md">View Details</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="booking" class="tab-content space-y-6">
+                    <div class="bg-white dark:bg-slate-900 rounded-[3rem] p-6 sm:p-10 border dark:border-slate-800">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                            <div>
+                                <h3 class="text-xl font-black uppercase mb-6">Select Date</h3>
+                                <div class="grid grid-cols-7 gap-2 text-center">
+                                    <div class="text-[10px] font-black uppercase text-slate-400">M</div><div class="text-[10px] font-black uppercase text-slate-400">T</div><div class="text-[10px] font-black uppercase text-slate-400">W</div><div class="text-[10px] font-black uppercase text-slate-400">T</div><div class="text-[10px] font-black uppercase text-slate-400">F</div><div class="text-[10px] font-black uppercase text-primary">S</div><div class="text-[10px] font-black uppercase text-primary">S</div>
+                                    <button class="aspect-square rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-400 font-bold" disabled>20</button>
+                                    <button class="aspect-square rounded-xl bg-primary text-white font-bold">21</button>
+                                    <button class="aspect-square rounded-xl border dark:border-slate-700 font-bold hover:border-primary">22</button>
+                                    <button class="aspect-square rounded-xl border dark:border-slate-700 font-bold hover:border-primary">23</button>
+                                    <button class="aspect-square rounded-xl border dark:border-slate-700 font-bold hover:border-primary">24</button>
+                                </div>
+                            </div>
+                            <div class="space-y-6">
+                                <div class="p-6 bg-slate-50 dark:bg-slate-800 rounded-2xl border dark:border-slate-700">
+                                    <h4 class="text-xs font-black uppercase text-secondary mb-4">🚐 Van Availability</h4>
+                                    <p class="text-sm font-bold text-slate-600 dark:text-slate-300">"Van available in OMR Zone"</p>
+                                    <p class="text-[10px] font-bold uppercase text-slate-400 mt-1">10:00 AM — 02:00 PM</p>
+                                </div>
+                                <button class="w-full py-4 bg-primary text-white rounded-2xl font-black uppercase text-xs tracking-widest shadow-xl shadow-primary/20">Confirm Appointment</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="pets" class="tab-content">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-white dark:bg-slate-900 p-6 rounded-[2.5rem] border dark:border-slate-800 flex items-center gap-6 group hover:border-primary transition-all">
+                            <div class="w-20 h-20 bg-slate-100 dark:bg-slate-800 rounded-3xl flex items-center justify-center text-3xl">🐶</div>
+                            <div>
+                                <h3 class="text-xl font-black uppercase">Bruno</h3>
+                                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Golden Retriever • 3 yrs</p>
+                                <div class="flex gap-2 mt-3">
+                                    <button class="p-2 bg-slate-100 dark:bg-slate-800 rounded-lg"><i data-lucide="edit-3" class="w-4 h-4"></i></button>
+                                    <button class="p-2 bg-slate-100 dark:bg-slate-800 rounded-lg text-primary"><i data-lucide="file-check" class="w-4 h-4"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="border-2 border-dashed border-slate-200 dark:border-slate-800 rounded-[2.5rem] p-8 flex flex-col items-center justify-center gap-3 hover:border-primary transition-all group">
+                            <div class="p-3 bg-slate-100 dark:bg-slate-800 rounded-full group-hover:bg-primary group-hover:text-white"><i data-lucide="plus" class="w-6 h-6"></i></div>
+                            <span class="text-xs font-black uppercase tracking-widest">Add New Pet</span>
+                        </button>
+                    </div>
+                </section>
+
+<section id="history" class="tab-content space-y-6">
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
         <div>
-            <h1 class="text-3xl md:text-4xl font-black tracking-tight">Welcome back, <span class="text-blue-600">Rahul!</span></h1>
-            <p class="text-slate-500 dark:text-slate-400 font-medium mt-1">Your next van visit is in <span class="font-bold text-slate-900 dark:text-white">6 days.</span></p>
+            <h2 class="text-xl md:text-2xl font-black uppercase tracking-tight">Recent Sessions</h2>
+            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Showing last 6 months</p>
         </div>
-        <div class="flex -space-x-3">
-            <img class="w-12 h-12 rounded-full border-4 border-white dark:border-slate-950 shadow-lg" src="assets/udog1" alt="Bruno">
-            <img class="w-12 h-12 rounded-full border-4 border-white dark:border-slate-950 shadow-lg" src="assets/ucat1" alt="Luna">
-            <button class="w-12 h-12 rounded-full border-4 border-white dark:border-slate-950 bg-blue-600 text-white flex items-center justify-center text-xs font-black shadow-lg hover:scale-110 transition-transform">
-                <i data-lucide="plus" class="w-4 h-4"></i>
+        <div class="flex gap-2 w-full sm:w-auto">
+            <button class="flex-grow sm:flex-none px-4 py-2 bg-white dark:bg-slate-900 border dark:border-slate-800 rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-2 shadow-sm">
+                <i data-lucide="filter" class="w-3.5 h-3.5"></i> Filter
+            </button>
+            <button class="flex-grow sm:flex-none px-4 py-2 bg-white dark:bg-slate-900 border dark:border-slate-800 rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-2 shadow-sm">
+                <i data-lucide="download" class="w-3.5 h-3.5"></i> Export
             </button>
         </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        
-        <div class="p-8 bg-blue-600 rounded-[2.5rem] text-white shadow-xl shadow-blue-500/30 flex flex-col justify-between relative overflow-hidden group">
-            <i data-lucide="calendar-check" class="absolute -top-6 -right-6 w-32 h-32 opacity-10 group-hover:scale-110 transition-transform duration-700"></i>
-            <div>
-                <div class="inline-flex items-center gap-2 px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-[10px] font-black uppercase tracking-widest mb-6">
-                    Confirmed Slot
+    <div class="grid grid-cols-1 gap-4 md:hidden">
+        <div class="bg-white dark:bg-slate-900 p-6 rounded-[2rem] border border-slate-100 dark:border-slate-800 shadow-sm relative overflow-hidden group">
+            <div class="absolute top-0 right-0 p-4">
+                <span class="px-3 py-1 bg-green-100 text-green-600 rounded-full text-[8px] font-black uppercase tracking-widest">Completed</span>
+            </div>
+            <div class="flex items-center gap-4 mb-4">
+                <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-xl">✂️</div>
+                <div>
+                    <h3 class="text-sm font-black uppercase">Full Grooming</h3>
+                    <p class="text-[10px] font-bold text-slate-400 uppercase">12 Mar 2026 • Bruno</p>
                 </div>
-                <h3 class="text-3xl font-black leading-none mb-2">24 March <br><span class="text-blue-200">10:00 AM</span></h3>
-                <p class="font-bold opacity-90">Premium Spa • Bruno</p>
             </div>
-            <div class="mt-8 flex gap-3">
-                <button class="flex-1 py-3 bg-white text-blue-600 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-blue-50 transition-colors">Reschedule</button>
-                <button class="p-3 bg-white/20 rounded-2xl hover:bg-white/30 transition-colors"><i data-lucide="map-pin" class="w-5 h-5"></i></button>
+            <div class="space-y-3 pt-3 border-t dark:border-slate-800">
+                <div class="flex justify-between text-[10px] font-bold uppercase"><span class="text-slate-400">Groomer</span><span class="text-slate-900 dark:text-white">Vikram K.</span></div>
+                <div class="flex justify-between text-[10px] font-bold uppercase"><span class="text-slate-400">Total Paid</span><span class="text-primary">$45.00</span></div>
             </div>
+            <button class="w-full mt-4 py-3 bg-slate-50 dark:bg-slate-800 rounded-xl font-black uppercase text-[10px] tracking-widest hover:bg-primary hover:text-white transition-all">Rebook Service</button>
         </div>
 
-        <div class="p-8 bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-sm border dark:border-slate-800 flex flex-col space-y-6">
-            <div class="flex justify-between items-start">
-                <div class="space-y-1">
-                    <h3 class="text-xl font-black">Pet Wellness</h3>
-                    <p class="text-xs text-slate-400 font-bold uppercase tracking-widest">Bruno (Golden Retriever)</p>
-                </div>
-                <div class="w-12 h-12 bg-green-100 dark:bg-green-900/20 text-green-600 rounded-2xl flex items-center justify-center">
-                    <i data-lucide="shield-check" class="w-6 h-6"></i>
+        <div class="bg-white dark:bg-slate-900 p-6 rounded-[2rem] border border-slate-100 dark:border-slate-800 shadow-sm relative overflow-hidden group">
+            <div class="absolute top-0 right-0 p-4">
+                <span class="px-3 py-1 bg-green-100 text-green-600 rounded-full text-[8px] font-black uppercase tracking-widest">Completed</span>
+            </div>
+            <div class="flex items-center gap-4 mb-4">
+                <div class="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center text-xl">🧼</div>
+                <div>
+                    <h3 class="text-sm font-black uppercase">Bath & Blow Dry</h3>
+                    <p class="text-[10px] font-bold text-slate-400 uppercase">28 Feb 2026 • Luna</p>
                 </div>
             </div>
-            
-            <div class="space-y-4">
-                <div class="space-y-2">
-                    <div class="flex justify-between text-xs font-black">
-                        <span class="text-slate-500 uppercase">Hygiene Score</span>
-                        <span class="text-green-600">85% Excellent</span>
-                    </div>
-                    <div class="h-2 bg-gray-100 dark:bg-slate-800 rounded-full overflow-hidden">
-                        <div class="h-full bg-green-500 w-[85%]"></div>
-                    </div>
-                </div>
-                <div class="p-4 bg-gray-50 dark:bg-slate-800/50 rounded-2xl flex items-center justify-between">
-                    <div class="flex items-center gap-3">
-                        <i data-lucide="syringe" class="w-4 h-4 text-blue-500"></i>
-                        <span class="text-xs font-bold">Vaccination Due</span>
-                    </div>
-                    <span class="text-[10px] font-black text-red-500 uppercase tracking-widest">In 12 Days</span>
-                </div>
+            <div class="space-y-3 pt-3 border-t dark:border-slate-800">
+                <div class="flex justify-between text-[10px] font-bold uppercase"><span class="text-slate-400">Groomer</span><span class="text-slate-900 dark:text-white">Anjali R.</span></div>
+                <div class="flex justify-between text-[10px] font-bold uppercase"><span class="text-slate-400">Total Paid</span><span class="text-primary">$28.00</span></div>
             </div>
+            <button class="w-full mt-4 py-3 bg-slate-50 dark:bg-slate-800 rounded-xl font-black uppercase text-[10px] tracking-widest hover:bg-primary hover:text-white transition-all">Rebook Service</button>
         </div>
-
-        <div class="p-8 bg-slate-950 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden group">
-            <div class="relative z-10">
-                <div class="flex justify-between items-center mb-6">
-                    <div class="p-3 bg-blue-600 rounded-2xl"><i data-lucide="credit-card" class="w-6 h-6"></i></div>
-                    <span class="text-[10px] font-black uppercase tracking-[0.2em] text-blue-500">Active Plan</span>
-                </div>
-                <h3 class="text-2xl font-black">Premium Care</h3>
-                <p class="text-slate-500 text-sm mb-6">4 Sessions / Month Package</p>
-                
-                <div class="space-y-4 mb-8">
-                    <div class="flex justify-between text-xs font-bold">
-                        <span>Sessions Left</span>
-                        <span>02 / 04</span>
-                    </div>
-                    <div class="h-1.5 bg-white/10 rounded-full overflow-hidden">
-                        <div class="h-full bg-blue-600 w-1/2"></div>
-                    </div>
-                </div>
-                <button class="w-full py-4 bg-white/5 border border-white/10 hover:bg-white/10 rounded-2xl font-black text-xs uppercase tracking-widest transition-all">Renew Subscription</button>
-            </div>
-            <i data-lucide="sparkles" class="absolute -bottom-6 -left-6 w-32 h-32 text-blue-600 opacity-20 rotate-12 group-hover:scale-110 transition-transform"></i>
-        </div>
-
-        <div class="lg:col-span-2 p-8 bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-sm border dark:border-slate-800">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-                <div class="space-y-2">
-                    <h3 class="text-xl font-black">Grooming Van Near You</h3>
-                    <p class="text-sm text-slate-500">Currently serving: <span class="text-blue-600 font-bold">Perundurai Central</span></p>
-                </div>
-                <button onclick="switchTab('booking', this)" class="w-full md:w-auto px-8 py-4 bg-gray-900 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-blue-600 transition-colors shadow-lg shadow-gray-900/20">
-                    Open Booking Calendar
-                </button>
-            </div>
-            
-            <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-2xl text-center border border-blue-100 dark:border-blue-800">
-                    <p class="text-[10px] font-black uppercase text-blue-600 mb-1">Morning</p>
-                    <p class="text-sm font-bold">OMR Zone</p>
-                </div>
-                <div class="p-4 bg-blue-600 rounded-2xl text-center text-white">
-                    <p class="text-[10px] font-black uppercase opacity-60 mb-1">Afternoon</p>
-                    <p class="text-sm font-bold">Perundurai</p>
-                </div>
-                <div class="p-4 bg-gray-50 dark:bg-slate-800 rounded-2xl text-center border border-gray-100 dark:border-slate-800 opacity-50">
-                    <p class="text-[10px] font-black uppercase mb-1">Evening</p>
-                    <p class="text-sm font-bold">Tambaram</p>
-                </div>
-                <div class="p-4 bg-gray-50 dark:bg-slate-800 rounded-2xl text-center border border-gray-100 dark:border-slate-800 opacity-50">
-                    <p class="text-[10px] font-black uppercase mb-1">Night</p>
-                    <p class="text-sm font-bold">No Slots</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="p-8 bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-sm border dark:border-slate-800 space-y-4">
-            <div class="flex items-center gap-3">
-                <i data-lucide="sticky-note" class="w-5 h-5 text-blue-600"></i>
-                <h3 class="text-xl font-black">Grooming Notes</h3>
-            </div>
-            <p class="text-sm text-slate-500 leading-relaxed italic">"Bruno is sensitive to paw trimming. Use extra-soft brush for the tail area."</p>
-            <button class="text-xs font-black uppercase tracking-widest text-blue-600 hover:underline">Edit Notes</button>
-        </div>
-
     </div>
-</div>
 
-        <div id="pets" class="tab-content space-y-8 animate-in fade-in duration-500">
-            <div class="flex justify-between items-center">
-                <h2 class="text-3xl font-black">My <span class="text-blue-600">Pets</span></h2>
-                <button class="bg-blue-600 text-white px-6 py-3 rounded-2xl font-bold text-sm flex items-center gap-2 shadow-lg"><i data-lucide="plus" class="w-4 h-4"></i> Add Pet</button>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-white dark:bg-slate-900 p-6 rounded-[2.5rem] shadow-sm border dark:border-slate-800 flex gap-6 items-center">
-                    <div class="w-24 h-24 bg-blue-100 rounded-[2rem] overflow-hidden flex-shrink-0">
-                        <img src="assets/pet1" class="w-full h-full object-cover">
-                    </div>
-                    <div class="flex-1">
-                        <h3 class="text-xl font-black">Bruno</h3>
-                        <p class="text-sm text-slate-500 mb-3">Golden Retriever • 2 Years</p>
-                        <div class="flex gap-2">
-                            <span class="px-3 py-1 bg-green-100 text-green-600 rounded-full text-[10px] font-black uppercase tracking-widest">Vaccinated</span>
-                            <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-[10px] font-black uppercase tracking-widest">Healthy</span>
-                        </div>
-                    </div>
-                    <button class="p-3 text-slate-400 hover:text-blue-600"><i data-lucide="chevron-right"></i></button>
-                </div>
-            </div>
-        </div>
-
-      <div id="history" class="tab-content space-y-8 animate-in fade-in duration-500">
-    <h2 class="text-3xl font-black">Grooming <span class="text-blue-600">History</span></h2>
-    
-    <div class="hidden lg:block bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-sm border dark:border-slate-800 overflow-hidden">
+    <div class="hidden md:block bg-white dark:bg-slate-900 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 shadow-sm overflow-hidden">
         <table class="w-full text-left">
-            <thead class="bg-gray-50 dark:bg-slate-800/50 border-b dark:border-slate-800">
-                <tr>
-                    <th class="px-6 py-5 text-[10px] font-black uppercase tracking-widest text-slate-400">Pet & Service</th>
-                    <th class="px-6 py-5 text-[10px] font-black uppercase tracking-widest text-slate-400">Date</th>
-                    <th class="px-6 py-5 text-[10px] font-black uppercase tracking-widest text-slate-400">Status</th>
-                    <th class="px-6 py-5 text-[10px] font-black uppercase tracking-widest text-slate-400 text-right">Action</th>
+            <thead>
+                <tr class="bg-slate-50 dark:bg-slate-800/50">
+                    <th class="px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Date & Time</th>
+                    <th class="px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Pet Name</th>
+                    <th class="px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Service Type</th>
+                    <th class="px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Status</th>
+                    <th class="px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Action</th>
                 </tr>
             </thead>
             <tbody class="divide-y dark:divide-slate-800">
-                <tr class="hover:bg-gray-50 dark:hover:bg-slate-800/30 transition-colors">
-                    <td class="px-6 py-6">
-                        <div class="font-black text-slate-900 dark:text-white">Bruno</div>
-                        <div class="text-xs text-slate-500 font-medium">Premium Spa Experience</div>
+                <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                    <td class="px-8 py-6">
+                        <p class="text-sm font-black text-slate-900 dark:text-white uppercase">12 Mar 2026</p>
+                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">10:00 AM</p>
                     </td>
-                    <td class="px-6 py-6 text-sm font-bold text-slate-600 dark:text-slate-300">12 Feb, 2026</td>
-                    <td class="px-6 py-6">
-                        <span class="px-3 py-1 bg-green-100 dark:bg-green-900/20 text-green-600 dark:text-green-400 rounded-full text-[10px] font-black uppercase tracking-widest border border-green-200 dark:border-green-800">Completed</span>
+                    <td class="px-8 py-6">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center text-xs">🐶</div>
+                            <span class="text-sm font-bold uppercase">Bruno</span>
+                        </div>
                     </td>
-                    <td class="px-6 py-6 text-right">
-                        <button class="text-blue-600 font-black text-xs uppercase tracking-widest flex items-center gap-2 ml-auto hover:text-blue-700 transition-all active:scale-95">
-                            Repeat <i data-lucide="repeat" class="w-4 h-4"></i>
-                        </button>
+                    <td class="px-8 py-6">
+                        <span class="text-sm font-bold uppercase text-slate-600 dark:text-slate-300">Full Grooming</span>
+                    </td>
+                    <td class="px-8 py-6">
+                        <span class="px-3 py-1 bg-green-100 text-green-600 rounded-full text-[8px] font-black uppercase">Completed</span>
+                    </td>
+                    <td class="px-8 py-6 text-right">
+                        <button class="text-primary font-black uppercase text-[10px] tracking-widest hover:underline decoration-2 underline-offset-4">Rebook Now</button>
+                    </td>
+                </tr>
+                <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                    <td class="px-8 py-6">
+                        <p class="text-sm font-black text-slate-900 dark:text-white uppercase">28 Feb 2026</p>
+                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">04:30 PM</p>
+                    </td>
+                    <td class="px-8 py-6">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 bg-secondary/10 rounded-lg flex items-center justify-center text-xs">🐱</div>
+                            <span class="text-sm font-bold uppercase">Luna</span>
+                        </div>
+                    </td>
+                    <td class="px-8 py-6">
+                        <span class="text-sm font-bold uppercase text-slate-600 dark:text-slate-300">Bath & Blow Dry</span>
+                    </td>
+                    <td class="px-8 py-6">
+                        <span class="px-3 py-1 bg-green-100 text-green-600 rounded-full text-[8px] font-black uppercase">Completed</span>
+                    </td>
+                    <td class="px-8 py-6 text-right">
+                        <button class="text-primary font-black uppercase text-[10px] tracking-widest hover:underline decoration-2 underline-offset-4">Rebook Now</button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
 
-    <div class="lg:hidden space-y-4">
-        <div class="bg-white dark:bg-slate-900 p-6 rounded-[2rem] border-2 border-gray-100 dark:border-slate-800 shadow-sm flex flex-col gap-4">
-            <div class="flex justify-between items-start">
-                <div class="space-y-1">
-                    <h3 class="font-black text-lg">Bruno</h3>
-                    <p class="text-xs text-slate-500 font-bold uppercase tracking-widest">Premium Spa Experience</p>
-                </div>
-                <span class="px-3 py-1 bg-green-100 dark:bg-green-900/20 text-green-600 dark:text-green-400 rounded-full text-[9px] font-black uppercase tracking-widest border border-green-200 dark:border-green-800">Completed</span>
-            </div>
-            
-            <div class="flex items-center justify-between pt-4 border-t dark:border-slate-800">
-                <div class="flex items-center gap-2 text-slate-500">
-                    <i data-lucide="calendar" class="w-4 h-4 text-blue-600"></i>
-                    <span class="text-sm font-bold">12 Feb, 2026</span>
-                </div>
-                <button class="px-5 py-2.5 bg-blue-600 text-white rounded-xl text-[10px] font-black uppercase tracking-widest shadow-lg shadow-blue-500/30 flex items-center gap-2 active:scale-95 transition-all">
-                    Repeat <i data-lucide="repeat" class="w-3 h-3"></i>
-                </button>
-            </div>
-        </div>
-
-        <p class="text-center text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] py-4">Showing last 6 months history</p>
+    <div class="mt-8 text-center p-8 border-2 border-dashed border-slate-100 dark:border-slate-800 rounded-[2.5rem]">
+        <p class="text-xs font-bold text-slate-400 uppercase tracking-[0.2em]">End of History // Load more sessions</p>
     </div>
-</div>
-
-<script>
-    // Ensure icons render in the newly added card view
-    if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-    }
-</script>
-
-        <div id="plans" class="tab-content space-y-8 animate-in fade-in duration-500">
-            <h2 class="text-3xl font-black">My <span class="text-blue-600">Wellness Plans</span></h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-white dark:bg-slate-900 p-8 rounded-[2.5rem] shadow-sm border-2 border-blue-600 relative overflow-hidden">
-                    <div class="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">Active</div>
-                    <div class="mb-6"><i data-lucide="crown" class="w-10 h-10 text-blue-600"></i></div>
-                    <h3 class="text-2xl font-black mb-1">Premium Care</h3>
-                    <p class="text-sm text-slate-500 mb-6">Monthly Subscription</p>
-                    <div class="space-y-3 mb-8">
-                        <div class="flex justify-between text-sm"><span>Sessions Used</span> <span class="font-black">2/4</span></div>
-                        <div class="w-full bg-gray-100 dark:bg-slate-800 h-2 rounded-full"><div class="bg-blue-600 h-full w-1/2"></div></div>
-                    </div>
-                    <button class="w-full py-3 bg-blue-600 text-white rounded-xl font-black">Upgrade Plan</button>
-                </div>
-            </div>
-        </div>
-
-        <div id="settings" class="tab-content space-y-8 animate-in fade-in duration-500">
-    <div class="flex flex-col gap-2">
-        <h2 class="text-3xl font-black">Account <span class="text-blue-600">Settings</span></h2>
-        <p class="text-slate-500 dark:text-slate-400 font-medium">Manage your profile, grooming addresses, and app preferences.</p>
+</section>                
+<section id="wellness" class="tab-content space-y-8">
+    <div class="text-center max-w-2xl mx-auto mb-10 md:mb-16">
+        <h2 class="text-2xl md:text-4xl font-black uppercase tracking-tighter">Choose Your <span class="text-primary">Wellness Journey</span></h2>
+        <p class="text-xs md:text-sm font-bold text-slate-400 uppercase tracking-[0.2em] mt-2 italic">Save up to 20% with monthly subscription plans</p>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 items-end">
         
-        <div class="lg:col-span-2 space-y-8">
-            
-            <div class="bg-white dark:bg-slate-900 p-8 rounded-[2.5rem] shadow-sm border dark:border-slate-800 space-y-6">
-                <div class="flex items-center gap-6 pb-6 border-b dark:border-slate-800">
-                    <div class="relative group">
-                        <div class="w-20 h-20 bg-blue-100 rounded-3xl overflow-hidden">
-                            <img src="assets/priya" alt="User" class="w-full h-full object-cover">
-                        </div>
-                        <button class="absolute -bottom-2 -right-2 p-2 bg-blue-600 text-white rounded-xl shadow-lg hover:scale-110 transition-transform">
-                            <i data-lucide="camera" class="w-4 h-4"></i>
-                        </button>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-black">Rahul Sharma</h3>
-                        <p class="text-sm text-slate-500">Member since Jan 2026</p>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="space-y-2">
-                        <label class="text-[10px] font-black uppercase text-blue-600 tracking-widest ml-1">Full Name</label>
-                        <input type="text" value="Rahul Sharma" class="w-full p-4 bg-gray-50 dark:bg-slate-800 rounded-2xl border-none font-bold focus:ring-2 focus:ring-blue-500 transition-all">
-                    </div>
-                    <div class="space-y-2">
-                        <label class="text-[10px] font-black uppercase text-blue-600 tracking-widest ml-1">Email Address</label>
-                        <input type="email" value="rahul.s@example.com" class="w-full p-4 bg-gray-50 dark:bg-slate-800 rounded-2xl border-none font-bold focus:ring-2 focus:ring-blue-500 transition-all">
-                    </div>
-                    <div class="space-y-2">
-                        <label class="text-[10px] font-black uppercase text-blue-600 tracking-widest ml-1">Mobile Number</label>
-                        <input type="tel" value="+91 98765 43210" class="w-full p-4 bg-gray-50 dark:bg-slate-800 rounded-2xl border-none font-bold focus:ring-2 focus:ring-blue-500 transition-all">
-                    </div>
-                </div>
+        <div class="bg-white dark:bg-slate-900 p-8 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 shadow-sm transition-all hover:shadow-xl group">
+            <div class="mb-8">
+                <span class="text-[10px] font-black uppercase tracking-widest text-slate-400">Essential</span>
+                <h3 class="text-2xl font-black uppercase mt-1">Basic Care</h3>
             </div>
-
-            <div class="bg-white dark:bg-slate-900 p-8 rounded-[2.5rem] shadow-sm border dark:border-slate-800 space-y-6">
-                <div class="flex justify-between items-center">
-                    <h3 class="text-xl font-black">Grooming Addresses</h3>
-                    <button class="text-blue-600 text-sm font-black uppercase tracking-widest">+ Add New</button>
-                </div>
-                
-                <div class="p-4 rounded-2xl border-2 border-blue-600 bg-blue-50 dark:bg-blue-900/10 flex items-center justify-between">
-                    <div class="flex items-center gap-4">
-                        <div class="p-3 bg-blue-600 text-white rounded-xl"><i data-lucide="home" class="w-5 h-5"></i></div>
-                        <div>
-                            <p class="font-black">Home (Primary)</p>
-                            <p class="text-xs text-slate-500">123, Anna Nagar, Perundurai, TN</p>
-                        </div>
-                    </div>
-                    <i data-lucide="check-circle" class="text-blue-600 w-5 h-5"></i>
-                </div>
+            <div class="mb-8">
+                <span class="text-4xl font-black text-slate-900 dark:text-white">₹1,499</span>
+                <span class="text-xs font-bold text-slate-400 uppercase">/month</span>
             </div>
+            <ul class="space-y-4 mb-10">
+                <li class="flex items-center gap-3 text-[11px] font-bold uppercase"><i data-lucide="check-circle" class="w-4 h-4 text-primary"></i> 1 Full Grooming Session</li>
+                <li class="flex items-center gap-3 text-[11px] font-bold uppercase"><i data-lucide="check-circle" class="w-4 h-4 text-primary"></i> 1 Medicated Bath</li>
+                <li class="flex items-center gap-3 text-[11px] font-bold uppercase text-slate-300 line-through"><i data-lucide="x-circle" class="w-4 h-4"></i> Priority Booking</li>
+            </ul>
+            <button class="w-full py-4 border-2 border-slate-100 dark:border-slate-800 rounded-2xl font-black uppercase text-[10px] tracking-widest hover:bg-primary hover:text-white hover:border-primary transition-all">Select Plan</button>
         </div>
 
-        <div class="space-y-8">
-            <div class="bg-white dark:bg-slate-900 p-8 rounded-[2.5rem] shadow-sm border dark:border-slate-800 space-y-6">
-                <h3 class="text-xl font-black">App Preferences</h3>
-                
-                <div class="space-y-4">
-                    <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-slate-800/50 rounded-2xl">
-                        <div class="flex items-center gap-3">
-                            <i data-lucide="bell" class="w-5 h-5 text-blue-600"></i>
-                            <span class="font-bold text-sm">Push Notifications</span>
-                        </div>
-                        <input type="checkbox" checked class="w-5 h-5 accent-blue-600 cursor-pointer">
-                    </div>
-
-                    <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-slate-800/50 rounded-2xl">
-                        <div class="flex items-center gap-3">
-                            <i data-lucide="mail" class="w-5 h-5 text-blue-600"></i>
-                            <span class="font-bold text-sm">Email Reports</span>
-                        </div>
-                        <input type="checkbox" class="w-5 h-5 accent-blue-600 cursor-pointer">
-                    </div>
-                    
-                    <button onclick="toggleDarkMode()" class="w-full flex items-center justify-between p-4 bg-gray-100 dark:bg-blue-900/20 rounded-2xl transition-all">
-                        <span class="flex items-center gap-3 font-bold text-sm">
-                            <i data-lucide="moon" class="w-5 h-5 text-blue-600"></i> Appearance
-                        </span>
-                        <span class="text-[10px] font-black uppercase text-blue-600">Toggle Theme</span>
-                    </button>
-                </div>
+        <div class="relative bg-white dark:bg-slate-900 p-8 rounded-[2.5rem] border-4 border-primary shadow-2xl shadow-primary/20 transform lg:scale-105 z-10">
+            <div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-primary text-white px-6 py-1.5 rounded-full text-[9px] font-black uppercase tracking-[0.2em] shadow-lg">
+                Most Popular
             </div>
-
-            <div class="bg-red-50 dark:bg-red-900/10 p-8 rounded-[2.5rem] border border-red-100 dark:border-red-900/20 space-y-4">
-                <h3 class="text-lg font-black text-red-600">Danger Zone</h3>
-                <p class="text-xs text-red-500/80 font-medium">Permanently delete your account and all pet history.</p>
-                <button class="w-full py-3 bg-white dark:bg-red-900/20 text-red-600 rounded-xl font-black text-xs uppercase tracking-widest border border-red-200 dark:border-red-900/30 hover:bg-red-600 hover:text-white transition-all">
-                    Delete Account
-                </button>
+            <div class="mb-8">
+                <span class="text-[10px] font-black uppercase tracking-widest text-primary">Advanced</span>
+                <h3 class="text-2xl font-black uppercase mt-1">Pro Wellness</h3>
             </div>
+            <div class="mb-8">
+                <span class="text-4xl font-black text-slate-900 dark:text-white">₹2,999</span>
+                <span class="text-xs font-bold text-slate-400 uppercase">/month</span>
+            </div>
+            <ul class="space-y-4 mb-10">
+                <li class="flex items-center gap-3 text-[11px] font-bold uppercase"><i data-lucide="check-circle" class="w-4 h-4 text-primary"></i> 2 Full Grooming Sessions</li>
+                <li class="flex items-center gap-3 text-[11px] font-bold uppercase"><i data-lucide="check-circle" class="w-4 h-4 text-primary"></i> Oral & Ear Hygiene</li>
+                <li class="flex items-center gap-3 text-[11px] font-bold uppercase"><i data-lucide="check-circle" class="w-4 h-4 text-primary"></i> 10% Off Spa Products</li>
+                <li class="flex items-center gap-3 text-[11px] font-bold uppercase"><i data-lucide="check-circle" class="w-4 h-4 text-primary"></i> Priority Booking</li>
+            </ul>
+            <button class="w-full py-4 bg-primary text-white rounded-2xl font-black uppercase text-[10px] tracking-widest shadow-lg shadow-primary/30 hover:brightness-110 transition-all">Start Subscription</button>
+        </div>
+
+        <div class="bg-white dark:bg-slate-900 p-8 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 shadow-sm transition-all hover:shadow-xl">
+            <div class="mb-8">
+                <span class="text-[10px] font-black uppercase tracking-widest text-secondary">Luxury</span>
+                <h3 class="text-2xl font-black uppercase mt-1">Elite VIP</h3>
+            </div>
+            <div class="mb-8">
+                <span class="text-4xl font-black text-slate-900 dark:text-white">₹4,999</span>
+                <span class="text-xs font-bold text-slate-400 uppercase">/month</span>
+            </div>
+            <ul class="space-y-4 mb-10">
+                <li class="flex items-center gap-3 text-[11px] font-bold uppercase"><i data-lucide="sparkles" class="w-4 h-4 text-accent fill-current"></i> Unlimited Refresh Baths</li>
+                <li class="flex items-center gap-3 text-[11px] font-bold uppercase"><i data-lucide="check-circle" class="w-4 h-4 text-primary"></i> 4 Full Grooming Sessions</li>
+                <li class="flex items-center gap-3 text-[11px] font-bold uppercase"><i data-lucide="check-circle" class="w-4 h-4 text-primary"></i> Skin Health Reports</li>
+            </ul>
+            <button class="w-full py-4 border-2 border-slate-100 dark:border-slate-800 rounded-2xl font-black uppercase text-[10px] tracking-widest hover:bg-secondary hover:text-white hover:border-secondary transition-all">Go Elite</button>
         </div>
 
     </div>
 
-    <div class="flex justify-end pt-4">
-        <button class="px-10 py-5 bg-blue-600 text-white rounded-[2rem] font-black text-lg shadow-xl shadow-blue-500/30 hover:bg-blue-700 hover:-translate-y-1 transition-all active:scale-95">
-            Save All Changes
-        </button>
+    <div class="mt-12 p-6 bg-slate-50 dark:bg-slate-800/50 rounded-[2rem] border border-dashed border-slate-200 dark:border-slate-700 text-center">
+        <p class="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-widest leading-relaxed">
+            * All plans include insurance coverage for grooming sessions and doorstep convenience at zero extra travel cost.
+        </p>
     </div>
-</div>
-<div id="booking" class="tab-content space-y-8 animate-in fade-in duration-500">
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
-        <div class="space-y-2">
-            <h2 class="text-3xl font-black">Schedule a <span class="text-blue-600">Van Visit</span></h2>
-            <p class="text-slate-500 dark:text-slate-400 font-medium text-sm md:text-base">Select a date and a professional groomer will arrive at your doorstep.</p>
-        </div>
-        <div class="flex items-center gap-2 px-4 py-2 bg-green-100 dark:bg-green-900/20 text-green-600 rounded-2xl border border-green-200 dark:border-green-800">
-            <span class="relative flex h-2 w-2">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-2 w-2 bg-green-600"></span>
-            </span>
-            <span class="text-[10px] font-black uppercase tracking-widest">Van Active in Perundurai</span>
-        </div>
-    </div>
-
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        
-        <div class="lg:col-span-2 space-y-8">
-            <div class="bg-white dark:bg-slate-900 p-6 md:p-8 rounded-[2.5rem] shadow-sm border dark:border-slate-800 space-y-6">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="space-y-3">
-                        <label class="text-[10px] font-black uppercase text-blue-600 tracking-widest ml-1">Select Pet</label>
-                        <select class="w-full p-4 bg-gray-50 dark:bg-slate-800 rounded-2xl border-none font-bold appearance-none cursor-pointer">
-                            <option>🐶 Bruno (Golden Retriever)</option>
-                            <option>🐱 Luna (Persian Cat)</option>
-                        </select>
-                    </div>
-                    <div class="space-y-3">
-                        <label class="text-[10px] font-black uppercase text-blue-600 tracking-widest ml-1">Service Type</label>
-                        <select class="w-full p-4 bg-gray-50 dark:bg-slate-800 rounded-2xl border-none font-bold appearance-none cursor-pointer">
-                            <option>Standard Grooming - ₹1999</option>
-                            <option>Basic Bath - ₹999</option>
-                            <option>Premium Spa - ₹2999</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-white dark:bg-slate-900 p-6 md:p-8 rounded-[2.5rem] shadow-sm border dark:border-slate-800">
-                <div class="flex justify-between items-center mb-8">
-                    <h3 class="text-xl font-black">March 2026</h3>
-                    <div class="flex gap-2">
-                        <button class="p-2 bg-gray-100 dark:bg-slate-800 rounded-xl hover:bg-blue-600 hover:text-white transition-all"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
-                        <button class="p-2 bg-gray-100 dark:bg-slate-800 rounded-xl hover:bg-blue-600 hover:text-white transition-all"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-7 gap-2 mb-4 text-center">
-                    <div class="text-[10px] font-black uppercase text-slate-400">Mon</div>
-                    <div class="text-[10px] font-black uppercase text-slate-400">Tue</div>
-                    <div class="text-[10px] font-black uppercase text-slate-400">Wed</div>
-                    <div class="text-[10px] font-black uppercase text-slate-400">Thu</div>
-                    <div class="text-[10px] font-black uppercase text-slate-400">Fri</div>
-                    <div class="text-[10px] font-black uppercase text-slate-400">Sat</div>
-                    <div class="text-[10px] font-black uppercase text-slate-400">Sun</div>
-
-                    <div class="aspect-square flex items-center justify-center text-sm font-bold text-slate-300">16</div>
-                    <div class="aspect-square flex items-center justify-center text-sm font-bold text-slate-300">17</div>
-                    <div class="aspect-square flex items-center justify-center text-sm font-bold bg-blue-50 dark:bg-blue-900/20 text-blue-600 rounded-2xl cursor-pointer border-2 border-blue-600">18</div>
-                    <div class="aspect-square flex items-center justify-center text-sm font-bold hover:bg-gray-100 dark:hover:bg-slate-800 rounded-2xl cursor-pointer">19</div>
-                    <div class="aspect-square flex items-center justify-center text-sm font-bold bg-gray-100 dark:bg-slate-800 text-slate-400 rounded-2xl cursor-not-allowed opacity-50">20</div>
-                    <div class="aspect-square flex items-center justify-center text-sm font-bold hover:bg-gray-100 dark:hover:bg-slate-800 rounded-2xl cursor-pointer">21</div>
-                    <div class="aspect-square flex items-center justify-center text-sm font-bold hover:bg-gray-100 dark:hover:bg-slate-800 rounded-2xl cursor-pointer">22</div>
-                </div>
-
-                <div class="flex flex-wrap gap-4 mt-8 pt-8 border-t dark:border-slate-800">
-                    <button class="px-6 py-3 bg-blue-600 text-white rounded-xl text-xs font-black uppercase tracking-widest shadow-lg shadow-blue-500/20">10:00 AM</button>
-                    <button class="px-6 py-3 bg-gray-100 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl text-xs font-black uppercase tracking-widest hover:bg-blue-600 hover:text-white transition-all">12:30 PM</button>
-                    <button class="px-6 py-3 bg-gray-100 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl text-xs font-black uppercase tracking-widest hover:bg-blue-600 hover:text-white transition-all">03:00 PM</button>
-                    <button class="px-6 py-3 bg-gray-50 dark:bg-slate-800 text-slate-300 rounded-xl text-xs font-black uppercase tracking-widest cursor-not-allowed">05:30 PM (Booked)</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="space-y-8">
-            <div class="bg-slate-900 text-white p-8 rounded-[2.5rem] shadow-2xl relative overflow-hidden group">
-                <i data-lucide="van" class="absolute -bottom-10 -right-10 w-48 h-48 opacity-10 -rotate-12 group-hover:translate-x-4 transition-transform duration-700"></i>
-                <div class="relative z-10 space-y-6">
-                    <h3 class="text-xl font-black">Van Information</h3>
-                    <div class="space-y-4">
-                        <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center"><i data-lucide="user" class="w-5 h-5"></i></div>
-                            <div><p class="text-xs opacity-60 font-bold uppercase tracking-widest">Groomer Assigned</p><p class="font-black">Arjun Nair</p></div>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center"><i data-lucide="map-pin" class="w-5 h-5"></i></div>
-                            <div><p class="text-xs opacity-60 font-bold uppercase tracking-widest">Coverage</p><p class="font-black">Perundurai Central</p></div>
+</section>                <section id="settings" class="tab-content">
+                    <div class="max-w-xl bg-white dark:bg-slate-900 p-8 rounded-[2.5rem] border dark:border-slate-800">
+                        <h3 class="text-xl font-black uppercase mb-6">Account Settings</h3>
+                        <div class="space-y-4">
+                            <input type="text" placeholder="Full Name" value="Srinivas K A" class="w-full p-4 bg-gray-50 dark:bg-slate-800 rounded-xl outline-none font-bold">
+                            <button class="w-full py-4 bg-secondary text-white rounded-xl font-black uppercase text-xs">Save Profile</button>
                         </div>
                     </div>
-                    <button class="w-full py-4 bg-white text-blue-600 rounded-2xl font-black text-xs uppercase tracking-[0.2em] hover:bg-blue-50 transition-all">Check Live Location</button>
-                </div>
-            </div>
+                </section>
 
-            <div class="bg-blue-50 dark:bg-blue-900/10 p-6 rounded-[2rem] border border-blue-100 dark:border-blue-800">
-                <div class="flex gap-4">
-                    <i data-lucide="info" class="w-6 h-6 text-blue-600 flex-shrink-0"></i>
-                    <p class="text-xs font-medium text-blue-900 dark:text-blue-200 leading-relaxed">
-                        <span class="font-black uppercase tracking-widest">Pro Tip:</span> 
-                        Weekends in Perundurai fill up fast! Book at least 3 days in advance to secure your preferred slot.
-                    </p>
-                </div>
             </div>
-        </div>
-
+        </main>
     </div>
-
-    <!-- <div class="fixed bottom-24 lg:bottom-8 left-4 right-4 lg:left-64 lg:right-8 bg-white dark:bg-slate-900 p-6 rounded-[2.5rem] shadow-2xl border-2 border-blue-600 flex flex-col md:flex-row items-center justify-between gap-6 z-40">
-        <div class="flex items-center gap-6">
-            <div class="hidden md:flex flex-col">
-                <p class="text-[10px] font-black uppercase text-slate-400 tracking-widest">Total Estimated</p>
-                <p class="text-2xl font-black text-blue-600">₹1,999</p>
-            </div>
-            <div class="h-10 w-px bg-gray-100 dark:bg-slate-800 hidden md:block"></div>
-            <div class="flex flex-col">
-                <p class="text-[10px] font-black uppercase text-slate-400 tracking-widest">Summary</p>
-                <p class="text-sm font-bold">Bruno • Standard Grooming • March 18</p>
-            </div>
-        </div>
-        <button class="w-full md:w-auto px-12 py-4 bg-blue-600 text-white rounded-2xl font-black uppercase tracking-widest shadow-xl shadow-blue-500/30 hover:bg-blue-700 hover:-translate-y-1 transition-all active:scale-95">
-            Confirm Booking
-        </button>
-    </div> -->
-</div>
-
-    </main>
-
-   
 
     <script>
-        function switchTab(tabId, btn) {
-            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+        // Tab Mirroring
+        document.getElementById('mobile-nav-container').innerHTML = document.getElementById('desktop-nav').innerHTML;
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const overlay = document.getElementById('mobile-overlay');
+            const isRTL = document.documentElement.dir === 'rtl';
+            const isHidden = menu.classList.contains('-translate-x-full') || menu.classList.contains('translate-x-full');
+
+            if (isHidden) {
+                menu.classList.remove('-translate-x-full', 'translate-x-full');
+                overlay.classList.remove('hidden');
+                setTimeout(() => overlay.classList.add('opacity-100'), 10);
+            } else {
+                menu.classList.add(isRTL ? 'translate-x-full' : '-translate-x-full');
+                overlay.classList.remove('opacity-100');
+                setTimeout(() => overlay.classList.add('hidden'), 300);
+            }
+        }
+
+        function switchTab(tabId, el) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
             document.getElementById(tabId).classList.add('active');
             
-            document.querySelectorAll('.sidebar-item').forEach(item => item.classList.remove('active'));
-            if(btn && btn.classList.contains('sidebar-item')) btn.classList.add('active');
-            
-            if(window.innerWidth < 1024) {
-                const sb = document.getElementById('sidebar');
-                if (!sb.classList.contains('-translate-x-full')) toggleSidebar();
-            }
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active', 'text-white');
+                btn.classList.add('text-slate-400');
+            });
+
+            const label = el.innerText.trim();
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                if(btn.innerText.trim() === label) {
+                    btn.classList.add('active');
+                    btn.classList.remove('text-slate-400');
+                }
+            });
+
+            const titles = { dashboard: 'Dashboard Overview', booking: 'Book Appointment', pets: 'My Furry Family', history: 'Grooming History', wellness: 'Wellness Plans', settings: 'Settings' };
+            document.getElementById('page-title').innerText = titles[tabId] || 'Dashboard';
+            if (window.innerWidth < 1024) toggleMobileMenu();
         }
 
-        function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('-translate-x-full');
-        }
-
-        function toggleDarkMode() {
-            const html = document.documentElement;
-            html.classList.toggle('dark');
-            const isDark = html.classList.contains('dark');
+        function toggleTheme() {
+            const isDark = document.documentElement.classList.toggle('dark');
             localStorage.setItem('paws-theme', isDark ? 'dark' : 'light');
-        }
-
-        function toggleDirection() {
-            const html = document.getElementById('app-html');
-            const newDir = html.getAttribute('dir') === 'ltr' ? 'rtl' : 'ltr';
-            html.setAttribute('dir', newDir);
-            localStorage.setItem('paws-dir', newDir);
-            document.getElementById('dir-label').innerText = newDir.toUpperCase();
-        }
-
-        function initApp() {
-            const savedTheme = localStorage.getItem('paws-theme') || 'light';
-            const savedDir = localStorage.getItem('paws-dir') || 'ltr';
-            
-            if (savedTheme === 'dark') {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-            }
-            
-            document.getElementById('app-html').setAttribute('dir', savedDir);
-            document.getElementById('dir-label').innerText = savedDir.toUpperCase();
-            
+            document.getElementById('theme-toggle-icon').setAttribute('data-lucide', isDark ? 'sun' : 'moon');
             lucide.createIcons();
         }
 
-        initApp();
+        function toggleDirection() {
+            const html = document.documentElement;
+            const newDir = html.dir === 'ltr' ? 'rtl' : 'ltr';
+            html.dir = newDir;
+            localStorage.setItem('paws-dir', newDir);
+            document.getElementById('dir-label-mobile').innerText = newDir.toUpperCase() + ' Mode';
+            document.getElementById('dir-label-desktop').innerText = newDir.toUpperCase();
+            
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.remove('left-0', 'right-0');
+            menu.classList.add(newDir === 'rtl' ? 'right-0' : 'left-0');
+            menu.classList.remove('-translate-x-full', 'translate-x-full');
+            menu.classList.add(newDir === 'rtl' ? 'translate-x-full' : '-translate-x-full');
+        }
+
+        window.onload = () => {
+            if (localStorage.getItem('paws-theme') === 'dark') {
+                document.documentElement.classList.add('dark');
+                document.getElementById('theme-toggle-icon').setAttribute('data-lucide', 'sun');
+            }
+            if (localStorage.getItem('paws-dir') === 'rtl') toggleDirection();
+            lucide.createIcons();
+        };
     </script>
 </body>
 </html>

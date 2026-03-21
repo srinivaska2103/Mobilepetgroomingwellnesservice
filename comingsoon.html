@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" id="root-html" class="h-full">
+<html lang="en" dir="ltr" id="root-html" class="min-h-full">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="icon" href="assets/dog_7104247.png">
-    <title>Coming Soon | PawsOnWheels</title>
+     <link rel="icon" href="assets/pawprint_4659771.png">
+    <title>Coming Soon | PAWS Mobile Wellness</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
@@ -12,53 +12,71 @@
         @keyframes pulse-slow { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.6; } }
         .animate-pulse-slow { animation: pulse-slow 4s infinite; }
         
-        /* Desktop Fixed Fit */
-        @media (min-width: 1024px) { body { overflow: hidden; } }
+        /* Removed the overflow: hidden desktop lock to allow scrolling */
+        body { 
+            overflow-y: auto; 
+            overflow-x: hidden;
+        }
     </style>
     <script>
         tailwind.config = {
             darkMode: 'class',
-            theme: { extend: { screens: { 'xs': '360px' } } }
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4CAF50',
+                        secondary: '#8D6E63',
+                        accent: '#FFC107',
+                        background: '#F9FAFB',
+                    },
+                    screens: {
+                        'xs': '360px',
+                    }
+                }
+            }
         }
     </script>
 </head>
-<body class="theme-transition bg-white text-slate-900 dark:bg-slate-950 dark:text-white font-sans h-full flex flex-col relative">
+<body class="theme-transition bg-background text-slate-900 dark:bg-slate-950 dark:text-white font-sans min-h-screen flex flex-col relative">
 
     <div class="absolute top-0 left-0 w-full h-full -z-10 overflow-hidden pointer-events-none">
-        <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-500/10 rounded-full blur-[120px] animate-pulse-slow"></div>
-        <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-600/10 rounded-full blur-[120px] animate-pulse-slow"></div>
+        <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/10 rounded-full blur-[120px] animate-pulse-slow"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-secondary/10 rounded-full blur-[120px] animate-pulse-slow"></div>
     </div>
 
     <nav class="flex-none p-4 md:p-6 lg:p-8">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <a href="index.html">
- <div class="flex-shrink-0 flex items-center gap-2">
-                    <i data-lucide="dog" class="text-blue-500 w-8 h-8"></i>
-                    <span class="text-2xl font-bold tracking-tight">Paws</span>
-                </div>
-                </a>
+            <a href="index.html" class="flex-shrink-0 flex items-center gap-2">
+                <svg class="w-10 h-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 5C13.6569 5 15 3.65685 15 2C15 0.343146 13.6569 0 12 0C10.3431 0 9 0.343146 9 2C9 3.65685 10.3431 5 12 5Z" fill="#4CAF50"/>
+                    <path d="M5 8C6.65685 8 8 6.65685 8 5C8 3.34315 6.65685 3 5 3C3.34315 3 2 3.34315 2 5C2 6.65685 3.34315 8 5 8Z" fill="#8D6E63"/>
+                    <path d="M19 8C20.6569 8 22 6.65685 22 5C22 3.34315 20.6569 3 19 3C17.3431 3 16 3.34315 16 5C16 6.65685 17.3431 8 19 8Z" fill="#8D6E63"/>
+                    <path d="M12 24C16.4183 24 20 20.4183 20 16C20 11.5817 16.4183 10 12 10C7.58172 10 4 11.5817 4 16C4 20.4183 7.58172 24 12 24Z" fill="#4CAF50"/>
+                    <path d="M9 16H15M9 18H15M9 20H15" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <span class="text-2xl font-black tracking-tighter text-primary dark:text-white uppercase">PAWS</span>
+            </a>
 
             <div class="flex items-center gap-3">
-                <button onclick="toggleTheme()" class="p-3 rounded-2xl bg-gray-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:ring-2 ring-blue-500 transition-all">
-                    <i data-lucide="sun" id="sun-icon" class="hidden w-5 h-5 text-yellow-400"></i>
+                <button onclick="toggleTheme()" class="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:ring-2 ring-primary transition-all">
+                    <i data-lucide="sun" id="sun-icon" class="hidden w-5 h-5 text-accent"></i>
                     <i data-lucide="moon" id="moon-icon" class="w-5 h-5 text-slate-600 dark:text-slate-400"></i>
                 </button>
-                <button onclick="toggleDirection()" class="px-4 py-3 rounded-2xl bg-gray-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-[10px] font-black ring-blue-500 hover:ring-2 transition-all">
+                <button onclick="toggleDirection()" class="px-4 py-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-[10px] font-black ring-primary hover:ring-2 transition-all">
                     <span id="dir-text">LTR</span>
                 </button>
             </div>
         </div>
     </nav>
 
-    <main class="flex-1 flex flex-col items-center justify-center p-6 text-center max-w-4xl mx-auto w-full">
-        
+    <main class="flex-1 flex flex-col items-center justify-center p-6 text-center max-w-4xl mx-auto w-full py-12 md:py-20">
         <div class="space-y-6 md:space-y-10 w-full">
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 font-bold text-xs uppercase tracking-widest border border-blue-100 dark:border-blue-800">
-                <i data-lucide="sparkles" class="w-4 h-4"></i> Something big is fetching...
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary font-bold text-xs uppercase tracking-widest border border-primary/20">
+                <i data-lucide="sparkles" class="w-4 h-4 text-accent"></i> Something big is fetching...
             </div>
 
-            <h1 class="text-4xl xs:text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.9]">
-                Our New Site is <br> <span class="text-blue-600">Coming Soon</span>
+            <h1 class="text-4xl xs:text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.9] uppercase">
+                Our New Site is <br> <span class="text-primary">Coming Soon</span>
             </h1>
 
             <p class="text-lg md:text-xl text-slate-500 dark:text-slate-400 font-medium max-w-xl mx-auto leading-relaxed">
@@ -66,45 +84,44 @@
             </p>
 
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
-                <div class="p-4 md:p-6 rounded-3xl bg-gray-50 dark:bg-slate-900/50 border border-gray-100 dark:border-slate-800 backdrop-blur-md">
-                    <span id="days" class="text-3xl md:text-4xl font-black text-blue-600">14</span>
+                <div class="p-4 md:p-6 rounded-3xl bg-white dark:bg-slate-900/50 border border-gray-100 dark:border-slate-800 backdrop-blur-md shadow-sm">
+                    <span id="days" class="text-3xl md:text-4xl font-black text-primary">14</span>
                     <p class="text-[10px] uppercase font-bold tracking-widest opacity-50">Days</p>
                 </div>
-                <div class="p-4 md:p-6 rounded-3xl bg-gray-50 dark:bg-slate-900/50 border border-gray-100 dark:border-slate-800 backdrop-blur-md">
-                    <span id="hours" class="text-3xl md:text-4xl font-black text-blue-600">23</span>
+                <div class="p-4 md:p-6 rounded-3xl bg-white dark:bg-slate-900/50 border border-gray-100 dark:border-slate-800 backdrop-blur-md shadow-sm">
+                    <span id="hours" class="text-3xl md:text-4xl font-black text-primary">23</span>
                     <p class="text-[10px] uppercase font-bold tracking-widest opacity-50">Hours</p>
                 </div>
-                <div class="p-4 md:p-6 rounded-3xl bg-gray-50 dark:bg-slate-900/50 border border-gray-100 dark:border-slate-800 backdrop-blur-md">
-                    <span id="minutes" class="text-3xl md:text-4xl font-black text-blue-600">59</span>
+                <div class="p-4 md:p-6 rounded-3xl bg-white dark:bg-slate-900/50 border border-gray-100 dark:border-slate-800 backdrop-blur-md shadow-sm">
+                    <span id="minutes" class="text-3xl md:text-4xl font-black text-primary">59</span>
                     <p class="text-[10px] uppercase font-bold tracking-widest opacity-50">Mins</p>
                 </div>
-                <div class="p-4 md:p-6 rounded-3xl bg-gray-50 dark:bg-slate-900/50 border border-gray-100 dark:border-slate-800 backdrop-blur-md">
-                    <span id="seconds" class="text-3xl md:text-4xl font-black text-blue-600">45</span>
+                <div class="p-4 md:p-6 rounded-3xl bg-white dark:bg-slate-900/50 border border-gray-100 dark:border-slate-800 backdrop-blur-md shadow-sm">
+                    <span id="seconds" class="text-3xl md:text-4xl font-black text-primary">45</span>
                     <p class="text-[10px] uppercase font-bold tracking-widest opacity-50">Secs</p>
                 </div>
             </div>
 
             <form class="max-w-md mx-auto w-full flex flex-col xs:flex-row gap-3 pt-4" onsubmit="event.preventDefault(); alert('You are on the list! 🐾');">
                 <input type="email" required placeholder="Enter your pet's email..." 
-                    class="flex-1 px-6 py-4 rounded-2xl bg-white dark:bg-slate-900 border-2 border-gray-100 dark:border-slate-800 focus:border-blue-600 outline-none transition-all font-bold">
-                <button class="px-8 py-4 bg-blue-600 text-white rounded-2xl font-black hover:bg-blue-700 hover:-translate-y-1 transition-all shadow-xl shadow-blue-500/20 active:scale-95">Notify Me</button>
+                    class="flex-1 px-6 py-4 rounded-2xl bg-white dark:bg-slate-900 border-2 border-gray-100 dark:border-slate-800 focus:border-primary outline-none transition-all font-bold">
+                <button class="px-8 py-4 bg-primary text-white rounded-2xl font-black hover:brightness-110 hover:-translate-y-1 transition-all shadow-xl shadow-primary/20 active:scale-95 uppercase tracking-widest text-sm">Notify Me</button>
             </form>
         </div>
     </main>
 
-    <footer class="flex-none p-8 flex flex-col items-center gap-4">
+    <footer class="flex-none p-8 flex flex-col items-center gap-4 mt-auto">
         <div class="flex gap-6 text-slate-400">
-            <a href="#" class="hover:text-blue-600 transition-colors"><i data-lucide="facebook" class="w-5 h-5"></i></a>
-            <a href="#" class="hover:text-blue-600 transition-colors"><i data-lucide="instagram" class="w-5 h-5"></i></a>
-            <a href="#" class="hover:text-blue-600 transition-colors"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+            <a href="#" class="hover:text-primary transition-colors"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+            <a href="#" class="hover:text-primary transition-colors"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+            <a href="#" class="hover:text-primary transition-colors"><i data-lucide="twitter" class="w-5 h-5"></i></a>
         </div>
-        <p class="text-[10px] font-black uppercase tracking-[0.3em] opacity-30">Stay Tuned // PawsOnWheels 2026</p>
+        <p class="text-[10px] font-black uppercase tracking-[0.3em] opacity-30">Stay Tuned // PAWS Mobile Wellness 2026</p>
     </footer>
 
     <script>
         lucide.createIcons();
 
-        // THEME & DIRECTION LOGIC
         function toggleTheme() {
             const html = document.documentElement;
             html.classList.toggle('dark');
@@ -126,7 +143,6 @@
             localStorage.setItem('dir', newDir);
         }
 
-        // TIMER LOGIC (Static for now, can be linked to a target date)
         function updateTimer() {
             const secs = document.getElementById('seconds');
             let val = parseInt(secs.innerText);
