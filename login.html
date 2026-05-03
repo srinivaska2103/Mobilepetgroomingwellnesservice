@@ -87,8 +87,8 @@
 
             <div class="p-6 md:p-10 lg:p-12 flex flex-col justify-center min-h-[500px]">
                 <div class="mb-6 text-center lg:text-left">
-                    <h1 class="text-3xl font-black mb-1 tracking-tighter uppercase text-primary">Login</h1>
-                    <p class="text-xs font-bold text-slate-400 uppercase tracking-widest">Access your pet's profile</p>
+                    <h1 class="text-3xl font-semibold text-center mb-1 tracking-tighter uppercase text-primary">Login</h1>
+                    <p class="text-xs font-bold text-slate-400 text-center uppercase tracking-widest">Access your pet's profile</p>
                 </div>
 
                 <div class="grid grid-cols-2 gap-3 mb-5">
@@ -106,26 +106,37 @@
                 </div>
 
                 <form class="space-y-3.5" onsubmit="event.preventDefault(); alert('Login Successful! 🐾');">
-                    <div class="space-y-1">
-                        <label class="text-[10px] font-black uppercase tracking-widest text-primary ml-1">Email Address</label>
-                        <input type="email" required placeholder="name@example.com" 
-                            class="w-full p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800 border-2 border-transparent focus:border-primary focus:bg-white dark:focus:bg-slate-900 outline-none transition-all font-bold text-sm">
-                    </div>
+    <!-- Email Field -->
+    <div class="space-y-1">
+        <label class="text-[10px] font-black uppercase tracking-widest text-primary ml-1">Email Address</label>
+        <input type="email" required placeholder="name@example.com" 
+            class="w-full p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800 border-2 border-transparent focus:border-primary focus:bg-white dark:focus:bg-slate-900 outline-none transition-all font-bold text-sm">
+    </div>
 
-                    <div class="space-y-1">
-                        <div class="flex justify-between items-center ml-1">
-                            <label class="text-[10px] font-black uppercase tracking-widest text-primary">Password</label>
-                        </div>
-                        <input type="password" required placeholder="••••••••" 
-                             class="w-full p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800 border-2 border-transparent focus:border-primary focus:bg-white dark:focus:bg-slate-900 outline-none transition-all font-bold text-sm">
-                    </div>
-                    
-                    <a href="#" class="text-[10px] font-black text-secondary hover:text-primary transition-colors inline-block uppercase tracking-widest">Forgot Password?</a>
+    <!-- Password Field -->
+    <div class="space-y-1">
+        <label class="text-[10px] font-black uppercase tracking-widest text-primary ml-1">Password</label>
+        <input type="password" required placeholder="••••••••" 
+             class="w-full p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800 border-2 border-transparent focus:border-primary focus:bg-white dark:focus:bg-slate-900 outline-none transition-all font-bold text-sm">
+    </div>
+    
+    <!-- Remember Me & Forgot Password Row -->
+    <div class="flex items-center justify-between px-1">
+        <label class="flex items-center gap-2 cursor-pointer group">
+            <input type="checkbox" class="w-3.5 h-3.5 rounded border-gray-300 text-primary focus:ring-primary accent-primary cursor-pointer">
+            <span class="text-[10px] font-black uppercase tracking-widest text-slate-500 group-hover:text-primary transition-colors">Remember Me</span>
+        </label>
+        
+        <a href="#" class="text-[10px] font-black text-secondary hover:text-primary transition-colors uppercase tracking-widest">
+            Forgot Password?
+        </a>
+    </div>
 
-                    <button class="w-full py-4 bg-primary text-white rounded-xl font-black text-base shadow-lg shadow-primary/20 hover:brightness-110 hover:-translate-y-1 transition-all active:scale-95 mt-2 uppercase tracking-widest">
-                        Sign In
-                    </button>
-                </form>
+    <!-- Sign In Button -->
+    <button type="submit" class="w-full py-4 bg-primary text-white rounded-xl font-black text-base shadow-lg shadow-primary/20 hover:brightness-110 hover:-translate-y-1 transition-all active:scale-95 mt-2 uppercase tracking-widest">
+        Sign In
+    </button>
+</form>
 
                 <p class="mt-6 text-center text-xs font-medium text-slate-500 dark:text-slate-400">
                     Don't have an account? <a href="regeiester.html" class="text-primary font-black hover:underline uppercase tracking-tighter">Sign up for free</a>

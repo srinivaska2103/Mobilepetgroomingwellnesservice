@@ -46,29 +46,47 @@
                 <span class="text-2xl font-black tracking-tighter text-primary dark:text-white uppercase">PAWS</span>
             </a>
 
-            <div class="hidden lg:flex items-center space-x-6">
-                <div class="flex items-center space-x-4">
-                    <a href="index.html" class="nav-link py-2 transition-colors hover:text-primary">Home</a>
-                    <a href="home2.html" class="nav-link py-2 transition-colors hover:text-primary">Home2</a>
-                    <a href="booknow.html" class="nav-link py-2 transition-colors hover:text-primary font-bold">Book Now</a>
-                    <a href="service.html" class="nav-link py-2 transition-colors hover:text-primary">Services</a>
-                    <a href="gallery.html" class="nav-link py-2 transition-colors hover:text-primary">Gallery</a>
-                    <a href="about.html" class="nav-link py-2 transition-colors hover:text-primary">About</a>
-                    <a href="contact.html" class="nav-link py-2 transition-colors hover:text-primary">Contact</a>
-                    <a href="user.html" class="nav-link py-2 transition-colors hover:text-primary font-semibold">Dashboard</a>
-                </div>
-                
-                <div class="flex items-center space-x-3 border-l pl-4 dark:border-gray-700">
-                    <a href="login.html">
-                        <button class="bg-primary text-white px-5 py-2 rounded-full hover:brightness-110 transition text-sm font-bold">Login</button>
-                    </a>
-                    <button id="theme-toggle" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition" title="Toggle Theme">🌓</button>
-                    <button id="dir-toggle" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 text-[10px] font-bold hover:bg-gray-200 dark:hover:bg-gray-600 transition" title="Toggle Direction">LTR/RTL</button>
-                </div>
-            </div>
+          <div class="hidden lg:flex items-center lg:space-x-2 xl:space-x-6">
+    <!-- Navigation Links -->
+    <div class="flex items-center lg:space-x-2 xl:space-x-4">
+        <a href="index.html" class="nav-link py-2 transition-colors hover:text-primary lg:text-xs xl:text-base">Home</a>
+        <a href="home2.html" class="nav-link py-2 transition-colors hover:text-primary lg:text-xs xl:text-base">Home2</a>
+        <a href="service.html" class="nav-link py-2 transition-colors hover:text-primary lg:text-xs xl:text-base">Services</a>
+        <a href="gallery.html" class="nav-link py-2 transition-colors hover:text-primary lg:text-xs xl:text-base">Gallery</a>
+        <a href="about.html" class="nav-link py-2 transition-colors hover:text-primary lg:text-xs xl:text-base">About</a>
+        <a href="contact.html" class="nav-link py-2 transition-colors hover:text-primary lg:text-xs xl:text-base">Contact</a>
+        <a href="user.html" class="nav-link py-2 transition-colors hover:text-primary lg:text-xs xl:text-base">Dashboard</a>
+    </div>
+    
+    <!-- Action Buttons -->
+   <div class="flex items-center lg:space-x-2 xl:space-x-3 border-l lg:pl-2 xl:pl-4 dark:border-gray-700">
+    <!-- Login Button -->
+    <a href="login.html" class="block">
+        <button class="flex items-center justify-center h-11 lg:px-4 xl:px-6 bg-primary text-white rounded-xl xl:rounded-2xl hover:brightness-110 transition lg:text-[10px] xl:text-sm font-bold uppercase tracking-widest">
+            Login
+        </button>
+    </a>
+    
+    <!-- Book Now Button -->
+    <a href="booknow.html" class="block">
+        <button class="flex items-center justify-center h-11 lg:px-5 xl:px-8 bg-primary text-white font-black uppercase lg:text-[9px] xl:text-xs lg:tracking-wider xl:tracking-[0.2em] rounded-xl xl:rounded-2xl shadow-lg shadow-primary/30 hover:brightness-110 hover:-translate-y-1 active:scale-95 transition-all duration-300 whitespace-nowrap">
+            Book Now
+        </button>
+    </a>
+
+    <!-- Theme Toggle (Square) -->
+    <button id="theme-toggle" class="flex items-center justify-center h-11 w-11 rounded-xl xl:rounded-2xl bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition" title="Toggle Theme">
+        🌓
+    </button>
+    
+    <!-- Dir Toggle (Matching Height) -->
+    <button id="dir-toggle" class="flex items-center justify-center h-11 lg:px-3 xl:px-4 rounded-xl xl:rounded-2xl bg-gray-100 dark:bg-gray-700 lg:text-[8px] xl:text-[10px] font-black hover:bg-gray-200 dark:hover:bg-gray-600 transition whitespace-nowrap uppercase" title="Toggle Direction">
+        LTR/RTL
+    </button>
+</div>
+</div>
 
             <div class="lg:hidden flex items-center space-x-3">
-                <button id="theme-toggle-m" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 transition">🌓</button>
                 <button id="mobile-menu-button" class="p-2 text-gray-600 dark:text-gray-300 focus:outline-none transition">
                     <svg id="menu-icon" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path id="menu-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
@@ -89,14 +107,27 @@
             <a href="contact.html" class="mobile-nav-link block py-3 border-b border-gray-50 dark:border-gray-700">Contact</a>
             <a href="user.html" class="mobile-nav-link block py-3 font-bold text-secondary">Dashboard</a>
             
-            <div class="pt-4 space-y-3">
-                <a href="login.html" class="block">
-                    <button class="w-full bg-primary text-white py-3 rounded-xl font-bold shadow-lg">Login</button>
-                </a>
-                <button id="dir-toggle-m" class="w-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 py-3 rounded-xl text-xs font-bold uppercase tracking-widest border border-gray-200 dark:border-gray-600">
-                    Switch Layout (LTR / RTL)
-                </button>
-            </div>
+          <div class="pt-6 space-y-3">
+    <!-- Primary Action: Login -->
+    <a href="login.html" class="block">
+        <button class="w-full bg-primary text-white py-4 rounded-2xl font-black uppercase text-xs tracking-widest shadow-lg shadow-primary/20 active:scale-95 transition-all">
+            Login to Dashboard
+        </button>
+    </a>
+
+    <!-- Secondary Actions: Toggles grouped together -->
+    <div class="flex gap-3">
+        <!-- Direction Toggle: Takes more space -->
+        <button id="dir-toggle-m" class="flex-grow bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 py-3 px-4 rounded-2xl text-[10px] font-black uppercase tracking-widest border border-gray-200 dark:border-gray-700 active:bg-gray-200 dark:active:bg-gray-700 transition-all">
+            LTR / RTL
+        </button>
+
+        <!-- Theme Toggle: Square/Compact -->
+        <button id="theme-toggle-m" class="w-14 h-12 flex items-center justify-center rounded-2xl bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-lg active:scale-90 transition-all">
+            🌓
+        </button>
+    </div>
+</div>
         </div>
     </div>
 </nav>
@@ -261,10 +292,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     Experience Stress-Free Pampering
                 </div>
 
-                <h1 class="text-3xl xs:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-[1.1] tracking-tighter uppercase mb-6">
+                <h1 class="text-3xl xs:text-4xl md:text-6xl lg:text-6xl xl:text-6xl font-black leading-[1.1] tracking-tighter uppercase mb-6">
                     No More <span class="text-primary">Stressful</span> <br class="hidden sm:block">
-                    Pet Grooming Visits <br>
-                    <span class="text-secondary">— We Come to You!</span>
+                    Pet Grooming Visit <br>
+                    <span class="text-secondary">We Come to You!</span>
                 </h1>
 
                 <div class="space-y-3 mb-8">
@@ -282,7 +313,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <a href="booknow.html" class="w-full xs:w-auto px-10 py-5 bg-primary text-white rounded-2xl font-black uppercase tracking-widest text-sm shadow-xl shadow-primary/20 hover:brightness-110 hover:-translate-y-1 transition-all active:scale-95 flex items-center justify-center gap-2">
                         Book Now
                     </a>
-                    <a href="#" class="w-full xs:w-auto px-10 py-5 bg-accent text-slate-900 rounded-2xl font-black uppercase tracking-widest text-sm shadow-xl shadow-accent/20 hover:brightness-105 hover:-translate-y-1 transition-all active:scale-95 flex flex-col items-center justify-center leading-none">
+                    <a href="contact.html" class="w-full xs:w-auto px-10 py-5 bg-primary text-white rounded-2xl font-black uppercase tracking-widest text-sm shadow-xl shadow-primary/20 hover:brightness-110 hover:-translate-y-1 transition-all active:scale-95 flex items-center justify-center gap-2">
                         <span>Get 10% Off</span>
                         <span class="text-[9px] opacity-70 mt-1">First Visit Only</span>
                     </a>
@@ -327,7 +358,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         Exclusive Launch Offer
                     </div>
                     
-                    <h2 class="text-3xl xs:text-4xl md:text-5xl font-black text-white leading-none tracking-tighter uppercase">
+                    <h2 class="text-3xl xs:text-4xl md:text-5xl font-semibold text-white leading-none tracking-tighter uppercase">
                         🎉 Flat <span class="text-accent">10% OFF</span> <br>
                         On First Grooming
                     </h2>
@@ -410,7 +441,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="text-center max-w-2xl mx-auto mb-12 md:mb-20">
-            <h2 class="text-3xl md:text-5xl font-black tracking-tighter text-slate-900 dark:text-white uppercase leading-none">
+            <h2 class="text-3xl md:text-5xl font-semibold tracking-tighter text-slate-900 dark:text-white uppercase leading-none">
                 The Smarter Way to <br> <span class="text-primary">Groom Your Pet</span>
             </h2>
         </div>
@@ -500,7 +531,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="text-center mb-12 md:mb-20 space-y-4">
-            <h2 class="text-3xl md:text-5xl font-black tracking-tighter text-slate-900 dark:text-white uppercase leading-none">
+            <h2 class="text-3xl md:text-5xl font-semibold tracking-tighter text-slate-900 dark:text-white uppercase leading-none">
                 3 Simple <span class="text-primary">Steps</span>
             </h2>
             <p class="text-slate-500 dark:text-slate-400 font-medium text-sm md:text-base italic">
@@ -560,7 +591,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="relative bg-gray-50 dark:bg-slate-800 p-6 md:p-10 lg:p-12 rounded-[2.5rem] shadow-xl border border-gray-100 dark:border-slate-700 overflow-hidden">
             
             <div class="mb-8 text-center lg:text-left">
-                <h2 class="text-2xl md:text-3xl font-black text-slate-900 dark:text-white uppercase tracking-tighter">
+                <h2 class="text-2xl md:text-3xl font-semibold text-slate-900 dark:text-white uppercase tracking-tighter">
                     Quick <span class="text-primary">Booking</span>
                 </h2>
                 <p class="text-sm text-slate-500 dark:text-slate-400 font-medium mt-1 uppercase tracking-widest text-[10px]">
