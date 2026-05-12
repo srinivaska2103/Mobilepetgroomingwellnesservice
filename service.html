@@ -451,26 +451,28 @@ document.addEventListener('DOMContentLoaded', () => {
             </p>
         </div>
 
-     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
     
     <!-- Card 1: Gentle Bath -->
-    <div class="group relative overflow-hidden bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 border border-slate-100 dark:border-slate-800 transition-all duration-500 hover:bg-secondary hover:-translate-y-3 shadow-sm hover:shadow-2xl hover:shadow-secondary/30 cursor-pointer">
-        <!-- Background Image Overlay -->
-        <div class="absolute inset-0 z-0 transition-all duration-700 opacity-0 group-hover:opacity-20 scale-110 group-hover:scale-100 pointer-events-none">
-            <img src="assets/cat2" class="w-full h-full object-cover" alt="Cat Bathing">
+    <div class="group relative overflow-hidden bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 border border-slate-100 dark:border-slate-800 transition-all duration-500 hover:-translate-y-3 shadow-sm hover:shadow-2xl hover:shadow-primary/20 cursor-pointer">
+        <!-- Persistent Image Background -->
+        <div class="absolute inset-0 z-0 scale-100 group-hover:scale-110 transition-transform duration-700">
+            <img src="assets/cat2" class="w-full h-full object-cover opacity-40 dark:opacity-30" alt="Cat Bathing">
+            <!-- Gradient Overlay for Readability -->
+            <div class="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent dark:from-slate-900 dark:via-slate-900/80"></div>
         </div>
 
         <div class="relative z-10">
-            <div class="mb-6 w-16 h-16 bg-secondary/10 rounded-2xl flex items-center justify-center text-3xl group-hover:bg-white/20 group-hover:rotate-12 transition-all duration-500">
+            <div class="mb-6 w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center text-3xl group-hover:bg-primary group-hover:text-white group-hover:rotate-12 transition-all duration-500">
                 🧼
             </div>
-            <h3 class="text-xl font-black uppercase tracking-tight text-slate-900 dark:text-white group-hover:text-white transition-colors">
+            <h3 class="text-xl font-black uppercase tracking-tight text-slate-900 dark:text-white transition-colors">
                 Gentle Bath
             </h3>
-            <p class="mt-4 text-sm text-slate-500 dark:text-slate-400 group-hover:text-orange-50 font-bold leading-relaxed">
+            <p class="mt-4 text-sm text-slate-600 dark:text-slate-400 font-bold leading-relaxed">
                 Water-acclimatized bathing using feline-safe, unscented organic shampoos.
             </p>
-            <div class="mt-6 flex items-center gap-2 text-secondary group-hover:text-accent font-black text-[10px] uppercase tracking-widest">
+            <div class="mt-6 flex items-center gap-2 text-primary font-black text-[10px] uppercase tracking-widest">
                 <span>Explore</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-2 transition-transform"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
             </div>
@@ -478,22 +480,23 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
 
     <!-- Card 2: Fur Brushing -->
-    <div class="group relative overflow-hidden bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 border border-slate-100 dark:border-slate-800 transition-all duration-500 hover:bg-secondary hover:-translate-y-3 shadow-sm hover:shadow-2xl hover:shadow-secondary/30 cursor-pointer">
-        <div class="absolute inset-0 z-0 transition-all duration-700 opacity-0 group-hover:opacity-20 scale-110 group-hover:scale-100 pointer-events-none">
-            <img src="assets/dogbath1" class="w-full h-full object-cover" alt="Brushing Fur">
+    <div class="group relative overflow-hidden bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 border border-slate-100 dark:border-slate-800 transition-all duration-500 hover:-translate-y-3 shadow-sm hover:shadow-2xl hover:shadow-primary/20 cursor-pointer">
+        <div class="absolute inset-0 z-0 scale-100 group-hover:scale-110 transition-transform duration-700">
+            <img src="assets/dogbath1" class="w-full h-full object-cover opacity-40 dark:opacity-30" alt="Brushing Fur">
+            <div class="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent dark:from-slate-900 dark:via-slate-900/80"></div>
         </div>
 
         <div class="relative z-10">
-            <div class="mb-6 w-16 h-16 bg-secondary/10 rounded-2xl flex items-center justify-center text-3xl group-hover:bg-white/20 group-hover:rotate-12 transition-all duration-500">
+            <div class="mb-6 w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center text-3xl group-hover:bg-primary group-hover:text-white group-hover:rotate-12 transition-all duration-500">
                 ✨
             </div>
-            <h3 class="text-xl font-black uppercase tracking-tight text-slate-900 dark:text-white group-hover:text-white transition-colors">
+            <h3 class="text-xl font-black uppercase tracking-tight text-slate-900 dark:text-white transition-colors">
                 Fur Brushing
             </h3>
-            <p class="mt-4 text-sm text-slate-500 dark:text-slate-400 group-hover:text-orange-50 font-bold leading-relaxed">
+            <p class="mt-4 text-sm text-slate-600 dark:text-slate-400 font-bold leading-relaxed">
                 Deep detangling and brushing to maintain a sleek, knot-free coat and healthy skin.
             </p>
-            <div class="mt-6 flex items-center gap-2 text-secondary group-hover:text-accent font-black text-[10px] uppercase tracking-widest">
+            <div class="mt-6 flex items-center gap-2 text-primary font-black text-[10px] uppercase tracking-widest">
                 <span>Explore</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-2 transition-transform"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
             </div>
@@ -501,22 +504,23 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
 
     <!-- Card 3: De-shedding -->
-    <div class="group relative overflow-hidden bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 border border-slate-100 dark:border-slate-800 transition-all duration-500 hover:bg-secondary hover:-translate-y-3 shadow-sm hover:shadow-2xl hover:shadow-secondary/30 cursor-pointer">
-        <div class="absolute inset-0 z-0 transition-all duration-700 opacity-0 group-hover:opacity-20 scale-110 group-hover:scale-100 pointer-events-none">
-            <img src="assets/cat3" class="w-full h-full object-cover" alt="Cat Grooming">
+    <div class="group relative overflow-hidden bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 border border-slate-100 dark:border-slate-800 transition-all duration-500 hover:-translate-y-3 shadow-sm hover:shadow-2xl hover:shadow-primary/20 cursor-pointer">
+        <div class="absolute inset-0 z-0 scale-100 group-hover:scale-110 transition-transform duration-700">
+            <img src="assets/cat3" class="w-full h-full object-cover opacity-40 dark:opacity-30" alt="Cat Grooming">
+            <div class="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent dark:from-slate-900 dark:via-slate-900/80"></div>
         </div>
 
         <div class="relative z-10">
-            <div class="mb-6 w-16 h-16 bg-secondary/10 rounded-2xl flex items-center justify-center text-3xl group-hover:bg-white/20 group-hover:rotate-12 transition-all duration-500">
+            <div class="mb-6 w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center text-3xl group-hover:bg-primary group-hover:text-white group-hover:rotate-12 transition-all duration-500">
                 ☁️
             </div>
-            <h3 class="text-xl font-black uppercase tracking-tight text-slate-900 dark:text-white group-hover:text-white transition-colors">
+            <h3 class="text-xl font-black uppercase tracking-tight text-slate-900 dark:text-white transition-colors">
                 De-shedding
             </h3>
-            <p class="mt-4 text-sm text-slate-500 dark:text-slate-400 group-hover:text-orange-50 font-bold leading-relaxed">
+            <p class="mt-4 text-sm text-slate-600 dark:text-slate-400 font-bold leading-relaxed">
                 Reduces hairballs and household shedding using specialized undercoat tools.
             </p>
-            <div class="mt-6 flex items-center gap-2 text-secondary group-hover:text-accent font-black text-[10px] uppercase tracking-widest">
+            <div class="mt-6 flex items-center gap-2 text-primary font-black text-[10px] uppercase tracking-widest">
                 <span>Explore</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-2 transition-transform"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
             </div>
@@ -524,22 +528,23 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
 
     <!-- Card 4: Hygiene Trim -->
-    <div class="group relative overflow-hidden bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 border border-slate-100 dark:border-slate-800 transition-all duration-500 hover:bg-secondary hover:-translate-y-3 shadow-sm hover:shadow-2xl hover:shadow-secondary/30 cursor-pointer">
-        <div class="absolute inset-0 z-0 transition-all duration-700 opacity-0 group-hover:opacity-20 scale-110 group-hover:scale-100 pointer-events-none">
-            <img src="assets/cat5" class="w-full h-full object-cover" alt="Trim Grooming">
+    <div class="group relative overflow-hidden bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 border border-slate-100 dark:border-slate-800 transition-all duration-500 hover:-translate-y-3 shadow-sm hover:shadow-2xl hover:shadow-primary/20 cursor-pointer">
+        <div class="absolute inset-0 z-0 scale-100 group-hover:scale-110 transition-transform duration-700">
+            <img src="assets/cat5" class="w-full h-full object-cover opacity-40 dark:opacity-30" alt="Trim Grooming">
+            <div class="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent dark:from-slate-900 dark:via-slate-900/80"></div>
         </div>
 
         <div class="relative z-10">
-            <div class="mb-6 w-16 h-16 bg-secondary/10 rounded-2xl flex items-center justify-center text-3xl group-hover:bg-white/20 group-hover:rotate-12 transition-all duration-500">
+            <div class="mb-6 w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center text-3xl group-hover:bg-primary group-hover:text-white group-hover:rotate-12 transition-all duration-500">
                 ✂️
             </div>
-            <h3 class="text-xl font-black uppercase tracking-tight text-slate-900 dark:text-white group-hover:text-white transition-colors">
+            <h3 class="text-xl font-black uppercase tracking-tight text-slate-900 dark:text-white transition-colors">
                 Hygiene Trim
             </h3>
-            <p class="mt-4 text-sm text-slate-500 dark:text-slate-400 group-hover:text-orange-50 font-bold leading-relaxed">
+            <p class="mt-4 text-sm text-slate-600 dark:text-slate-400 font-bold leading-relaxed">
                 Precise sanitary clipping and paw-pad tidying for improved feline hygiene.
             </p>
-            <div class="mt-6 flex items-center gap-2 text-secondary group-hover:text-accent font-black text-[10px] uppercase tracking-widest">
+            <div class="mt-6 flex items-center gap-2 text-primary font-black text-[10px] uppercase tracking-widest">
                 <span>Explore</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-2 transition-transform"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
             </div>
